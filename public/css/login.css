@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+* {
+    /* RESET CSS */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.containerM {
+    display: flex;
+    /* deixar lado a lado */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #ecf0f1;
+}
+
+.conteudo {
+    background: white;
+    border-radius: 15px;
+    width: 960px;
+    height: 70%;
+    /*justify-content: center; /* Centralizar horizontal */
+    justify-content: space-between;
+    align-items: center;
+    /* Centralizar vertical */
+    position: relative;
+    box-shadow: 10px 10px 20px silver;
+}
+
+.conteudo::before {
+    content: "";
+    position: absolute;
+    background-color: #58af9b;
+    width: 40%;
+    height: 100%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+
+    left: 0;
+}
+
+.primeiro-conteudo {
+    display: flex;
+}
+
+.primeiro-conteudo .segunda-coluna {
+    z-index: 11;
+}
+
+.titulo {
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: capitalize;
+    /* Coloca as primeiras letras da frase em caixa alta */
+}
+
+.titulo-primario {
+    color: white;
+}
+
+.titulo-secundario {
+    color: #58af9b;
+}
+
+.descricao {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 30px;
+    /* Altura da linha */
+}
+
+.descricao-primaria {
+    color: whitesmoke;
+}
+
+.descricao-secundaria {
+    color: #7f8c8d;
+}
+
+.botao {
+    border-radius: 15px;
+    text-transform: uppercase;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    width: 150px;
+    align-self: center;
+    /* centralizar botão */
+    border: none;
+    margin-top: 1rem;
+}
+
+.botaoCadastrar {
+    border-radius: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    width: 150px;
+    align-self: center;
+    font-size: 10px;
+    background-color: #58af9b;
+    padding: 10px;
+}
+
+.botao-primario {
+    background-color: transparent;
+    font-size: 10px;
+    padding: 10px;
+    /* espaçamento interno botão */
+    border: 1px solid white;
+    transition: background-color 0.5s;
+    /* tempo de transição de cor do botão */
+}
+
+.botao-secundario {
+    font-size: 10px;
+    padding: 10px;
+    /* espaçamento interno botão */
+    background-color: #58af9b;
+    border: 1px solid #58af9b;
+    transition: background-color 0.5s;
+    
+    /* tempo de transição de cor do botão */
+}
+
+.botao-primario:hover {
+    /* :hover pega o movimento do mouse sobre o botao */
+    background-color: white;
+    color: #58af9b;
+}
+
+.botao-secundario:hover {
+    /* :hover pega o movimento do mouse sobre o botao */
+    background-color: white;
+    border: 1px solid #58af9b;
+    color: #58af9b;
+}
+
+.primeira-coluna {
+    text-align: center;
+    width: 40%;
+    z-index: 10;
+    /* local do posicionamento da primeira coluna, so funciona co position (traz pra frente) */
+}
+
+.segunda-coluna {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-media {
+    margin: 0rem 0;
+}
+
+.link-social-midia:not(:first-child) {
+    /* nao atribuir a margem abaixo para o primeiro item da lista (item filho) */
+    margin-left: 10px;
+}
+
+.link-social-midia .item-social-midia {
+    transition: background-color 0.5s;
+}
+
+.link-social-midia:hover .item-social-midia {
+    background-color: #58af9b;
+    color: white;
+    border-color: #58af9b;
+}
+
+.social-media-lista {
+    display: flex;
+    list-style-type: none;
+    /* remove as bolinhas da lista */
+}
+
+.item-social-midia {
+    border: 1px solid #bdc3c7;
+    border-radius: 50%;
+    /*  cria circulo torto */
+    width: 35px;
+    /* desentorta circulo */
+    height: 35px;
+    /* desentorta circulo */
+    line-height: 35px;
+    text-align: center;
+    color: #95a5a6;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    /* Propriedade para deixar o formulario em coluna */
+    width: 55%;
+    /* largura campos form */
+}
+
+.form input {
+    height: 45px;
+    border: none;
+    /* remove borda */
+    background-color: #ecf0f1;
+    width: 100%;
+    outline: none;
+}
+
+.label-input {
+    background-color: #ecf0f1;
+    display: flex;
+    align-items: center;
+    margin: 8px;
+}
+
+.modificar-icon {
+    color: #7f8c8d;
+    padding: 0 5px;
+}
+
+/*  segundo conteudo */
+.segundo-conteudo {
+    position: absolute;
+    display: flex;
+}
+
+.segundo-conteudo .primeira-coluna {
+    /* inverter coluna 1 para local 2 */
+    order: 2;
+    z-index: -1;
+}
+
+.segundo-conteudo .segunda-coluna {
+    /* inverter coluna 2 para local 1 */
+    order: 1;
+    z-index: -1;
+}
+
+.senha {
+    color: #34495e;
+    font-size: 14px;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.entrar-js .primeiro-conteudo .primeira-coluna,
+.entrar-js .primeiro-conteudo .segunda-coluna {
+    z-index: -1;
+}
+
+.entrar-js .segundo-conteudo .segunda-coluna {
+    z-index: 11;
+}
+
+.entrar-js .segundo-conteudo .primeira-coluna {
+    z-index: 13;
+}
+
+.entrar-js .conteudo::before {
+    left: 60%;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    animation: slidein 1s;
+    z-index: 12;
+}
+
+.cadastrar-js .conteudo::before {
+    animation: slideout 1s;
+
+    z-index: 12;
+}
+
+.cadastrar-js .segundo-conteudo .segunda-coluna {
+    z-index: -1;
+}
+
+.cadastrar-js .primeiro-conteudo .segunda-coluna {
+    z-index: 11;
+}
+
+.cadastrar-js .primeiro-conteudo .primeira-coluna {
+    z-index: 13;
+}
+
+/* Deslocamento de conteúdo atras do conteudo::before */
+.entrar-js .primeiro-conteudo .segunda-coluna {
+    z-index: -1;
+    position: relative;
+    animation: deslocamentoEsq 1s;
+}
+
+.cadastrar-js .segundo-conteudo .segunda-coluna {
+    position: relative;
+    z-index: -1;
+    animation: deslocamentoDir 1s;
+}
+
+/*  Animação CSS */
+
+@keyframes slidein {
+    from {
+        left: 0;
+        width: 40%;
+    }
+
+
+    to {
+        left: 60%;
+        width: 40%;
+    }
+}
+
+@keyframes slideout {
+    from {
+        left: 60%;
+        width: 40%;
+    }
+
+    to {
+        left: 0;
+        width: 40%;
+    }
+}
+
+/* Animação conteudo::before */
+@keyframes deslocamentoEsq {
+    from {
+        z-index: 12;
+        left: 0;
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 0;
+    }
+
+    to {
+        left: -110px;
+        opacity: 0;
+        z-index: -1;
+    }
+}
+
+@keyframes deslocamentoDir {
+    from {
+        z-index: 12;
+        left: 0;
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 0;
+    }
+
+    to {
+        left: 110px;
+        opacity: 0;
+        z-index: -1;
+    }
+}
