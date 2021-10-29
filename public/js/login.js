@@ -14,13 +14,13 @@ botaoCadastrar.addEventListener("click", function () {
 jQuery(document).ready(function() {
     jQuery('#cadConfSenha, #cadSenha').on('keyup', function() {
         if(document.getElementById('cadSenha').value != document.getElementById('cadConfSenha').value) {
-            //documento.getElementById('btnCadastrar').disabled = true;
             document.getElementById('campoCadSenha').style.border="1px solid red";
             document.getElementById('campoConfCadSenha').style.border="1px solid red";
+            document.getElementById('btnCadastrar').disabled = true;
         } else {
-            //documento.getElementById('btnCadastrar').disabled = false;
             document.getElementById('campoCadSenha').style.border="0px solid";
             document.getElementById('campoConfCadSenha').style.border="0px solid";
+            document.getElementById('btnCadastrar').disabled = false;
         }
     });
 });

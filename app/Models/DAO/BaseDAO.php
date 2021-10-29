@@ -11,13 +11,19 @@ class BaseDAO
 
     public function __construct()
     {
-        $this->conexao = new Conexao();
+        $this->conexao = Conexao::getConnection();
     }
 
     public function insert($table, $columns, $values)
-    {       
+    {
         $sql = "INSERT INTO $table ($columns) VALUES ($values)";
-        $stmt = $this->conexao->getConnection()->prepare($sql);
+        $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
+    }
+
+    public function select($sql)
+    {
+        $result = $this->conexao->query($sql);
+        return $result->fetchAll(\PDO::FETCH_ASSOC);
     }
 }

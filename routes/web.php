@@ -12,3 +12,9 @@ Route::get('/login', function () {
 });
 
 Route::post('/usuario/insert', [UsuarioController::class, 'cadastrarUsuario']);
+
+Route::post('/usuario/logar', [UsuarioController::class, 'logarUsuario']);
+
+Route::get('/sistema', function () {
+    return view('sistema');
+});

@@ -3,7 +3,6 @@
 namespace App\Models\DAO;
 
 use App\Models\Usuario;
-use PDOException;
 
 class UsuarioDAO extends BaseDAO
 {
@@ -15,8 +14,29 @@ class UsuarioDAO extends BaseDAO
             $email = $usuario->getEmail();
             $senha = $usuario->getSenha();
             $this->insert('usuarios', "nome, email, senha", "'$nome', '$email', '$senha'");
-        } catch (PDOException $erro) {
+        } catch (\Exception $erro) {
             echo "Erro ao cadastrar usuário: " . $erro;
+        }
+    }
+
+    public function verificaSeExisteEmail(Usuario $usuario)
+    {
+        $email = $usuario->getEmail();
+        return $this->select("SELECT nome FROM usuarios WHERE email = '$email'");
+    }
+
+    public function verificaLoginUsuario(Usuario $usuario)
+    {
+        try {
+            $email = $usuario->getEmail();
+            $senha = $usuario->getSenha();
+
+            echo $email . "\n";
+            echo $senha . "\n";
+
+            return $this->select("SELECT COUNT(*) AS total FROM usuarios WHERE email = '$email' AND senha = '$senha'");
+        } catch (\Exception $erro) {
+            echo "Erro ao logar no sistema: " . $erro;
         }
     }
 }
