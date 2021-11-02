@@ -1,22 +1,12 @@
+@include('layouts.header')
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link href="./css/login.css" rel="stylesheet">
+
 <?php
 session_start();
 ?>
-
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Imports CAR</title>
-    <script src="https://kit.fontawesome.com/9b557ca9f0.js" crossorigin="anonymous"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="./css/login.css" rel="stylesheet">
-</head>
 
 <body>
 
@@ -130,13 +120,13 @@ session_start();
 
                 <!-- Alerta Danger -->
                 @if (isset($_SESSION['loginAutorizado']))
-                    @if($_SESSION['loginAutorizado'] == false)
+                    @if ($_SESSION['loginAutorizado'] == false)
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <p> Usuário ou senha incorreto!</p>
                             <button type="button" class="btn-close" data-bs-dismiss="alert"
                                 aria-label="Close"></button>
                         </div>
-                    @endif    
+                    @endif
                 @endif
                 <?php unset($_SESSION['loginAutorizado']); ?>
 
@@ -157,7 +147,8 @@ session_start();
         </div><!-- segundo conteudo -->
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/9b557ca9f0.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>

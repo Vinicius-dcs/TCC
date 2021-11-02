@@ -1,8 +1,14 @@
 <?php
+
 session_start();
 if(!isset($_SESSION['loginAutorizado'])) {
-    echo "USUÁRIO NÃO AUTORIZADO!";
+    ?>
+    @include('layouts.unauthorized')
+    <?php    
 } else {
-    echo "usuário autorizado!";
+?>
+    @include('layouts.header')
+    @include('layouts.menu')
+<?php
 }
 ?>
