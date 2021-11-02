@@ -1,0 +1,117 @@
+div {
+    width: 90vh;
+    position:absolute;
+    top: 10vh;
+    left: 31vw;
+    margin-top:-50px;
+    margin-left:-50px;
+}
+
+svg#freepik_stories-401-error-unauthorized:not(.animated) .animable {
+    opacity: 0;
+}
+
+svg#freepik_stories-401-error-unauthorized.animated #freepik--Floor--inject-15 {
+    animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) slideRight;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-401-error-unauthorized.animated #freepik--Shadows--inject-15 {
+    animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) fadeIn;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-401-error-unauthorized.animated #freepik--Plant--inject-15 {
+    animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) slideUp;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-401-error-unauthorized.animated #freepik--card-reader--inject-15 {
+    animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) fadeIn;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-401-error-unauthorized.animated #freepik--Character--inject-15 {
+    animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) zoomIn;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-401-error-unauthorized.animated #freepik--id-card--inject-15 {
+    animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) slideDown;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-401-error-unauthorized.animated #freepik--error-401--inject-15 {
+    animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) zoomOut;
+    animation-delay: 0s;
+}
+
+@keyframes slideRight {
+    0% {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: inherit;
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomOut {
+    0% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
