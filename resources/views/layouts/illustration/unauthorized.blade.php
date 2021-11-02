@@ -1,4 +1,4 @@
-<link href="./css/unauthorized.css" rel="stylesheet">
+<link href="../css/unauthorized.css" rel="stylesheet">
 
 <div>
     <svg class="animated" id="freepik_stories-401-error-unauthorized" xmlns="http://www.w3.org/2000/svg"

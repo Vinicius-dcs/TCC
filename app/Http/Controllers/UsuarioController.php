@@ -49,7 +49,8 @@ class UsuarioController extends Controller
         }
     }
 
-    public function logarUsuario() {
+    public function logarUsuario()
+    {
         try {
             $usuario = new Usuario();
             $usuario->setEmail(trim($_POST['loginEmail']));
@@ -58,19 +59,27 @@ class UsuarioController extends Controller
             $usuarioDAO = new UsuarioDAO();
             $result = $usuarioDAO->verificaLoginUsuario($usuario);
 
-            if($result[0]['total'] == 1) {
+            if ($result[0]['total'] == 1) {
                 $_SESSION['loginAutorizado'] = true;
-                echo "autorizado";
-                header('Location: ../sistema');
+                header('Location: ../sistema/inicio');
                 exit;
             } else {
                 $_SESSION['loginAutorizado'] = false;
                 header('Location: ../login');
                 exit;
             }
-                        
         } catch (\PDOException $erro) {
             echo "Erro ao entrar no sistema: " . $erro;
+        }
+    }
+
+    public static function verificaSeExisteSessao()
+    {
+        if (!isset($_SESSION['loginAutorizado'])) {
+            header('Location: ../sistema/unauthorized');
+            exit;
+        } else {
+            header('Location: ../sistema/inicio');
         }
     }
 }
