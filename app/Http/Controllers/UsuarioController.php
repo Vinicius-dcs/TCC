@@ -76,7 +76,7 @@ class UsuarioController extends Controller
     public static function verificaSeExisteSessao()
     {
         if (!isset($_SESSION['loginAutorizado'])) {
-            header('Location: ../sistema/unauthorized');
+            header('Location: /carimports/public/sistema/unauthorized');
             exit;
         } else {
             header('Location: ../sistema/inicio');

@@ -1,10 +1,14 @@
+@include('layouts.header')
+
 <?php
 use App\Http\Controllers\UsuarioController;
 
 UsuarioController::verificaSeExisteSessao();
 ?>
 
-@include('layouts.header')
+<!-- CSS BOOTSTRAP -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="/carimports/public/css/menu.css">
@@ -24,33 +28,33 @@ UsuarioController::verificaSeExisteSessao();
                         <span class="nav__name">Início</span>
                     </a>
 
-                    <div class="nav__link collapse">
+                    <div class="nav__link collapseMenu">
                         <ion-icon name="add-circle-outline" class="nav__icon"></ion-icon>
                         <span class="nav__name">Cadastros</span>
 
                         <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
 
                         <ul class="collapse__menu">
-                            <a href="/carimports/public/sistema/cadastro/cliente" class="collapse__sublink">Cliente</a>
+                            <a href="/carimports/public/sistema/cadastro/marca" class="collapse__sublink">Marca</a>
                             <a href="#" class="collapse__sublink">Group</a>
                             <a href="#" class="collapse__sublink">Members</a>
                         </ul>
                     </div>
 
-                    <div class="nav__link collapse">
+                    <div class="nav__link collapseMenu">
                         <ion-icon name="options-outline" class="nav__icon"></ion-icon>
-                        <span class="nav__name">Alterações</span>
+                        <span class="nav__name">Alteração</span>
 
                         <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
 
                         <ul class="collapse__menu">
-                            <a href="#" class="collapse__sublink">Data</a>
+                            <a href="/carimports/public/sistema/alteracao/marca" class="collapse__sublink">Marca</a>
                             <a href="#" class="collapse__sublink">Group</a>
                             <a href="#" class="collapse__sublink">Members</a>
                         </ul>
                     </div>
 
-                    <div class="nav__link collapse">
+                    <div class="nav__link collapseMenu">
 
                         <ion-icon name="reader-outline" class="nav__icon"></ion-icon>
                         <span class="nav__name">Relatórios</span>
@@ -81,4 +85,10 @@ UsuarioController::verificaSeExisteSessao();
 
     <!-- ===== MAIN JS ===== -->
     <script src="/carimports/public/js/menu.js"></script>
+
+    <!-- JavaScript Bundle with Popper BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+
 </body>

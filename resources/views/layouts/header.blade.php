@@ -6,7 +6,4 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Car Imports</title>
 </head>
-<body>
-    
-</body>
 </html>
