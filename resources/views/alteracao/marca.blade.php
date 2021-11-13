@@ -1,11 +1,16 @@
 @include('layouts.menu')
 
+<?php
+use App\Http\Controllers\MarcaController;
+use App\Models\Marca;
+?>
+
 <body>
     <div class="position-relative vh-100">
 
         <h1 class="display-4 text-center">Alteração de Marcas</h1>
 
-        <div class="position-absolute top-50 start-50 translate-middle col-5">
+        <div class="position-absolute top-50 start-50 translate-middle mt-4">
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -15,22 +20,36 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                        $marcaController = new MarcaController();
+                        $arraySelect = $marcaController->listarMarca();
+
+                         foreach ($arraySelect as $retorno) 
+                          {
+                    ?>
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td> <button type="button" class="btn btn-primary">Left</button> </td>
-                        <td> <button type="button" class="btn btn-primary">Left</button> </td>
+                        <th scope="row" class="col-2">
+                            <?php echo $retorno['id']; ?>
+                        </th>
+                        <td class="col-5"> <?php echo $retorno['nome']; ?> </td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm">Alterar</button>
+                            <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+                        </td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                    </tr>
+                    <?php } ?>
                 </tbody>
             </table>
+
+            <div>
+                {{$arraySelect->onEachSide(2)->links()}}
+            </div>
+
         </div>
+
+
+    
     </div>
+
+
 </body>
