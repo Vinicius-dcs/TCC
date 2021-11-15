@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Marca;
 use App\Models\DAO\MarcaDAO;
 
+use function PHPUnit\Framework\isEmpty;
+
 class MarcaController extends Controller
 {
 
@@ -34,12 +36,53 @@ class MarcaController extends Controller
         }
     }
 
-    public function listarMarca()
+    public function listarMarca($id = NULL)
     {
         try {
-            return $this->marca->Paginate(8);
+            if (isEmpty($id)) {
+                return $this->marca->Paginate(8);
+            } elseif (!isEmpty($id)) {
+                return $this->marca->where('id', '=', $id)->Paginate(1);
+            }
         } catch (\Exception $erro) {
             echo "Erro ao consultar marca: " . $erro;
+        }
+    }
+
+    public function alterarMarca()
+    {
+        session_start();
+        try {
+            $this->marca->setId($_POST['idAlt']);
+            $this->marca->setNome(trim($_POST['nomeAlt']));
+
+            $this->marcaDAO->altMarca($this->marca);
+            $_SESSION['mensagem'] = "Marca alterada com sucesso!";
+            $_SESSION['tipoAlert'] = "success";
+            header('Location: ../alteracao/marca');
+            exit;
+        } catch (\Exception $erro) {
+            $_SESSION['mensagem'] = "Erro ao alterar marca: " . $erro;
+            $_SESSION['tipoAlert'] = "danger";
+            echo $erro;
+        }
+    }
+
+    public function deletarMarca()
+    {
+        session_start();
+        try {
+            $this->marca->setId($_POST['idExcluir']);
+
+            $this->marcaDAO->deletMarca($this->marca);
+            $_SESSION['mensagem'] = "Marca excluída com sucesso!";
+            $_SESSION['tipoAlert'] = "success";
+            header('Location: ../alteracao/marca');
+            exit;
+        } catch (\Exception $erro) {
+            $_SESSION['mensagem'] = "Erro ao excluir marca: " . $erro;
+            $_SESSION['tipoAlert'] = "danger";
+            echo $erro;
         }
     }
 }

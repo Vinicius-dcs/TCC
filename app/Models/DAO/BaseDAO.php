@@ -26,4 +26,16 @@ class BaseDAO
         $result = $this->conexao->query($sql);
         return $result->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public function update($sql)
+    {
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute();
+    }
+
+    public function delete($sql)
+    {
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute();
+    }
 }

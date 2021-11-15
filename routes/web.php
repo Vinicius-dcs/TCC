@@ -40,5 +40,7 @@ Route::prefix('sistema')->group(function () {
     });
 
     Route::post('/marca/cadastrar', [MarcaController::class, 'cadastrarMarca']);
+    Route::post('/marca/alterar', [MarcaController::class, 'alterarMarca']);
+    Route::post('/marca/excluir', [MarcaController::class, 'deletarMarca']);
 
 });
