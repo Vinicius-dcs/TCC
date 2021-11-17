@@ -28,15 +28,16 @@ UsuarioController::verificaSeExisteSessao();
                         <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
 
                         <ul class="collapse__menu">
+                            <a href="/carimports/public/sistema/cadastro/cliente" class="collapse__sublink">Cliente</a>
                             <a href="/carimports/public/sistema/cadastro/marca" class="collapse__sublink">Marca</a>
-                            <a href="#" class="collapse__sublink">Group</a>
+                            <a href="/carimports/public/sistema/cadastro/veiculo" class="collapse__sublink">Veículo</a>
                             <a href="#" class="collapse__sublink">Members</a>
                         </ul>
                     </div>
 
                     <div class="nav__link collapseMenu">
                         <ion-icon name="options-outline" class="nav__icon"></ion-icon>
-                        <span class="nav__name">Alteração</span>
+                        <span class="nav__name">Consulta</span>
 
                         <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
 

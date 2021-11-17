@@ -31,6 +31,14 @@ Route::prefix('sistema')->group(function () {
         Route::get('/marca', function () {
             return view('cadastros.marca');
         });
+
+        Route::get('/veiculo', function () {
+            return view('cadastros.veiculo');
+        });
+
+        Route::get('/cliente', function () {
+            return view('cadastros.cliente');
+        });
     });
 
     Route::prefix('alteracao')->group(function () {

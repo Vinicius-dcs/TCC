@@ -7,11 +7,9 @@ use App\Models\Marca;
 
 <body>
     <div class="position-relative vh-100">
-
         <h1 class="display-4 text-center">Alteração de Marcas</h1>
 
         <div class="position-absolute top-50 start-50 translate-middle mt-4">
-
             @include('layouts.alert')
 
             <table class="table table-hover">
@@ -36,12 +34,22 @@ use App\Models\Marca;
                         </th>
                         <td class="col-6"> <?php echo $retorno['nome']; ?> </td>
                         <td>
+
                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#modalAlterar" onclick="setInfosMarca(
-                                    <?php echo $retorno['id']; ?>,
-                                    '<?php echo $retorno['nome']; ?>')">Alterar</button>
+                                data-bs-target="#modalAlterar" onclick="setInformations
+                                (
+                                    ['idAlt', 'nomeAlt'],
+                                    [<?php echo $retorno['id']; ?>, 
+                                    '<?php echo $retorno['nome']; ?>']
+                                )">Alterar</button>
+
+
                             <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                            data-bs-target="#modalExcluir" onclick="setIdMarca(<?php echo $retorno['id']; ?>)">Excluir</button>
+                                data-bs-target="#modalExcluir" onclick="setInformations
+                                (
+                                    ['idExcluir'],
+                                    [<?php echo $retorno['id']; ?>]
+                                )">Excluir</button>
                         </td>
                     </tr>
                     <?php } ?>
@@ -54,8 +62,7 @@ use App\Models\Marca;
         </div>
 
         <!-- Modal Alterar -->
-        <div class="modal fade" id="modalAlterar" tabindex="-1"
-            aria-hidden="true">
+        <div class="modal fade" id="modalAlterar" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -81,12 +88,11 @@ use App\Models\Marca;
         </div>
 
         <!-- Modal Excluir -->
-        <div class="modal fade" id="modalExcluir" tabindex="-1"
-            aria-hidden="true">
+        <div class="modal fade" id="modalExcluir" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" >Excluir Marca</h5>
+                        <h5 class="modal-title">Excluir Marca</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
