@@ -15,7 +15,7 @@ class UsuarioDAO extends BaseDAO
             $senha = $usuario->getSenha();
             $this->insert('usuarios', "nome, email, senha", "'$nome', '$email', '$senha'");
         } catch (\Exception $erro) {
-            echo "Erro ao cadastrar usuário: " . $erro;
+            echo "(UsuarioDAO) Erro ao cadastrar usuário: " . $erro;
         }
     }
 
@@ -36,7 +36,7 @@ class UsuarioDAO extends BaseDAO
 
             return $this->select("SELECT COUNT(*) AS total FROM usuarios WHERE email = '$email' AND senha = '$senha'");
         } catch (\Exception $erro) {
-            echo "Erro ao logar no sistema: " . $erro;
+            echo "(UsuarioDAO) Erro ao logar no sistema: " . $erro;
         }
     }
 }

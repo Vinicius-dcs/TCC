@@ -31,12 +31,12 @@ class MarcaController extends Controller
             header('Location: ../cadastro/marca');
             exit;
         } catch (\Exception $erro) {
-            $_SESSION['mensagem'] = "Erro ao cadastrar marca: " . $erro;
+            $_SESSION['mensagem'] = "(MarcaController) Erro ao cadastrar marca: " . $erro;
             $_SESSION['tipoAlert'] = "danger";
         }
     }
 
-    public function listarMarca($id = NULL)
+    public function listarMarca($id = null)
     {
         try {
             if (isEmpty($id)) {
@@ -45,7 +45,7 @@ class MarcaController extends Controller
                 return $this->marca->where('id', '=', $id)->Paginate(1);
             }
         } catch (\Exception $erro) {
-            echo "Erro ao consultar marca: " . $erro;
+            echo "(MarcaController) Erro ao consultar marca: " . $erro;
         }
     }
 
@@ -62,7 +62,7 @@ class MarcaController extends Controller
             header('Location: ../alteracao/marca');
             exit;
         } catch (\Exception $erro) {
-            $_SESSION['mensagem'] = "Erro ao alterar marca: " . $erro;
+            $_SESSION['mensagem'] = "(MarcaController) Erro ao alterar marca: " . $erro;
             $_SESSION['tipoAlert'] = "danger";
             echo $erro;
         }
@@ -80,7 +80,7 @@ class MarcaController extends Controller
             header('Location: ../alteracao/marca');
             exit;
         } catch (\Exception $erro) {
-            $_SESSION['mensagem'] = "Erro ao excluir marca: " . $erro;
+            $_SESSION['mensagem'] = "(MarcaController) Erro ao excluir marca: " . $erro;
             $_SESSION['tipoAlert'] = "danger";
             echo $erro;
         }

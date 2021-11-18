@@ -11,8 +11,7 @@
                 @csrf
                 <div class="form-group">
                     <label>Digite o nome da marca</label>
-                    <input type="text" class="form-control" name="nome" id="nome"
-                        placeholder="Ex: BMW, Audio, Chevrolet...">
+                    <input type="text" class="form-control" name="nome" id="nome" required placeholder="Ex: BMW, Audi...">
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Cadastrar</button>
             </form>

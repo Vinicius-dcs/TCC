@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\MarcaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
@@ -45,10 +46,18 @@ Route::prefix('sistema')->group(function () {
         Route::get('/marca', function () {
             return view('alteracao.marca');
         });
+
+        Route::get('/cliente', function () {
+            return view('alteracao.cliente');
+        });
     });
 
     Route::post('/marca/cadastrar', [MarcaController::class, 'cadastrarMarca']);
     Route::post('/marca/alterar', [MarcaController::class, 'alterarMarca']);
     Route::post('/marca/excluir', [MarcaController::class, 'deletarMarca']);
+
+    Route::post('/cliente/cadastrar', [ClienteController::class, 'cadastrarCliente']);
+    Route::post('/cliente/alterar', [ClienteController::class, 'alterarCliente']);
+    Route::post('/cliente/excluir', [ClienteController::class, 'deletarCliente']);
 
 });

@@ -32,7 +32,7 @@ use App\Models\Marca;
                         <th scope="row" class="col-2">
                             <?php echo $retorno['id']; ?>
                         </th>
-                        <td class="col-6"> <?php echo $retorno['nome']; ?> </td>
+                        <td class="col-8"> <?php echo $retorno['nome']; ?> </td>
                         <td>
 
                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
@@ -41,7 +41,7 @@ use App\Models\Marca;
                                     ['idAlt', 'nomeAlt'],
                                     [<?php echo $retorno['id']; ?>, 
                                     '<?php echo $retorno['nome']; ?>']
-                                )">Alterar</button>
+                                )"><ion-icon name="build"></ion-icon></button>
 
 
                             <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
@@ -49,7 +49,7 @@ use App\Models\Marca;
                                 (
                                     ['idExcluir'],
                                     [<?php echo $retorno['id']; ?>]
-                                )">Excluir</button>
+                                )"><ion-icon name="trash"></ion-icon></button>
                         </td>
                     </tr>
                     <?php } ?>
@@ -99,7 +99,7 @@ use App\Models\Marca;
                     <div class="modal-body">
                         <form method="POST" action="../marca/excluir">
                             @csrf
-                            <p>Deseja realmente excluir a marca seleciona?</p>
+                            <p>Deseja realmente excluir a marca selecionada?</p>
                             <div class="form-group">
                                 <input type="hidden" class="form-control" name="idExcluir" id="idExcluir" value="">
                             </div>

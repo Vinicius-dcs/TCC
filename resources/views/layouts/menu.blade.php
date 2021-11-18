@@ -42,6 +42,7 @@ UsuarioController::verificaSeExisteSessao();
                         <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
 
                         <ul class="collapse__menu">
+                            <a href="/carimports/public/sistema/alteracao/cliente" class="collapse__sublink">Cliente</a>
                             <a href="/carimports/public/sistema/alteracao/marca" class="collapse__sublink">Marca</a>
                             <a href="#" class="collapse__sublink">Group</a>
                             <a href="#" class="collapse__sublink">Members</a>

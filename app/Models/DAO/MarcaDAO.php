@@ -14,7 +14,7 @@ class MarcaDAO extends BaseDAO
             $nome = $marca->getNome();
             $this->insert('marcas', "nome", "'$nome'");
         } catch (\Exception $erro) {
-            echo "Erro ao cadastrar marca: " . $erro;
+            echo "(MarcaDAO) Erro ao cadastrar marca: " . $erro;
         }
     }
 
@@ -26,7 +26,7 @@ class MarcaDAO extends BaseDAO
             $sql = "UPDATE marcas SET nome = '$nome' WHERE id = $id";
             $this->update($sql);
         } catch (\Exception $erro) {
-            echo "Erro ao alterar marca: " . $erro;
+            echo "(MarcaDAO) Erro ao alterar marca: " . $erro;
         }
     }
 
@@ -36,7 +36,7 @@ class MarcaDAO extends BaseDAO
             $sql = "DELETE FROM marcas WHERE id = $id";
             $this->delete($sql);
         } catch (\Exception $erro) {
-            echo "Erro ao excluir marca: " . $erro;
+            echo "(MarcaDAO) Erro ao excluir marca: " . $erro;
         }
     }
 
