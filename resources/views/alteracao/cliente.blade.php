@@ -7,45 +7,63 @@
     <div class="position-relative vh-100">
         <h1 class="display-4 text-center">Alteração de Clientes</h1>
 
+        <div class="container mt-3">
             @include('layouts.alert')
+        </div>
 
-            <table class="table table-hover mt-4">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">CPF</th>
-                        <th scope="col">Nascimento</th>
-                        <th scope="col">Endereço</th>
-                        <th scope="col">CEP</th>
-                        <th scope="col">Cidade</th>
-                        <th scope="col">UF</th>
-                        <th scope="col">Ação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
+        <table class="table table-hover mt-4"  style="font-size: 85%;">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Nascimento</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">CEP</th>
+                    <th scope="col">Cidade</th>
+                    <th scope="col">UF</th>
+                    <th scope="col">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
                         $clienteController = new clienteController();
                         $arraySelect = $clienteController->listarClientes();
 
                          foreach ($arraySelect as $retorno) 
                           {
                     ?>
-                    <tr>
-                        <th scope="row" class="col">
-                            <?php echo $retorno['id']; ?>
-                        </th>
-                        <td class="col"> <?php echo $retorno['nome']; ?> </td>
-                        <td class="col"> <?php echo $retorno['cpf']; ?> </td>
-                        <td class="col"> <?php echo $retorno['dataNascimento']; ?> </td>
-                        <td class="col"> <?php echo $retorno['endereco']; ?> </td>
-                        <td class="col"> <?php echo $retorno['cep']; ?> </td>
-                        <td class="col"> <?php echo $retorno['cidade']; ?> </td>
-                        <td class="col"> <?php echo $retorno['estado']; ?> </td>
+                <tr>
+                    <th scope="row" class="col">
+                        <?php echo $retorno['id']; ?>
+                    </th>
+                    <td class="col"> <?php echo $retorno['nome']; ?> </td>
+                    <td class="col">
+                        <?php
+                        $cpf = $retorno['cpf'];
+                        $parte1 = substr($cpf, 0, 3);
+                        $parte2 = substr($cpf, 3, 3);
+                        $parte3 = substr($cpf, 6, 3);
+                        $parte4 = substr($cpf, 9, 2);
+                        echo "$parte1.$parte2.$parte3-$parte4";
+                        ?>
+                    </td>
+                    <td class="col"> <?php echo $retorno['dataNascimento']; ?> </td>
+                    <td class="col"> <?php echo $retorno['endereco']; ?> </td>
+                    <td class="col">
+                        <?php
+                        $cep = $retorno['cep'];
+                        $parte1 = substr($cep, 0, 5);
+                        $parte2 = substr($cep, 5, 3);
+                        echo "$parte1-$parte2";
+                        ?>
+                    </td>
+                    <td class="col"> <?php echo $retorno['cidade']; ?> </td>
+                    <td class="col"> <?php echo $retorno['estado']; ?> </td>
 
-                        <td class="col">
-                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#modalAlterar" onclick="setInformations
+                    <td class="col">
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#modalAlterar" onclick="setInformations
                                 (
                                     ['id', 'nome', 'dataNascimento', 'endereco', 'cpf', 'cep', 'cidade', 'estado'],
                                     [<?php echo $retorno['id']; ?>, 
@@ -58,26 +76,28 @@
                                     '<?php echo $retorno['estado']; ?>'
                                 ]
                                 )">
-                                <ion-icon name="build">
-                            </button>
+                            <ion-icon name="build">
+                        </button>
 
 
-                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#modalExcluir" onclick="setInformations
+                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#modalExcluir" onclick="setInformations
                                 (
                                     ['idExcluir'],
                                     [<?php echo $retorno['id']; ?>]
                                 )">
-                                <ion-icon name="trash">
-                            </button>
-                        </td>
-                    </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-            <div>
-                {{ $arraySelect->links() }}
-            </div>
+                            <ion-icon name="trash">
+                        </button>
+                    </td>
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+        <div>
+            {{ $arraySelect->links() }}
+        </div>
+
+        <br>
 
     </div>
 

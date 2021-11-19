@@ -18,7 +18,8 @@ class MarcaDAO extends BaseDAO
         }
     }
 
-    public function altMarca(Marca $marca) {
+    public function altMarca(Marca $marca)
+    {
         try {
             $id = $marca->getId();
             $nome = $marca->getNome();
@@ -30,7 +31,8 @@ class MarcaDAO extends BaseDAO
         }
     }
 
-    public function deletMarca(Marca $marca) {
+    public function deletMarca(Marca $marca)
+    {
         try {
             $id = $marca->getId();
             $sql = "DELETE FROM marcas WHERE id = $id";
@@ -40,4 +42,13 @@ class MarcaDAO extends BaseDAO
         }
     }
 
+    public function selecionarNomesMarcas()
+    {
+        try {
+            $sql = "SELECT id, nome FROM marcas";
+            return $this->select($sql);
+        } catch (\Exception $erro) {
+            echo "(MarcaDAO) Erro ao consultar marca: " . $erro;
+        }
+    }
 }

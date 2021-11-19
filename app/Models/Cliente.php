@@ -96,9 +96,14 @@ class Cliente extends Model
         $this->estado = $estado;
     }
 
+    public function veiculos() {
+        return $this->hasMany(Veiculo::class, 'id');
+    }
+
     use HasFactory;
 
     protected $fillable = [
         'nome', 'dataNascimento', 'endereco', 'cpf', 'cep', 'cidade', 'estado'
     ];
+    
 }

@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Marca;
 use App\Models\DAO\MarcaDAO;
 
-use function PHPUnit\Framework\isEmpty;
-
 class MarcaController extends Controller
 {
 
@@ -36,13 +34,15 @@ class MarcaController extends Controller
         }
     }
 
-    public function listarMarca($id = null)
+    public function listarMarca($id = null, $semLimiteConsulta = null)
     {
         try {
-            if (isEmpty($id)) {
+            if (empty($id) && empty($semLimiteConsulta)) {
                 return $this->marca->Paginate(8);
-            } elseif (!isEmpty($id)) {
+            } elseif (!empty($id) && empty($semLimiteConsulta)) {
                 return $this->marca->where('id', '=', $id)->Paginate(1);
+            } elseif (!empty($id) && !empty($semLimiteConsulta)) {
+                return $this->marcaDAO->selecionarNomesMarcas();
             }
         } catch (\Exception $erro) {
             echo "(MarcaController) Erro ao consultar marca: " . $erro;

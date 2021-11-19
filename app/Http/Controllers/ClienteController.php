@@ -42,13 +42,15 @@ class ClienteController extends Controller
         }
     }
 
-    public function listarClientes($id = null)
+    public function listarClientes($id = null, $semLimiteConsulta = null)
     {
         try {
-            if (isEmpty($id)) {
-                return $this->cliente->Paginate(8);
-            } elseif (!isEmpty($id)) {
+            if (empty($id) && empty($semLimiteConsulta)) {
+                return $this->cliente->Paginate(9);
+            } elseif (!empty($id) && empty($semLimiteConsulta)) {
                 return $this->cliente->where('id', '=', $id)->Paginate(1);
+            } elseif (!empty($id) && !empty($semLimiteConsulta)) {
+                return $this->clienteDAO->selecionarNomesClientes();
             }
         } catch (\Exception $erro) {
             echo "(ClienteController) Erro ao consultar cliente: " . $erro;

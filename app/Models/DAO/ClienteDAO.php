@@ -61,4 +61,14 @@ class ClienteDAO extends BaseDAO
             echo "(ClienteDAO) Erro ao excluir cliente: " . $erro;
         }
     }
+
+    public function selecionarNomesClientes()
+    {
+        try {
+            $sql = "SELECT id, nome FROM clientes";
+            return $this->select($sql);
+        } catch (\Exception $erro) {
+            echo "(ClienteDAO) Erro ao consultar cliente: " . $erro;
+        }
+    }
 }

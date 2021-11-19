@@ -2,7 +2,6 @@
 
 <?php
 use App\Http\Controllers\MarcaController;
-use App\Models\Marca;
 ?>
 
 <body>

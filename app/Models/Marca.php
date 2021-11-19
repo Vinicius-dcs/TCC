@@ -27,6 +27,10 @@ class Marca extends Model
         $this->nome = $nome;
     }
 
+    public function veiculo() {
+        return $this->hasOne(Veiculo::class, 'id');
+    }
+
     use HasFactory;
 
     protected $fillable = [
