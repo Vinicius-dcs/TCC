@@ -11,7 +11,7 @@ class Veiculo extends Model
     private $id;
     private $idCliente;
     private $idMarca;
-    private $modelo;
+    private $descricao;
     private $cor;
     private $anoFabricacao;
     private $anoModelo;
@@ -47,14 +47,14 @@ class Veiculo extends Model
         $this->idMarca = $idMarca;
     }
 
-    public function getModelo()
+    public function getDescricao()
     {
-        return $this->modelo;
+        return $this->descricao;
     }
 
-    public function setModelo($modelo)
+    public function setDescricao($descricao)
     {
-        $this->modelo = $modelo;
+        $this->descricao = $descricao;
     }
 
     public function getCor()
@@ -100,6 +100,6 @@ class Veiculo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'modelo', 'cor', 'anoFabricacao', 'anoModelo', 'placa', 'idCliente', 'idMarca'
+        'descricao', 'cor', 'anoFabricacao', 'anoModelo', 'placa', 'idCliente', 'idMarca'
     ];
 }

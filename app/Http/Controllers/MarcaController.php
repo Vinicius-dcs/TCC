@@ -40,9 +40,9 @@ class MarcaController extends Controller
             if (empty($id) && empty($semLimiteConsulta)) {
                 return $this->marca->Paginate(8);
             } elseif (!empty($id) && empty($semLimiteConsulta)) {
-                return $this->marca->where('id', '=', $id)->Paginate(1);
+                return $this->marca->find($id);
             } elseif (!empty($id) && !empty($semLimiteConsulta)) {
-                return $this->marcaDAO->selecionarNomesMarcas();
+                return $this->marca->all();
             }
         } catch (\Exception $erro) {
             echo "(MarcaController) Erro ao consultar marca: " . $erro;

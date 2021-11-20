@@ -44,7 +44,7 @@ UsuarioController::verificaSeExisteSessao();
                         <ul class="collapse__menu">
                             <a href="/carimports/public/sistema/alteracao/cliente" class="collapse__sublink">Cliente</a>
                             <a href="/carimports/public/sistema/alteracao/marca" class="collapse__sublink">Marca</a>
-                            <a href="#" class="collapse__sublink">Group</a>
+                            <a href="/carimports/public/sistema/alteracao/veiculo" class="collapse__sublink">Veículo</a>
                             <a href="#" class="collapse__sublink">Members</a>
                         </ul>
                     </div>

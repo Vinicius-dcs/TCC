@@ -4,6 +4,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\MarcaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\VeiculoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -50,6 +51,10 @@ Route::prefix('sistema')->group(function () {
         Route::get('/cliente', function () {
             return view('alteracao.cliente');
         });
+
+        Route::get('/veiculo', function () {
+            return view('alteracao.veiculo');
+        });
     });
 
     Route::post('/marca/cadastrar', [MarcaController::class, 'cadastrarMarca']);
@@ -59,5 +64,7 @@ Route::prefix('sistema')->group(function () {
     Route::post('/cliente/cadastrar', [ClienteController::class, 'cadastrarCliente']);
     Route::post('/cliente/alterar', [ClienteController::class, 'alterarCliente']);
     Route::post('/cliente/excluir', [ClienteController::class, 'deletarCliente']);
+
+    Route::post('/veiculo/cadastrar', [VeiculoController::class, 'cadastrarVeiculo']);
 
 });

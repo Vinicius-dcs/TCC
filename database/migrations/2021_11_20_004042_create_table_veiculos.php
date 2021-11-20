@@ -11,7 +11,7 @@ class CreateTableVeiculos extends Migration
     {
         Schema::create('veiculos', function (Blueprint $table) {
             $table->id();
-            $table->string('modelo');
+            $table->string('descricao');
             $table->string('cor');
             $table->integer('anoFabricacao');
             $table->integer('anoModelo');
@@ -24,10 +24,5 @@ class CreateTableVeiculos extends Migration
             $table->foreign('idCliente')->references('id')->on('clientes')->onDelete('restrict');
             $table->foreign('idMarca')->references('id')->on('marcas')->onDelete('restrict');
         });
-    }
-
-    public function down()
-    {
-        Schema::dropIfExists('Veiculos');
     }
 }
