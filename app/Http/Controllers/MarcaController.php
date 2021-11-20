@@ -40,7 +40,8 @@ class MarcaController extends Controller
             if (empty($id) && empty($semLimiteConsulta)) {
                 return $this->marca->Paginate(8);
             } elseif (!empty($id) && empty($semLimiteConsulta)) {
-                return $this->marca->find($id);
+                $this->marca->setId($id);
+                return $this->marcaDAO->selectMarca($this->marca);
             } elseif (!empty($id) && !empty($semLimiteConsulta)) {
                 return $this->marca->all();
             }

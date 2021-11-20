@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\DAO\ClienteDAO;
 
-use function PHPUnit\Framework\isEmpty;
-
 class ClienteController extends Controller
 {
 
@@ -48,9 +46,10 @@ class ClienteController extends Controller
             if (empty($id) && empty($semLimiteConsulta)) {
                 return $this->cliente->Paginate(9);
             } elseif (!empty($id) && empty($semLimiteConsulta)) {
-                return $this->cliente->where('id', '=', $id)->Paginate(1);
+                $this->cliente->setId($id);
+                return $this->clienteDAO->selectCliente($this->cliente);
             } elseif (!empty($id) && !empty($semLimiteConsulta)) {
-                return $this->clienteDAO->selecionarNomesClientes();
+                return $this->cliente->all();
             }
         } catch (\Exception $erro) {
             echo "(ClienteController) Erro ao consultar cliente: " . $erro;

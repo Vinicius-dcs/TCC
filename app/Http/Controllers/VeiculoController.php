@@ -7,7 +7,7 @@ use App\Models\DAO\VeiculoDAO;
 
 class VeiculoController extends Controller
 {
-    
+
     private $veiculo;
     private $veiculoDAO;
 
@@ -17,7 +17,8 @@ class VeiculoController extends Controller
         $this->veiculoDAO = new VeiculoDAO();
     }
 
-    public function cadastrarVeiculo() {
+    public function cadastrarVeiculo()
+    {
         session_start();
         try {
             $this->veiculo->setDescricao($_POST['descricao']);
@@ -38,7 +39,8 @@ class VeiculoController extends Controller
         }
     }
 
-    public function listarVeiculo() {
+    public function listarVeiculo()
+    {
         try {
             return $this->veiculo->paginate(9);
         } catch (\Exception $erro) {
@@ -46,4 +48,46 @@ class VeiculoController extends Controller
         }
     }
 
+    public function alterarVeiculo()
+    {
+        session_start();
+        try {
+            $this->veiculo->setId($_POST['id']);
+            $this->veiculo->setDescricao($_POST['descricao']);
+            $this->veiculo->setIdMarca($_POST['marca']);
+            $this->veiculo->setCor($_POST['cor']);
+            $this->veiculo->setAnoFabricacao($_POST['anoFabricacao']);
+            $this->veiculo->setAnoModelo($_POST['anoModelo']);
+            $this->veiculo->setPlaca($_POST['placa']);
+            $this->veiculo->setIdCliente($_POST['cliente']);
+
+            $this->veiculoDAO->altVeiculo($this->veiculo);
+            $_SESSION['mensagem'] = "Veículo alterado com sucesso!";
+            $_SESSION['tipoAlert'] = "success";
+            header('Location: ../alteracao/veiculo');
+            exit;
+        } catch (\Exception $erro) {
+            $_SESSION['mensagem'] = "(VeiculoController) Erro ao alterar veiculo: " . $erro;
+            $_SESSION['tipoAlert'] = "danger";
+            echo $erro;
+        }
+    }
+
+    public function deletarVeiculo()
+    {
+        session_start();
+        try {
+            $this->veiculo->setId($_POST['idExcluir']);
+
+            $this->veiculoDAO->deletVeiculo($this->veiculo);
+            $_SESSION['mensagem'] = "Veículo excluído com sucesso!";
+            $_SESSION['tipoAlert'] = "success";
+            header('Location: ../alteracao/veiculo');
+            exit;
+        } catch (\Exception $erro) {
+            $_SESSION['mensagem'] = "(VeiculoController) Erro ao excluir veiculo: " . $erro;
+            $_SESSION['tipoAlert'] = "danger";
+            echo $erro;
+        }
+    }
 }

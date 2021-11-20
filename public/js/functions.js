@@ -16,6 +16,7 @@ function setInformations(idInputs, values = null) {
     let i = 0;
     while (idInputs[i] != null) {
         document.getElementById(idInputs[i]).value = values[i];
+        
         i++;
     }
 }

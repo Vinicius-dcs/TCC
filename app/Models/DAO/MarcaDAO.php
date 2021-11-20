@@ -42,4 +42,14 @@ class MarcaDAO extends BaseDAO
         }
     }
 
+    public function selectMarca(Marca $marca) {
+        try {
+            $id = $marca->getId();
+            $sql = "SELECT * FROM marcas WHERE id = '$id'";
+            return $this->select($sql);
+        } catch (\Exception $erro) {
+            echo "(MarcaDAO) Erro ao consultar marca " . $erro;
+        }
+    }
+
 }

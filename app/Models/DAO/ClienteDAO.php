@@ -62,10 +62,11 @@ class ClienteDAO extends BaseDAO
         }
     }
 
-    public function selecionarNomesClientes()
+    public function selectCliente(Cliente $cliente)
     {
         try {
-            $sql = "SELECT id, nome FROM clientes";
+            $id = $cliente->getId();
+            $sql = "SELECT * FROM clientes WHERE id = '$id'";
             return $this->select($sql);
         } catch (\Exception $erro) {
             echo "(ClienteDAO) Erro ao consultar cliente: " . $erro;

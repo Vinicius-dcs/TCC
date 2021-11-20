@@ -66,5 +66,7 @@ Route::prefix('sistema')->group(function () {
     Route::post('/cliente/excluir', [ClienteController::class, 'deletarCliente']);
 
     Route::post('/veiculo/cadastrar', [VeiculoController::class, 'cadastrarVeiculo']);
+    Route::post('/veiculo/alterar', [VeiculoController::class, 'alterarVeiculo']);
+    Route::post('/veiculo/excluir', [VeiculoController::class, 'deletarVeiculo']);
 
 });

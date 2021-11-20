@@ -11,7 +11,7 @@ use App\Http\Controllers\ClienteController;
     <div class="position-relative vh-100">
         <h1 class="display-4 text-center">Alteração de Veículos</h1>
 
-        <div class="position-absolute top-50 start-50 translate-middle mt-4">
+        <div class="container mt-4">
             @include('layouts.alert')
 
             <table class="table table-hover">
@@ -25,6 +25,7 @@ use App\Http\Controllers\ClienteController;
                         <th scope="col">Ano Modelo</th>
                         <th scope="col">Placa</th>
                         <th scope="col">Cliente</th>
+                        <th scope="col">Ação</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,30 +36,37 @@ use App\Http\Controllers\ClienteController;
                         $arraySelect = $veiculoController->listarVeiculo();
 
                         foreach ($arraySelect as $retorno) {
+                            $retornoMarca = $marcaController->listarMarca($retorno['idMarca']);
+                            $retornoCliente = $clienteController->listarClientes($retorno['idCliente']);
                         ?>
                     <tr>
-                        <th scope="row" class="col-2">
+                        <th scope="row" class="col">
                             <?php echo $retorno['id']; ?>
                         </th>
-                        <td class="col-8"> <?php echo $retorno['descricao']; ?> </td>
-                        <td class="col-8"> <?php echo $retorno['idMarca']; ?> </td>
-                        <td class="col-8"> <?php echo $retorno['cor']; ?> </td>
-                        <td class="col-8"> <?php echo $retorno['anoFabricacao']; ?> </td>
-                        <td class="col-8"> <?php echo $retorno['anoModelo']; ?> </td>
-                        <td class="col-8"> <?php echo $retorno['placa']; ?> </td>
-                        <td class="col-8"> <?php echo $retorno['idCliente']; ?> </td>
+                        <td class="col"> <?php echo $retorno['descricao']; ?> </td>
+                        <td class="col"> <?php echo $retornoMarca[0]['nome']; ?>
+                        <td class="col"> <?php echo $retorno['cor']; ?> </td>
+                        <td class="col"> <?php echo $retorno['anoFabricacao']; ?> </td>
+                        <td class="col"> <?php echo $retorno['anoModelo']; ?> </td>
+                        <td class="col"> <?php echo $retorno['placa']; ?> </td>
+                        <td class="col"> <?php echo $retornoCliente[0]['nome']; ?> </td>
                         <td>
 
                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#modalAlterar" onclick="setInformations
                                 (
-                                    ['idAlt', 'nomeAlt'],
+                                    ['id', 'descricao', 'marca', 'cor' , 'anoFabricacao', 'anoModelo', 'placa', 'cliente'],
                                     [<?php echo $retorno['id']; ?>, 
-                                    '<?php echo $retorno['nome']; ?>']
+                                    '<?php echo $retorno['descricao']; ?>', 
+                                    '<?php echo $retornoMarca[0]['id']; ?>',
+                                    '<?php echo $retorno['cor']; ?>',
+                                    '<?php echo $retorno['anoFabricacao']; ?>',
+                                    '<?php echo $retorno['anoModelo']; ?>',
+                                    '<?php echo $retorno['placa']; ?>',
+                                    '<?php echo $retornoCliente[0]['id']; ?>']
                                 )">
                                 <ion-icon name="build"></ion-icon>
                             </button>
-
 
                             <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#modalExcluir" onclick="setInformations
@@ -74,7 +82,127 @@ use App\Http\Controllers\ClienteController;
                 </tbody>
             </table>
 
+            <div>
+                {{ $arraySelect->links() }}
+            </div>
+
+            <br>
         </div>
     </div>
+
+    <!-- Modal Alterar -->
+    <div class="modal fade" id="modalAlterar" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Alterar Veículo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="../veiculo/alterar">
+                        @csrf
+                        <div class="form-group">
+                            <!-- -->
+                            <div class="row">
+                                <div class="col-8">
+                                    <label>Descrição</label>
+                                    <input type="hidden" class="form-control" name="id" id="id" value="">
+                                    <input type="text" class="form-control" name="descricao" id="descricao"
+                                        placeholder="Ex: Cruze LTZ" value="" required>
+                                </div>
+
+                                <div class="col-4">
+                                    <label>Marca</label>
+                                    <select class="form-control" name="marca" id="marca" required>
+                                        <option value="" selected disabled>Selecionar...</option>
+                                        <?php 
+                                                    $marcaController = new MarcaController();
+                                                    $arraySelect = $marcaController->listarMarca(1, 1);
+                                                    foreach ($arraySelect as $retorno) { ?>
+                                        <option value="<?php echo $retorno['id']; ?>"> <?php echo $retorno['nome']; ?></option>
+                                        <?php 
+                                                    }
+                                                ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- -->
+                            <div class="row mt-3">
+                                <div class="col-4">
+                                    <label>Cor</label>
+                                    <input type="text" class="form-control" name="cor" id="cor"
+                                        placeholder="Ex: Prata, branco..." required>
+                                </div>
+                                <div class="col-4">
+                                    <label>Ano Fabricação</label>
+                                    <input type="number" class="form-control" name="anoFabricacao" id="anoFabricacao"
+                                        placeholder="Ex: 2000, 2010..." required>
+                                </div>
+                                <div class="col-4">
+                                    <label>Ano Modelo</label>
+                                    <input type="number" class="form-control" name="anoModelo" id="anoModelo"
+                                        placeholder="Ex: 2000, 2010..." required>
+                                </div>
+                            </div>
+                            <!-- -->
+                            <div class="row mt-3">
+                                <div class="col-4">
+                                    <label>Placa</label>
+                                    <input type="text" class="form-control" name="placa" id="placa"
+                                        placeholder="Ex: BRA2E19..." required>
+                                </div>
+                                <div class="col">
+                                    <label>Cliente</label>
+                                    <select class="form-control" name="cliente" id="cliente" required>
+                                        <option value="" selected disabled>Selecionar...</option>
+                                        <?php 
+                                                    $clienteController = new ClienteController();
+                                                    $arraySelect = $clienteController->listarClientes(1, 1);
+                                                    foreach ($arraySelect as $retorno) { ?>
+                                        <option value="<?php echo $retorno['id']; ?>"> <?php echo $retorno['nome']; ?></option>
+                                        <?php }
+                                                ?>
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- -->
+                        </div>
+                        <div class="modal-footer mt-3">
+                            <button type="submit" class="btn btn-danger">Confirmar Alteração</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Excluir -->
+    <div class="modal fade" id="modalExcluir" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Excluir Veículo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="../veiculo/excluir">
+                        @csrf
+                        <p>Deseja realmente excluir o veículo selecionado?</p>
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" name="idExcluir" id="idExcluir" value="">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 </body>

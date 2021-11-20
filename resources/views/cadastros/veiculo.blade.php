@@ -18,14 +18,13 @@ use App\Http\Controllers\ClienteController;
                     <!-- -->
                     <div class="row">
                         <div class="col-8">
-                            <label>Modelo</label>
-                            <input type="text" class="form-control" name="descricao" id="descricao"
-                                placeholder="Ex: Cruze LTZ">
+                            <label>Descrição</label>
+                            <input type="text" class="form-control" name="descricao" id="descricao" placeholder="Ex: Cruze LTZ" required>
                         </div>
 
                         <div class="col-4">
                             <label>Marca</label>
-                            <select class="form-control" name="marca" id="marca">
+                            <select class="form-control" name="marca" id="marca" required>
                                 <option value="" selected disabled>Selecionar...</option>
                                 <?php 
                                     $marcaController = new MarcaController();
@@ -42,30 +41,26 @@ use App\Http\Controllers\ClienteController;
                     <div class="row mt-3">
                         <div class="col-4">
                             <label>Cor</label>
-                            <input type="text" class="form-control" name="cor" id="cor"
-                                placeholder="Ex: Prata, branco...">
+                            <input type="text" class="form-control" name="cor" id="cor" placeholder="Ex: Prata, branco..." required>
                         </div>
                         <div class="col-4">
                             <label>Ano Fabricação</label>
-                            <input type="number" class="form-control" name="anoFabricacao" id="anoFabricacao"
-                                placeholder="Ex: 2000, 2010...">
+                            <input type="number" class="form-control" name="anoFabricacao" id="anoFabricacao" placeholder="Ex: 2000, 2010..." required>
                         </div>
                         <div class="col-4">
                             <label>Ano Modelo</label>
-                            <input type="number" class="form-control" name="anoModelo" id="anoModelo"
-                                placeholder="Ex: 2000, 2010...">
+                            <input type="number" class="form-control" name="anoModelo" id="anoModelo" placeholder="Ex: 2000, 2010..." required>
                         </div>
                     </div>
                     <!-- -->
                     <div class="row mt-3">
                         <div class="col-4">
                             <label>Placa</label>
-                            <input type="text" class="form-control" name="placa" id="placa"
-                                placeholder="Ex: BRA2E19...">
+                            <input type="text" class="form-control" name="placa" id="placa" placeholder="Ex: BRA2E19..." required>
                         </div>
                         <div class="col">
                             <label>Cliente</label>
-                            <select class="form-control" name="cliente" id="cliente">
+                            <select class="form-control" name="cliente" id="cliente" required>
                                 <option value="" selected disabled>Selecionar...</option>
                                 <?php 
                                     $clienteController = new ClienteController();
