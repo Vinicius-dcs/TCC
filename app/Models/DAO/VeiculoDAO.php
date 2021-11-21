@@ -16,10 +16,11 @@ class VeiculoDAO extends BaseDAO
             $anoFabricacao = $veiculo->getAnoFabricacao();
             $anoModelo = $veiculo->getAnoModelo();
             $placa = $veiculo->getPlaca();
+            $origem = $veiculo->getOrigem();
             $idCliente = $veiculo->getIdCliente();
             $idMarca = $veiculo->getIdMarca();
 
-            $this->insert('veiculos', "descricao, cor, anoFabricacao, anoModelo, placa, idCliente, idMarca", "'$modelo', '$cor', '$anoFabricacao', '$anoModelo', '$placa', '$idCliente', '$idMarca'");
+            $this->insert('veiculos', "descricao, cor, anoFabricacao, anoModelo, placa, origem, idCliente, idMarca", "'$modelo', '$cor', '$anoFabricacao', '$anoModelo', '$placa', '$origem', '$idCliente', '$idMarca'");
         } catch (\Exception $erro) {
             echo "(VeiculoDAO) Erro ao cadastrar veículo: " . $erro;
         }
@@ -35,6 +36,7 @@ class VeiculoDAO extends BaseDAO
             $anoFabricacao = $veiculo->getAnoFabricacao();
             $anoModelo = $veiculo->getAnoModelo();
             $placa = $veiculo->getPlaca();
+            $origem = $veiculo->getOrigem();
             $cliente = $veiculo->getIdCliente();
             
             $sql = "UPDATE veiculos SET
@@ -43,6 +45,7 @@ class VeiculoDAO extends BaseDAO
             anoFabricacao = '$anoFabricacao',
             anoModelo = '$anoModelo',
             placa = '$placa',
+            origem = '$origem',
             idCliente = '$cliente',
             idMarca = '$marca'
             WHERE id = '$id'";

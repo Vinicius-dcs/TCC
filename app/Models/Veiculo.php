@@ -16,6 +16,7 @@ class Veiculo extends Model
     private $anoFabricacao;
     private $anoModelo;
     private $placa;
+    private $origem;
 
     public function getId()
     {
@@ -97,9 +98,18 @@ class Veiculo extends Model
         $this->placa = $placa;
     }
 
+    public function getOrigem()
+    {
+        return $this->origem;
+    }
+
+    public function setOrigem($origem) {
+        $this->origem = $origem;
+    }
+
     use HasFactory;
 
     protected $fillable = [
-        'descricao', 'cor', 'anoFabricacao', 'anoModelo', 'placa', 'idCliente', 'idMarca'
+        'descricao', 'cor', 'anoFabricacao', 'anoModelo', 'placa', 'origem', 'idCliente', 'idMarca'
     ];
 }

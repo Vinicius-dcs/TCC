@@ -26,6 +26,7 @@ class VeiculoController extends Controller
             $this->veiculo->setAnoFabricacao($_POST['anoFabricacao']);
             $this->veiculo->setAnoModelo($_POST['anoModelo']);
             $this->veiculo->setPlaca($_POST['placa']);
+            $this->veiculo->setOrigem($_POST['origem']);
             $this->veiculo->setIdCliente($_POST['cliente']);
             $this->veiculo->setIdMarca($_POST['marca']);
 
@@ -59,6 +60,7 @@ class VeiculoController extends Controller
             $this->veiculo->setAnoFabricacao($_POST['anoFabricacao']);
             $this->veiculo->setAnoModelo($_POST['anoModelo']);
             $this->veiculo->setPlaca($_POST['placa']);
+            $this->veiculo->setOrigem($_POST['origem']);
             $this->veiculo->setIdCliente($_POST['cliente']);
 
             $this->veiculoDAO->altVeiculo($this->veiculo);

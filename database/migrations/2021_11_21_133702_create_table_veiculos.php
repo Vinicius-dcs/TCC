@@ -16,6 +16,7 @@ class CreateTableVeiculos extends Migration
             $table->integer('anoFabricacao');
             $table->integer('anoModelo');
             $table->string('placa');
+            $table->string('origem');
             $table->unsignedBigInteger('idCliente');
             $table->unsignedBigInteger('idMarca');
         });

@@ -25,6 +25,7 @@ use App\Http\Controllers\ClienteController;
                         <th scope="col">Ano Modelo</th>
                         <th scope="col">Placa</th>
                         <th scope="col">Cliente</th>
+                        <th scope="col">Origem</th>
                         <th scope="col">Ação</th>
                     </tr>
                 </thead>
@@ -48,14 +49,15 @@ use App\Http\Controllers\ClienteController;
                         <td class="col"> <?php echo $retorno['cor']; ?> </td>
                         <td class="col"> <?php echo $retorno['anoFabricacao']; ?> </td>
                         <td class="col"> <?php echo $retorno['anoModelo']; ?> </td>
-                        <td class="col"> <?php echo $retorno['placa']; ?> </td>
+                        <td class="col"> <?php echo strtoupper($retorno['placa']); ?> </td>
                         <td class="col"> <?php echo $retornoCliente[0]['nome']; ?> </td>
+                        <td class="col"> <?php echo ucfirst($retorno['origem']); ?> </td>
                         <td>
 
                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#modalAlterar" onclick="setInformations
                                 (
-                                    ['id', 'descricao', 'marca', 'cor' , 'anoFabricacao', 'anoModelo', 'placa', 'cliente'],
+                                    ['id', 'descricao', 'marca', 'cor' , 'anoFabricacao', 'anoModelo', 'placa', 'origem', 'cliente'],
                                     [<?php echo $retorno['id']; ?>, 
                                     '<?php echo $retorno['descricao']; ?>', 
                                     '<?php echo $retornoMarca[0]['id']; ?>',
@@ -63,6 +65,7 @@ use App\Http\Controllers\ClienteController;
                                     '<?php echo $retorno['anoFabricacao']; ?>',
                                     '<?php echo $retorno['anoModelo']; ?>',
                                     '<?php echo $retorno['placa']; ?>',
+                                    '<?php echo $retorno['origem']; ?>',
                                     '<?php echo $retornoCliente[0]['id']; ?>']
                                 )">
                                 <ion-icon name="build"></ion-icon>
@@ -146,11 +149,22 @@ use App\Http\Controllers\ClienteController;
                             </div>
                             <!-- -->
                             <div class="row mt-3">
-                                <div class="col-4">
+                                <div class="col">
                                     <label>Placa</label>
                                     <input type="text" class="form-control" name="placa" id="placa"
                                         placeholder="Ex: BRA2E19..." required>
                                 </div>
+                                <div class="col">
+                                    <label>Origem Veículo</label>
+                                    <select class="form-control" name="origem" id="origem" required>
+                                        <option value="" selected disabled>Selecionar...</option>
+                                        <option value="cliente"> Cliente </option>
+                                        <option value="concessionaria"> Concessionária </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- -->
+                            <div class="row mt-3">
                                 <div class="col">
                                     <label>Cliente</label>
                                     <select class="form-control" name="cliente" id="cliente" required>
@@ -166,7 +180,6 @@ use App\Http\Controllers\ClienteController;
                                     </select>
                                 </div>
                             </div>
-                            <!-- -->
                         </div>
                         <div class="modal-footer mt-3">
                             <button type="submit" class="btn btn-danger">Confirmar Alteração</button>

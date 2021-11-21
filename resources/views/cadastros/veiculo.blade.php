@@ -19,7 +19,8 @@ use App\Http\Controllers\ClienteController;
                     <div class="row">
                         <div class="col-8">
                             <label>Descrição</label>
-                            <input type="text" class="form-control" name="descricao" id="descricao" placeholder="Ex: Cruze LTZ" required>
+                            <input type="text" class="form-control" name="descricao" id="descricao"
+                                placeholder="Ex: Cruze LTZ" required>
                         </div>
 
                         <div class="col-4">
@@ -41,39 +42,51 @@ use App\Http\Controllers\ClienteController;
                     <div class="row mt-3">
                         <div class="col-4">
                             <label>Cor</label>
-                            <input type="text" class="form-control" name="cor" id="cor" placeholder="Ex: Prata, branco..." required>
+                            <input type="text" class="form-control" name="cor" id="cor"
+                                placeholder="Ex: Prata, branco..." required>
                         </div>
                         <div class="col-4">
                             <label>Ano Fabricação</label>
-                            <input type="number" class="form-control" name="anoFabricacao" id="anoFabricacao" placeholder="Ex: 2000, 2010..." required>
+                            <input type="number" class="form-control" name="anoFabricacao" id="anoFabricacao"
+                                placeholder="Ex: 2000, 2010..." required>
                         </div>
                         <div class="col-4">
                             <label>Ano Modelo</label>
-                            <input type="number" class="form-control" name="anoModelo" id="anoModelo" placeholder="Ex: 2000, 2010..." required>
+                            <input type="number" class="form-control" name="anoModelo" id="anoModelo"
+                                placeholder="Ex: 2000, 2010..." required>
                         </div>
                     </div>
                     <!-- -->
                     <div class="row mt-3">
-                        <div class="col-4">
+                        <div class="col">
                             <label>Placa</label>
-                            <input type="text" class="form-control" name="placa" id="placa" placeholder="Ex: BRA2E19..." required>
+                            <input type="text" class="form-control" name="placa" id="placa"
+                                placeholder="Ex: BRA2E19..." required>
                         </div>
+                        <div class="col">
+                            <label>Origem Veículo</label>
+                            <select class="form-control" name="origem" id="origem" required>
+                                <option value="" selected disabled>Selecionar...</option>
+                                <option value="cliente"> Cliente </option>
+                                <option value="concessionaria"> Concessionária </option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="row mt-3">
                         <div class="col">
                             <label>Cliente</label>
                             <select class="form-control" name="cliente" id="cliente" required>
                                 <option value="" selected disabled>Selecionar...</option>
                                 <?php 
-                                    $clienteController = new ClienteController();
-                                    $arraySelect = $clienteController->listarClientes(1, 1);
-                                    foreach ($arraySelect as $retorno) { ?>
+                                $clienteController = new ClienteController();
+                                $arraySelect = $clienteController->listarClientes(1, 1);
+                                foreach ($arraySelect as $retorno) { ?>
                                 <option value="<?php echo $retorno['id']; ?>"> <?php echo $retorno['nome']; ?></option>
-                                <?php }
-                                ?>
-                                <option></option>
+                                <?php } ?>
                             </select>
                         </div>
                     </div>
-                    <!-- -->
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Cadastrar</button>
             </form>

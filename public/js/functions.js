@@ -12,6 +12,13 @@ jQuery(document).ready(function () {
     });
 });
 
+/* Desabilitar select quando for concessionária */
+jQuery(document).ready(function () {
+    jQuery('#origem').on('click', function () {
+        // disableSelectOrigem();
+    })
+})
+
 function setInformations(idInputs, values = null) {
     let i = 0;
     while (idInputs[i] != null) {
@@ -60,4 +67,13 @@ function mascaraCEP() {
     cep = cep.replace(/\D/g, "").slice(0, 8);
     cep = cep.replace(/(\d+)(\d{3})$/, "$1-$2");
     document.getElementById('cep').value = cep;
+}
+
+function disableSelectOrigem() {
+    let origem = document.getElementById('origem').value;
+    if(origem === "concessionaria") {
+        document.getElementById('cliente').disabled = true;
+    } else {
+        document.getElementById('cliente').disabled = false;
+    }
 }
