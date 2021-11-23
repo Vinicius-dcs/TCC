@@ -22,40 +22,41 @@ UsuarioController::verificaSeExisteSessao();
                     </a>
 
                     <div class="nav__link collapseMenu">
-                        <ion-icon name="add-circle-outline" class="nav__icon"></ion-icon>
+                        <ion-icon name="clipboard-outline" class="nav__icon"></ion-icon>
                         <span class="nav__name">Cadastros</span>
-
                         <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
-
                         <ul class="collapse__menu">
                             <a href="/carimports/public/sistema/cadastro/cliente" class="collapse__sublink">Cliente</a>
                             <a href="/carimports/public/sistema/cadastro/marca" class="collapse__sublink">Marca</a>
                             <a href="/carimports/public/sistema/cadastro/veiculo" class="collapse__sublink">Veículo</a>
-                            <a href="#" class="collapse__sublink">Members</a>
                         </ul>
                     </div>
 
                     <div class="nav__link collapseMenu">
-                        <ion-icon name="options-outline" class="nav__icon"></ion-icon>
-                        <span class="nav__name">Consulta</span>
-
+                        <ion-icon name="repeat-outline" class="nav__icon"></ion-icon>
+                        <span class="nav__name">Alteração</span>
                         <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
-
                         <ul class="collapse__menu">
                             <a href="/carimports/public/sistema/alteracao/cliente" class="collapse__sublink">Cliente</a>
                             <a href="/carimports/public/sistema/alteracao/marca" class="collapse__sublink">Marca</a>
                             <a href="/carimports/public/sistema/alteracao/veiculo" class="collapse__sublink">Veículo</a>
-                            <a href="#" class="collapse__sublink">Members</a>
                         </ul>
                     </div>
 
                     <div class="nav__link collapseMenu">
+                        <ion-icon name="construct-outline" class="nav__icon"></ion-icon>
+                        <span class="nav__name">Manutenção</span>
+                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+                        <ul class="collapse__menu">
+                            <a href="/carimports/public/sistema/alteracao/cliente" class="collapse__sublink">Preventiva</a>
+                            <a href="/carimports/public/sistema/alteracao/marca" class="collapse__sublink">Corretiva</a>
+                        </ul>
+                    </div>
 
+                    <div class="nav__link collapseMenu">
                         <ion-icon name="reader-outline" class="nav__icon"></ion-icon>
                         <span class="nav__name">Relatórios</span>
-
                         <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
-
                         <ul class="collapse__menu">
                             <a href="#" class="collapse__sublink">Data</a>
                             <a href="#" class="collapse__sublink">Group</a>
@@ -65,14 +66,12 @@ UsuarioController::verificaSeExisteSessao();
                 </div>
             </div>
 
-            <a href="#" class="nav__link">
+            <a href="/carimports/public/login" class="nav__link">
                 <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
                 <span class="nav__name">Sair</span>
             </a>
         </nav>
     </div>
-
-    @yield('content')
 
     <!-- <h1>Componentes</h1> -->
     <!-- ===== IONICONS ===== -->
@@ -80,7 +79,5 @@ UsuarioController::verificaSeExisteSessao();
 
     <!-- ===== MAIN JS ===== -->
     <script src="/carimports/public/js/menu.js"></script>
-
-
 
 </body>

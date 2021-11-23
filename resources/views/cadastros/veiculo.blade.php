@@ -68,7 +68,7 @@ use App\Http\Controllers\ClienteController;
                             <select class="form-control" name="origem" id="origem" required>
                                 <option value="" selected disabled>Selecionar...</option>
                                 <option value="cliente"> Cliente </option>
-                                <option value="concessionaria"> Concessionária </option>
+                                <option value="concessionária"> Concessionária </option>
                             </select>
                         </div>
                     </div>

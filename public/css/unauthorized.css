@@ -1,7 +1,7 @@
-div {
+.posicao-unauthorized {
     width: 90vh;
     position:absolute;
-    top: 10vh;
+    top: 12vh;
     left: 31vw;
     margin-top:-50px;
     margin-left:-50px;

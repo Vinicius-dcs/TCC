@@ -50,11 +50,20 @@ use App\Http\Controllers\ClienteController;
                         <td class="col"> <?php echo $retorno['anoFabricacao']; ?> </td>
                         <td class="col"> <?php echo $retorno['anoModelo']; ?> </td>
                         <td class="col"> <?php echo strtoupper($retorno['placa']); ?> </td>
-                        <td class="col"> <?php echo $retornoCliente[0]['nome']; ?> </td>
+                        <td class="col"> 
+                            <?php 
+                                if($retorno['origem'] != "concessionária") {
+                                    echo $retornoCliente[0]['nome']; 
+                                } elseif (($retorno['origem'] === "concessionária")) {
+                                    echo "-";
+                                }
+                                
+                            ?> 
+                        </td>
                         <td class="col"> <?php echo ucfirst($retorno['origem']); ?> </td>
                         <td>
 
-                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                            <button type="button" id="btnAlterar" name="btnAlterar" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#modalAlterar" onclick="setInformations
                                 (
                                     ['id', 'descricao', 'marca', 'cor' , 'anoFabricacao', 'anoModelo', 'placa', 'origem', 'cliente'],
@@ -159,7 +168,7 @@ use App\Http\Controllers\ClienteController;
                                     <select class="form-control" name="origem" id="origem" required>
                                         <option value="" selected disabled>Selecionar...</option>
                                         <option value="cliente"> Cliente </option>
-                                        <option value="concessionaria"> Concessionária </option>
+                                        <option value="concessionária"> Concessionária </option>
                                     </select>
                                 </div>
                             </div>

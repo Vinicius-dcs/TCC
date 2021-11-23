@@ -14,8 +14,8 @@ jQuery(document).ready(function () {
 
 /* Desabilitar select quando for concessionária */
 jQuery(document).ready(function () {
-    jQuery('#origem').on('click', function () {
-        // disableSelectOrigem();
+    jQuery('#origem, #btnAlterar').on('click', function () {
+        disableSelectOrigem();
     })
 })
 
@@ -23,7 +23,6 @@ function setInformations(idInputs, values = null) {
     let i = 0;
     while (idInputs[i] != null) {
         document.getElementById(idInputs[i]).value = values[i];
-        
         i++;
     }
 }
@@ -71,7 +70,15 @@ function mascaraCEP() {
 
 function disableSelectOrigem() {
     let origem = document.getElementById('origem').value;
-    if(origem === "concessionaria") {
+    if (origem === "concessionária") {
+        let text = "Selecionar...";
+        let select = document.getElementById('cliente');
+        for (let i = 0; i < select.options.length; i++) {
+            if(select.options[i].text === text) {
+                select.selectedIndex = i;
+                break;
+            }
+        }
         document.getElementById('cliente').disabled = true;
     } else {
         document.getElementById('cliente').disabled = false;
