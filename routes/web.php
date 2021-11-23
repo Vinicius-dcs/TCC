@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\MarcaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
@@ -41,6 +42,10 @@ Route::prefix('sistema')->group(function () {
         Route::get('/cliente', function () {
             return view('cadastros.cliente');
         });
+
+        Route::get('/funcionario', function () {
+            return view('cadastros.funcionario');
+        });
     });
 
     Route::prefix('alteracao')->group(function () {
@@ -68,5 +73,7 @@ Route::prefix('sistema')->group(function () {
     Route::post('/veiculo/cadastrar', [VeiculoController::class, 'cadastrarVeiculo']);
     Route::post('/veiculo/alterar', [VeiculoController::class, 'alterarVeiculo']);
     Route::post('/veiculo/excluir', [VeiculoController::class, 'deletarVeiculo']);
+
+    Route::post('/funcionario/cadastrar', [FuncionarioController::class, 'cadastrarFuncionario']);
 
 });

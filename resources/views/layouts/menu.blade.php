@@ -29,6 +29,7 @@ UsuarioController::verificaSeExisteSessao();
                             <a href="/carimports/public/sistema/cadastro/cliente" class="collapse__sublink">Cliente</a>
                             <a href="/carimports/public/sistema/cadastro/marca" class="collapse__sublink">Marca</a>
                             <a href="/carimports/public/sistema/cadastro/veiculo" class="collapse__sublink">Veículo</a>
+                            <a href="/carimports/public/sistema/cadastro/funcionario" class="collapse__sublink">Funcionário</a>
                         </ul>
                     </div>
 
@@ -40,6 +41,7 @@ UsuarioController::verificaSeExisteSessao();
                             <a href="/carimports/public/sistema/alteracao/cliente" class="collapse__sublink">Cliente</a>
                             <a href="/carimports/public/sistema/alteracao/marca" class="collapse__sublink">Marca</a>
                             <a href="/carimports/public/sistema/alteracao/veiculo" class="collapse__sublink">Veículo</a>
+                            <a href="/carimports/public/sistema/alteracao/funcionario" class="collapse__sublink">Funcionario</a>
                         </ul>
                     </div>
 

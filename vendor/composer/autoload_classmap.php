@@ -28,6 +28,8 @@ return array(
     'App\\Models\\DAO\\Conexao' => $baseDir . '/app/Models/DAO/Conexao.php',
     'App\\Models\\DAO\\MarcaDAO' => $baseDir . '/app/Models/DAO/MarcaDAO.php',
     'App\\Models\\DAO\\UsuarioDAO' => $baseDir . '/app/Models/DAO/UsuarioDAO.php',
+    'App\\Models\\DAO\\VeiculoDAO' => $baseDir . '/app/Models/DAO/VeiculoDAO.php',
+    'App\\Models\\Funcionario' => $baseDir . '/app/Models/Funcionario.php',
     'App\\Models\\Marca' => $baseDir . '/app/Models/Marca.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\Usuario' => $baseDir . '/app/Models/Usuario.php',

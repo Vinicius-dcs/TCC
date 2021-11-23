@@ -538,6 +538,8 @@ class ComposerStaticInit3e7cfe767e345250c68afaa91bc00989
         'App\\Models\\DAO\\Conexao' => __DIR__ . '/../..' . '/app/Models/DAO/Conexao.php',
         'App\\Models\\DAO\\MarcaDAO' => __DIR__ . '/../..' . '/app/Models/DAO/MarcaDAO.php',
         'App\\Models\\DAO\\UsuarioDAO' => __DIR__ . '/../..' . '/app/Models/DAO/UsuarioDAO.php',
+        'App\\Models\\DAO\\VeiculoDAO' => __DIR__ . '/../..' . '/app/Models/DAO/VeiculoDAO.php',
+        'App\\Models\\Funcionario' => __DIR__ . '/../..' . '/app/Models/Funcionario.php',
         'App\\Models\\Marca' => __DIR__ . '/../..' . '/app/Models/Marca.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\Usuario' => __DIR__ . '/../..' . '/app/Models/Usuario.php',
