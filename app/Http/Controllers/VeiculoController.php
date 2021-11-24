@@ -27,9 +27,9 @@ class VeiculoController extends Controller
             $this->veiculo->setAnoModelo($_POST['anoModelo']);
             $this->veiculo->setPlaca($_POST['placa']);
             $this->veiculo->setOrigem($_POST['origem']);
-            if(isset($_POST['cliente'])) {
+            if (isset($_POST['cliente'])) {
                 $this->veiculo->setIdCliente($_POST['cliente']);
-            }            
+            }
             $this->veiculo->setIdMarca($_POST['marca']);
 
             $this->veiculoDAO->cadVeiculo($this->veiculo);
@@ -38,16 +38,25 @@ class VeiculoController extends Controller
             header('Location: ../cadastro/veiculo');
             exit;
         } catch (\Exception $erro) {
+            $_SESSION['mensagem'] = "Erro ao cadastrar veículo: " . $erro;
+            $_SESSION['tipoAlert'] = "danger";
             echo "(VeiculoController) Erro ao cadastrar veículo: " . $erro;
         }
     }
 
-    public function listarVeiculo()
+    public function listarVeiculo($id = null, $semLimiteConsulta = null)
     {
         try {
-            return $this->veiculo->paginate(9);
+            if (empty($id) && empty($semLimiteConsulta)) {
+                return $this->veiculo->Paginate(8);
+            } elseif (!empty($id) && empty($semLimiteConsulta)) {
+                $this->veiculo->setId($id);
+                return $this->veiculoDAO->selectVeiculo($this->veiculo);
+            } elseif (!empty($id) && !empty($semLimiteConsulta)) {
+                return $this->veiculo->all();
+            }
         } catch (\Exception $erro) {
-            echo "(VeiculoController) Erro ao listar veículo: " . $erro;
+            echo "(VeiculoController) Erro ao consultar veículo: " . $erro;
         }
     }
 
@@ -63,10 +72,10 @@ class VeiculoController extends Controller
             $this->veiculo->setAnoModelo($_POST['anoModelo']);
             $this->veiculo->setPlaca($_POST['placa']);
             $this->veiculo->setOrigem($_POST['origem']);
-            if(isset($_POST['cliente'])) {
-                $this->veiculo->setIdCliente($_POST['cliente']);        
+            if (isset($_POST['cliente'])) {
+                $this->veiculo->setIdCliente($_POST['cliente']);
             };
-            
+
             $this->veiculoDAO->altVeiculo($this->veiculo);
             $_SESSION['mensagem'] = "Veículo alterado com sucesso!";
             $_SESSION['tipoAlert'] = "success";

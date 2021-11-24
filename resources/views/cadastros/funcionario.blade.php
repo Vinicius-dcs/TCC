@@ -43,7 +43,6 @@
                                 <option value="feminino">Feminino</option>
                             </select>
                         </div>
-
                     </div>
                     <!-- -->
                     <div class="row mt-3">
@@ -56,7 +55,6 @@
                             <input type="number" class="form-control" name="telefone" id="telefone" required>
                         </div>
                     </div>
-                    <!-- -->
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Cadastrar</button>
             </form>

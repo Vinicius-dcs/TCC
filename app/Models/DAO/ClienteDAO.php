@@ -45,6 +45,7 @@ class ClienteDAO extends BaseDAO
             cidade = '$cidade', 
             estado = '$estado'
             WHERE id = $id";
+            
             $this->update($sql);
         } catch (\Exception $erro) {
             echo "(ClienteDAO) Erro ao alterar cliente: " . $erro;

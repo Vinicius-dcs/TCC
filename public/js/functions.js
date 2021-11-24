@@ -84,3 +84,30 @@ function disableSelectOrigem() {
         document.getElementById('cliente').disabled = false;
     }
 }
+
+jQuery(document).ready(function () {
+    jQuery('#data').on('keyup', function () {
+        validarHorarioDisponivel();
+    })
+})
+
+function validarHorarioDisponivel() {
+    let data = document.querySelector('#data').value;
+    let horario = document.querySelector('#horario').value;
+    let idFuncionario = document.querySelector('#funcionario').value;
+    let url = "http://localhost/carimports/public/sistema/manutencao-preventiva/api";
+
+    fetch(url).then(function (response) {
+        response.json().then(function (dados) {
+            dados.forEach(element =>  {
+                if(data == element['data']) {
+                    console.log("ENTROU!! ID => " + dados['id']);
+                }
+            });
+            
+        })
+    })
+
+   /*  console.log(data);
+    console.log(horario); */
+}

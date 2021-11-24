@@ -30,6 +30,7 @@ UsuarioController::verificaSeExisteSessao();
                             <a href="/carimports/public/sistema/cadastro/marca" class="collapse__sublink">Marca</a>
                             <a href="/carimports/public/sistema/cadastro/veiculo" class="collapse__sublink">Veículo</a>
                             <a href="/carimports/public/sistema/cadastro/funcionario" class="collapse__sublink">Funcionário</a>
+                            <a href="/carimports/public/sistema/cadastro/manutencao-preventiva" class="collapse__sublink">Manutenção Preventiva</a>
                         </ul>
                     </div>
 

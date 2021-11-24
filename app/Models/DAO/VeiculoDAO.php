@@ -82,4 +82,15 @@ class VeiculoDAO extends BaseDAO
             echo "(VeiculODAO) Erro ao excluir veículo " . $erro;
         }
     }
+
+    public function selectVeiculo(Veiculo $veiculo)
+    {
+        try {
+            $id = $veiculo->getId();
+            $sql = "SELECT * FROM veiculos WHERE id = '$id'";
+            return $this->select($sql);
+        } catch (\Exception $erro) {
+            echo "(VeiculoDAO) Erro ao consultar veículo " . $erro;
+        }
+    }
 }
