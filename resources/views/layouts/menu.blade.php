@@ -31,6 +31,7 @@ UsuarioController::verificaSeExisteSessao();
                             <a href="/carimports/public/sistema/cadastro/veiculo" class="collapse__sublink">Veículo</a>
                             <a href="/carimports/public/sistema/cadastro/funcionario" class="collapse__sublink">Funcionário</a>
                             <a href="/carimports/public/sistema/cadastro/manutencao-preventiva" class="collapse__sublink">Manutenção Preventiva</a>
+                            <a href="/carimports/public/sistema/cadastro/funcionario" class="collapse__sublink">Manutenção Corretiva</a>
                         </ul>
                     </div>
 
@@ -48,11 +49,13 @@ UsuarioController::verificaSeExisteSessao();
 
                     <div class="nav__link collapseMenu">
                         <ion-icon name="construct-outline" class="nav__icon"></ion-icon>
-                        <span class="nav__name">Manutenção</span>
+                        <span class="nav__name">Check Manut.</span>
                         <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
                         <ul class="collapse__menu">
-                            <a href="/carimports/public/sistema/alteracao/cliente" class="collapse__sublink">Preventiva</a>
-                            <a href="/carimports/public/sistema/alteracao/marca" class="collapse__sublink">Corretiva</a>
+                            <a href="/carimports/public/sistema/check/manutencao-preventiva" class="collapse__sublink">Preventiva</a>
+                            <a href="" class="collapse__sublink">Corretiva</a>
+                            <a href="" class="collapse__sublink"></a>
+                            <a href="" class="collapse__sublink"></a>
                         </ul>
                     </div>
 

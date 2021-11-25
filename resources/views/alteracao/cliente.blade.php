@@ -2,7 +2,6 @@
 
 <?php use App\Http\Controllers\ClienteController; ?>
 
-
 <body>
     <div class="position-relative vh-100">
         <h1 class="display-4 text-center">Alteração de Clientes</h1>

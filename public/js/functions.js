@@ -74,7 +74,7 @@ function disableSelectOrigem() {
         let text = "Selecionar...";
         let select = document.getElementById('cliente');
         for (let i = 0; i < select.options.length; i++) {
-            if(select.options[i].text === text) {
+            if (select.options[i].text === text) {
                 select.selectedIndex = i;
                 break;
             }
@@ -85,29 +85,72 @@ function disableSelectOrigem() {
     }
 }
 
+/* Desabilitar horários ocupados ao clicar no select horários */
 jQuery(document).ready(function () {
-    jQuery('#data').on('keyup', function () {
-        validarHorarioDisponivel();
+    jQuery('#horario').on('focusin', function () {
+        desabilitarHorariosOcupados();
     })
 })
 
-function validarHorarioDisponivel() {
+/* Habilitar todos os horários ao sair do select horários */
+jQuery(document).ready(function () {
+    jQuery('#horario').on('focusout', function () {
+        habilitarTodosHorarios();
+    })
+})
+
+jQuery(document).ready(function () {
+    jQuery('#data, #funcionario').on('change', function () {
+        habilitarCampoHorario();
+    })
+})
+
+function desabilitarHorariosOcupados() {
+    let url = "http://localhost/carimports/public/sistema/manutencao-preventiva/api/get";
     let data = document.querySelector('#data').value;
-    let horario = document.querySelector('#horario').value;
     let idFuncionario = document.querySelector('#funcionario').value;
-    let url = "http://localhost/carimports/public/sistema/manutencao-preventiva/api";
+    let select = document.querySelector('#horario');
+    
 
     fetch(url).then(function (response) {
         response.json().then(function (dados) {
-            dados.forEach(element =>  {
-                if(data == element['data']) {
-                    console.log("ENTROU!! ID => " + dados['id']);
+            dados.forEach(element => {
+                let text = element['horario'];
+                if (idFuncionario == element['idFuncionario'] && data == element['data']) {
+                    for (let i = 0; i < select.options.length; i++) {
+                        if (select.options[i].text == text) {
+                            select.options[i].text = " " + element['horario'] + " - Indisponível";
+                            select.options[i].disabled = true;
+                        }
+                    }
                 }
             });
-            
+
         })
     })
+}
 
-   /*  console.log(data);
-    console.log(horario); */
+function habilitarCampoHorario() {
+    let data = document.querySelector('#data').value;
+    let idFuncionario = document.querySelector('#funcionario').value;
+
+    if (idFuncionario && data.length == 10 && data[0] != 0) {
+        document.querySelector('#horario').disabled = false;
+    }
+}
+
+function habilitarTodosHorarios() {
+    let select = document.querySelector('#horario');
+    select.options[1].text = "08:00";
+    select.options[2].text = "09:00";
+    select.options[3].text = "10:00";
+    select.options[4].text = "11:00";
+    select.options[5].text = "14:00";
+    select.options[6].text = "15:00";
+    select.options[7].text = "16:00";
+    select.options[8].text = "17:00";
+
+    for (let i = 0; i < select.options.length; i++) {
+        select.options[i].disabled = false;
+    }
 }

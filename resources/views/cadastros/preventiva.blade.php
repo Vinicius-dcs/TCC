@@ -53,31 +53,29 @@ use App\Http\Controllers\FuncionarioController;
                             <label>Data Manutenção</label>
                             <input type="date" class="form-control" name="data" id="data" required>
                         </div>
-
-                        <!-- -->
-                        <div class="row mt-3">
-
-                            <div class="col">
-                                <label>Horário</label>
-                                <select class="form-control" name="horario" id="horario" required>
-                                    <option value="" selected disabled>Selecionar...</option>
-                                    <option value="1"> 08:00 - Disponível </option>
-                                    <option value="2"> 09:00 - Disponível </option>
-                                    <option value="3"> 10:00 - Disponível </option>
-                                    <option value="4"> 11:00 - Disponível </option>
-                                    <option value="5"> 14:00 - Disponível </option>
-                                    <option value="6"> 15:00 - Disponível </option>
-                                    <option value="7"> 16:00 - Disponível </option>
-                                    <option value="8"> 17:00 - Disponível </option>
-                                </select>
-                            </div>
+                    </div>
+                    <!-- -->
+                    <div class="row mt-3">
+                        <div class="col">
+                            <label>Horário</label>
+                            <select class="form-control" name="horario" id="horario" disabled required>
+                                <option value="" selected disabled>Selecionar...</option>
+                                <option value="08:00">08:00</option>
+                                <option value="09:00">09:00</option>
+                                <option value="10:00">10:00</option>
+                                <option value="11:00">11:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:00">16:00</option>
+                                <option value="17:00">17:00</option>
+                            </select>
                         </div>
-
                         <div class="col">
                             <label>Valor</label>
                             <input type="text" class="form-control" name="valor" id="valor" placeholder="" required>
                         </div>
                     </div>
+
                     <!-- -->
                     <div class="row mt-3">
                         <div class="col">

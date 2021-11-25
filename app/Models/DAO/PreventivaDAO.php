@@ -8,7 +8,8 @@ use App\Models\Preventiva;
 class PreventivaDAO extends BaseDAO
 {
 
-    public function cadPreventiva(Preventiva $preventiva) {
+    public function cadPreventiva(Preventiva $preventiva)
+    {
         try {
             $idVeiculo = $preventiva->getIdVeiculo();
             $idFuncionario = $preventiva->getIdFuncionario();
@@ -23,13 +24,24 @@ class PreventivaDAO extends BaseDAO
         }
     }
 
-    public function selectPreventivaAPI(Preventiva $id) {
+    public function selectPreventiva(Preventiva $preventiva)
+    {
         try {
+            $id = $preventiva->getId();
             $sql = "SELECT * FROM preventivas WHERE id = '$id'";
+            return $this->select($sql);
+        } catch (\Exception $erro) {
+            echo "(PreventidaDAO) Erro ao consultar manutenção preventiva " . $erro;
+        }
+    }
+
+    public function selectPreventivaAPI()
+    {
+        try {
+            $sql = "SELECT * FROM preventivas";
             return json_encode($this->select($sql));
         } catch (\Exception $erro) {
             return json_encode("erro=>$erro");
         }
     }
-
 }

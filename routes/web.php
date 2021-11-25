@@ -72,6 +72,12 @@ Route::prefix('sistema')->group(function () {
         });
     });
 
+    Route::prefix('check')->group(function () {
+        Route::get('manutencao-preventiva', function () {
+            return view('check.preventiva');
+        });
+    });
+
     Route::post('/marca/cadastrar', [MarcaController::class, 'cadastrarMarca']);
     Route::post('/marca/alterar', [MarcaController::class, 'alterarMarca']);
     Route::post('/marca/excluir', [MarcaController::class, 'deletarMarca']);
@@ -88,7 +94,6 @@ Route::prefix('sistema')->group(function () {
     Route::post('/funcionario/alterar', [FuncionarioController::class, 'alterarFuncionario']);
     Route::post('/funcionario/excluir', [FuncionarioController::class, 'deletarFuncionario']);
 
-    // Route::get('/manutencao-preventiva/api/get{id}', [PreventivaDAO::class, 'selectPreventivaAPI']);
-    Route::get('/manutencao-preventiva', [PreventivaDAO::class, 'selectPreventivaAPI']);
+    Route::get('/manutencao-preventiva/api/get', [PreventivaDAO::class, 'selectPreventivaAPI']);
     Route::post('/manutencao-preventiva/cadastrar', [PreventivaController::class, 'cadastrarPreventiva']);
 });

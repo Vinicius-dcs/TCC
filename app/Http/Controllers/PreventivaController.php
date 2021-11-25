@@ -39,4 +39,20 @@ class PreventivaController extends Controller
             echo "(PreventivaController) Erro ao cadastrar manutenção preventiva: " . $erro;
         }
     }
+
+    public function listarPreventiva($id = null, $semLimiteConsulta = null)
+    {
+        try {
+            if (empty($id) && empty($semLimiteConsulta)) {
+                return $this->preventiva->Paginate(8);
+            } elseif (!empty($id) && empty($semLimiteConsulta)) {
+                $this->preventiva->setId($id);
+                return $this->preventivaDAO->selectPreventiva($this->preventiva);
+            } elseif (!empty($id) && !empty($semLimiteConsulta)) {
+                return $this->preventiva->all();
+            }
+        } catch (\Exception $erro) {
+            echo "(PreventivaController) Erro ao consultar manutenção preventiva: " . $erro;
+        }
+    }
 }
