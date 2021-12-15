@@ -22,12 +22,20 @@ class MarcaController extends Controller
         session_start();
         try {
             $this->marca->setNome(trim($_POST['nome']));
+            if(!$this->marcaDAO->existeMarca($this->marca)) {
 
-            $this->marcaDAO->cadMarca($this->marca);
-            $_SESSION['mensagem'] = "Marca cadastrada com sucesso!";
-            $_SESSION['tipoAlert'] = "success";
-            header('Location: ../cadastro/marca');
-            exit;
+                $this->marcaDAO->cadMarca($this->marca);
+                $_SESSION['mensagem'] = "Marca cadastrada com sucesso!";
+                $_SESSION['tipoAlert'] = "success";
+                header('Location: ../cadastro/marca');
+                exit;
+            } else {
+                $_SESSION['mensagem'] = "Não foi possível cadastrar. Marca {$_POST['nome']} já cadastrada!";
+                $_SESSION['tipoAlert'] = "warning";
+                header('Location: ../cadastro/marca');
+                exit;
+            }
+            
         } catch (\Exception $erro) {
             $_SESSION['mensagem'] = "(MarcaController) Erro ao cadastrar marca: " . $erro;
             $_SESSION['tipoAlert'] = "danger";

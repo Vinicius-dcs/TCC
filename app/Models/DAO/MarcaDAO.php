@@ -5,6 +5,8 @@ namespace App\Models\DAO;
 use App\Models\DAO\BaseDAO;
 use App\Models\Marca;
 
+use function PHPUnit\Framework\isEmpty;
+
 class MarcaDAO extends BaseDAO
 {
 
@@ -15,6 +17,21 @@ class MarcaDAO extends BaseDAO
             $this->insert('marcas', "nome", "'$nome'");
         } catch (\Exception $erro) {
             echo "(MarcaDAO) Erro ao cadastrar marca: " . $erro;
+        }
+    }
+
+    public function existeMarca(Marca $marca) {
+        try {
+            $nome = $marca->getNome();
+            $sql = "SELECT * FROM marcas WHERE nome LIKE '%$nome%'";
+            
+            if(sizeof($this->select($sql)) == 0) {
+                return false;
+            } else {
+                return true;
+            };
+        } catch (\Exception $erro) {
+            echo "(MarcaDAO) Erro ao consultar marca duplicada: " . $erro;
         }
     }
 
