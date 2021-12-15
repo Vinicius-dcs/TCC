@@ -2,20 +2,50 @@
 jQuery(document).ready(function () {
     jQuery('#cep').on('keyup', function () {
         consumirAPIViaCEP();
+        habilitarBtnCadastro();
     });
-});
+})
 
 /* Mascara campo CPF */
 jQuery(document).ready(function () {
     jQuery('#cpf').on('keyup', function () {
         mascaraCPF();
     });
-});
+})
 
 /* Desabilitar select quando for concessionária */
 jQuery(document).ready(function () {
     jQuery('#origem, #btnAlterar').on('click', function () {
         disableSelectOrigem();
+    })
+})
+
+/* Desabilitar horários ocupados ao clicar no select horários */
+jQuery(document).ready(function () {
+    jQuery('#horario').on('focusin', function () {
+        desabilitarHorariosOcupados();
+    })
+})
+
+/* Habilitar todos os horários ao sair do select horários */
+jQuery(document).ready(function () {
+    jQuery('#horario').on('focusout', function () {
+        habilitarTodosHorarios();
+    })
+})
+
+/* Habilitar campo horário */
+jQuery(document).ready(function () {
+    jQuery('#data, #funcionario').on('change', function () {
+        habilitarCampoHorario();
+    })
+})
+
+/*Habilita botão cadastro após receber true do validador CPF e CEP */
+jQuery(document).ready(function () {
+    jQuery('#cpf').on('keyup', function () {
+        isValidCPF();
+        habilitarBtnCadastro();
     })
 })
 
@@ -33,15 +63,18 @@ function consumirAPIViaCEP() {
     let cep = document.getElementById('cep').value;
     cepFormatado = cep.replace("-", "");
 
-    if (cepFormatado.length == 8) {
+    if (cepFormatado.length === 8) {
         let url = "https://viacep.com.br/ws/" + cepFormatado + "/json/";
         fetch(url).then(function (response) {
-            response.json().then(function (dados) {
-                if (!dados.erro) {
+            response.json().then(function (dados) {              
+                if (!dados.erro)  {
                     document.getElementById('cep').style.border = "1px solid grey";
+                    document.querySelector('#cepInvalido').hidden = true;
                     setInformations(['cidade', 'estado'], [dados.localidade, dados.uf]);
                 } else {
                     document.getElementById('cep').style.border = "1px solid red";
+                    document.querySelector('#cepInvalido').style.color = 'red';
+                    document.querySelector('#cepInvalido').hidden = false;
                     setInformations(['cidade', 'estado'], ['', '']);
                 }
             });
@@ -85,32 +118,12 @@ function disableSelectOrigem() {
     }
 }
 
-/* Desabilitar horários ocupados ao clicar no select horários */
-jQuery(document).ready(function () {
-    jQuery('#horario').on('focusin', function () {
-        desabilitarHorariosOcupados();
-    })
-})
-
-/* Habilitar todos os horários ao sair do select horários */
-jQuery(document).ready(function () {
-    jQuery('#horario').on('focusout', function () {
-        habilitarTodosHorarios();
-    })
-})
-
-jQuery(document).ready(function () {
-    jQuery('#data, #funcionario').on('change', function () {
-        habilitarCampoHorario();
-    })
-})
-
 function desabilitarHorariosOcupados() {
     let url = "http://localhost/carimports/public/sistema/manutencao-preventiva/api/get";
     let data = document.querySelector('#data').value;
     let idFuncionario = document.querySelector('#funcionario').value;
     let select = document.querySelector('#horario');
-    
+
 
     fetch(url).then(function (response) {
         response.json().then(function (dados) {
@@ -153,4 +166,44 @@ function habilitarTodosHorarios() {
     for (let i = 0; i < select.options.length; i++) {
         select.options[i].disabled = false;
     }
+}
+
+function habilitarBtnCadastro() {
+    setTimeout(() => {
+        if (document.getElementById('cep').style.border == "1px solid grey" && isValidCPF() === true) {
+            document.querySelector('#btnCadastrar').disabled = false;
+        } else {
+            document.querySelector('#btnCadastrar').disabled = true;
+        }
+    }, 10);
+
+}
+
+function isValidCPF() {
+    let cpf = document.querySelector('#cpf').value
+    cpf = cpf.replace(/[^\d]+/g, '')
+    if (cpf.length == 11) {   
+        cpf = cpf.split('')
+        const validator = cpf
+            .filter((digit, index, array) => index >= array.length - 2 && digit)
+            .map(el => +el)
+        const toValidate = pop => cpf
+            .filter((digit, index, array) => index < array.length - pop && digit)
+            .map(el => +el)
+        const rest = (count, pop) => (toValidate(pop)
+            .reduce((soma, el, i) => soma + el * (count - i), 0) * 10) % 11 % 10
+        let condicao = !(rest(10, 2) !== validator[0] || rest(11, 1) !== validator[1])
+
+        if (!condicao) {
+            document.querySelector('#cpf').style.border = "1px solid red";
+            document.querySelector('#cpfInvalido').style.color = 'red';
+            document.querySelector('#cpfInvalido').hidden = false;
+            return condicao;
+        } else {
+            document.querySelector('#cpf').style.border = "1px solid grey";
+            document.querySelector('#cpfInvalido').hidden = true;
+            return condicao;
+        }
+    }
+    
 }

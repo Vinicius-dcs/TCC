@@ -30,6 +30,7 @@
                         <div class="col-4">
                             <label>CPF</label>
                             <input type="" class="form-control" name="cpf" id="cpf" required>
+                            <p hidden id="cpfInvalido" style="position: absolute; font-size:12px"> CPF inválido! </p>
                         </div>
                     </div>
                     <!-- -->
@@ -37,6 +38,7 @@
                         <div class="col-4">
                             <label>CEP</label>
                             <input type="text" class="form-control" name="cep" id="cep" required>
+                            <p hidden id="cepInvalido" style="position: absolute; font-size:12px"> CEP inválido! </p>
                         </div>
                         <div class="col-4">
                             <label>Cidade</label>
@@ -49,7 +51,7 @@
                     </div>
                     <!-- -->
                 </div>
-                <button type="submit" class="btn btn-primary mt-3">Cadastrar</button>
+                <button id="btnCadastrar" type="submit" class="btn btn-primary mt-3" disabled>Cadastrar</button>
             </form>
         </div>
     </div>

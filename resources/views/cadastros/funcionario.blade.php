@@ -41,6 +41,7 @@
                                 <option value="" selected disabled>Selecionar...</option>
                                 <option value="masculino">Masculino</option>
                                 <option value="feminino">Feminino</option>
+                                <option value="outro">Outro</option>
                             </select>
                         </div>
                     </div>
@@ -49,6 +50,7 @@
                         <div class="col">
                             <label>CPF</label>
                             <input type="" class="form-control" name="cpf" id="cpf" required>
+                            <p hidden id="cpfInvalido" style="position: absolute; font-size:12px"> CPF inválido! </p>
                         </div>
                         <div class="col">
                             <label>Telefone</label>
