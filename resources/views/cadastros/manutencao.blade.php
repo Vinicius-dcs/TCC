@@ -74,15 +74,23 @@ use App\Http\Controllers\FuncionarioController;
                             <label>Valor</label>
                             <input type="text" class="form-control" name="valor" id="valor" placeholder="" required>
                         </div>
-                    </div>
-
-                    <!-- -->
-                    <div class="row mt-3">
                         <div class="col">
-                            <label>Descrição da Manutenção</label>
-                            <input type="text" class="form-control" name="descricao" id="descricao"
-                                placeholder="Ex: Revisão Fábrica 10.000 KM..." required>
+                            <label>Tipo Manutenção</label>
+                            <select class="form-control" name="tipoManutencao" id="tipoManutencao" required>
+                                <option value="" selected disabled>Selecionar...</option>
+                                <option value="preventiva">Preventiva</option>
+                                <option value="corretiva">Corretiva</option>
+                            </select>
                         </div>
+                    </div>
+                </div>
+
+                <!-- -->
+                <div class="row mt-3">
+                    <div class="col">
+                        <label>Descrição da Manutenção</label>
+                        <input type="text" class="form-control" name="descricao" id="descricao"
+                            placeholder="Ex: Revisão Fábrica 10.000 KM..." required>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Cadastrar</button>

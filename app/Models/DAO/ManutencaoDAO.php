@@ -17,8 +17,9 @@ class ManutencaoDAO extends BaseDAO
             $horario = $manutencao->getHorario();
             $valor = $manutencao->getValor();
             $descricao = $manutencao->getDescricao();
+            $tipoManutencao = $manutencao->getTipoManutencao();
 
-            $this->insert('manutencoes', "data, horario, descricao, valor, idVeiculo, idFuncionario", "'$data', '$horario', '$descricao', '$valor', '$idVeiculo', '$idFuncionario'");
+            $this->insert('manutencoes', "data, horario, descricao, valor, tipomanutencao, idVeiculo, idFuncionario", "'$data', '$horario', '$descricao', '$valor', '$tipoManutencao', '$idVeiculo', '$idFuncionario'");
         } catch (\Exception $erro) {
             echo "(ManutencaoDAO) Erro ao cadastrar manutenção: " . $erro;
         }

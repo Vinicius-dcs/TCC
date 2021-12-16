@@ -14,6 +14,7 @@ class Manutencao extends Model
     private $valor;
     private $idVeiculo;
     private $idFuncionario;
+    private $tipoManutencao;
     protected $table = "manutencoes";
 
     public function getId()
@@ -94,6 +95,14 @@ class Manutencao extends Model
     public function funcionario()
     {
         return $this->hasOne(Funcionario::class, 'id');
+    }
+
+    public function getTipoManutencao() {
+        return $this->tipoManutencao;
+    }
+
+    public function setTipoManutencao($tipoManutencao) {
+        $this->tipoManutencao = $tipoManutencao;
     }
 
     use HasFactory;
