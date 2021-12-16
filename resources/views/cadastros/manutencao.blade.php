@@ -7,12 +7,12 @@ use App\Http\Controllers\FuncionarioController;
 
 <body>
     <div class="position-relative vh-100">
-        <h1 class="display-4 text-center">Cadastro de Manutenção Preventiva</h1>
+        <h1 class="display-4 text-center">Cadastro de Manutenção</h1>
 
         <div class="position-absolute top-50 start-50 translate-middle col-6">
             @include('layouts.alert')
 
-            <form method="POST" action="../manutencao-preventiva/cadastrar">
+            <form method="POST" action="../manutencao/cadastrar">
                 @csrf
                 <div class="form-group">
                     <div class="row">

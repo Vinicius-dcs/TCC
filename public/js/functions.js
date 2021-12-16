@@ -56,6 +56,13 @@ jQuery(document).ready(function () {
     })
 })
 
+/* Mascará telefone */
+jQuery(document).ready(function () {
+    jQuery('#telefone').on('keyup', function () {
+        mascaraTelefone();
+    })
+})
+
 function validaAnoVeiculo() {
     let retorno = false;
     let anoFabricacao = document.querySelector('#anoFabricacao').value
@@ -138,12 +145,6 @@ function mascaraCPF() {
     document.getElementById('cpf').value = cpf;
 }
 
-jQuery(document).ready(function () {
-    jQuery('#telefone').on('keyup', function () {
-        mascaraTelefone();
-    })
-})
-
 function mascaraTelefone() {
     let telefone = document.querySelector('#telefone').value
     telefone=telefone.replace(/\D/g,"");             //Remove tudo o que não é dígito
@@ -179,7 +180,7 @@ function disableSelectOrigem() {
 }
 
 function desabilitarHorariosOcupados() {
-    let url = "http://localhost/carimports/public/sistema/manutencao-preventiva/api/get";
+    let url = "http://localhost/carimports/public/sistema/manutencao/api/get";
     let data = document.querySelector('#data').value;
     let idFuncionario = document.querySelector('#funcionario').value;
     let select = document.querySelector('#horario');

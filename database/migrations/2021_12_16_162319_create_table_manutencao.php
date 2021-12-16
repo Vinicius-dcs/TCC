@@ -4,11 +4,12 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTablePreventivas extends Migration
+class CreateTableManutencao extends Migration
 {
+
     public function up()
     {
-        Schema::create('preventivas', function (Blueprint $table) {
+        Schema::create('manutencoes', function (Blueprint $table) {
             $table->id();
             $table->date('data');
             $table->string('horario');
@@ -18,7 +19,7 @@ class CreateTablePreventivas extends Migration
             $table->unsignedBigInteger('idFuncionario');
         });
 
-        Schema::table('preventivas', function (Blueprint $table) {
+        Schema::table('manutencoes', function (Blueprint $table) {
             $table->foreign('idVeiculo')->references('id')->on('veiculos')->onDelete('restrict');
             $table->foreign('idFuncionario')->references('id')->on('funcionarios')->onDelete('restrict');
         });
@@ -26,6 +27,6 @@ class CreateTablePreventivas extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('preventivas');
+        Schema::dropIfExists('manutencoes');
     }
 }

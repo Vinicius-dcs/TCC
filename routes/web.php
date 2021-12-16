@@ -3,11 +3,11 @@
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\MarcaController;
-use App\Http\Controllers\PreventivaController;
+use App\Http\Controllers\ManutencaoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\VeiculoController;
-use App\Models\DAO\PreventivaDAO;
+use App\Models\DAO\ManutencaoDAO;
 
 Route::get('/', function () {
     return view('welcome');
@@ -49,8 +49,8 @@ Route::prefix('sistema')->group(function () {
             return view('cadastros.funcionario');
         });
 
-        Route::get('/manutencao-preventiva', function () {
-            return view('cadastros.preventiva');
+        Route::get('/manutencao', function () {
+            return view('cadastros.manutencao');
         });
     });
 
@@ -73,8 +73,8 @@ Route::prefix('sistema')->group(function () {
     });
 
     Route::prefix('check')->group(function () {
-        Route::get('manutencao-preventiva', function () {
-            return view('check.preventiva');
+        Route::get('manutencao', function () {
+            return view('check.manutencao');
         });
     });
 
@@ -94,6 +94,6 @@ Route::prefix('sistema')->group(function () {
     Route::post('/funcionario/alterar', [FuncionarioController::class, 'alterarFuncionario']);
     Route::post('/funcionario/excluir', [FuncionarioController::class, 'deletarFuncionario']);
 
-    Route::get('/manutencao-preventiva/api/get', [PreventivaDAO::class, 'selectPreventivaAPI']);
-    Route::post('/manutencao-preventiva/cadastrar', [PreventivaController::class, 'cadastrarPreventiva']);
+    Route::get('/manutencao/api/get', [ManutencaoDAO::class, 'selectManutencaoAPI']);
+    Route::post('/manutencao/cadastrar', [ManutencaoCOntroller::class, 'cadastrarManutencao']);
 });

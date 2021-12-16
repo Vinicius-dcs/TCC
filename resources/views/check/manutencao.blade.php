@@ -1,13 +1,14 @@
 @include('layouts.menu')
 
 <?php
-use App\Http\Controllers\PreventivaController;
+use App\Http\Controllers\ManutencaoController;
 use App\Http\Controllers\VeiculoController;
+use App\Http\Controllers\FuncionarioController;
 ?>
 
 <body>
     <div class="position-relative vh-100">
-        <h1 class="display-4 text-center">Check de Manutenções Preventivas</h1>
+        <h1 class="display-4 text-center">Check de Manutenções</h1>
 
         <div class="container mt-4">
             @include('layouts.alert')
@@ -27,10 +28,10 @@ use App\Http\Controllers\VeiculoController;
                 </thead>
                 <tbody>
                     <?php
-                        $preventivaController = new PreventivaController();
+                        $manutencaoController = new ManutencaoController();
                         $veiculoController = new VeiculoController();
                         $funcionarioController = new FuncionarioController();
-                        $arraySelect = $preventivaController->listarPreventiva();
+                        $arraySelect = $manutencaoController->listarManutencao();
 
                         foreach ($arraySelect as $retorno) 
                             $retornoVeiculo = $veiculoController->listarVeiculo($retorno['idVeiculo']);
@@ -44,7 +45,7 @@ use App\Http\Controllers\VeiculoController;
                         <td class="col"><?php echo $retorno['descricao']; ?></td>
                         <td class="col"> <?php echo $retorno['valor']; ?> </td>
                         <td class="col"> <?php echo $retorno['veiculo']; ?> </td>
-                        <td class="col"> <?php echo $retorno['funcionario']; ?> </td>
+                        <td class="col"> <?php echo $retornoFuncionario[0]['nome']; ?> </td>
 
                         <td class="col">
                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"

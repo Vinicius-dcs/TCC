@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Preventiva extends Model
+class Manutencao extends Model
 {
     private $id;
     private $data;
@@ -14,6 +14,7 @@ class Preventiva extends Model
     private $valor;
     private $idVeiculo;
     private $idFuncionario;
+    protected $table = "manutencoes";
 
     public function getId()
     {
