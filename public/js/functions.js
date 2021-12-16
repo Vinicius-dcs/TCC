@@ -49,6 +49,50 @@ jQuery(document).ready(function () {
     })
 })
 
+/* Habilitar botão cadastyro veículo após true do validador de ano */
+jQuery(document).ready(function () {
+    jQuery('#anoFabricacao, #anoModelo').on('keyup', function () {
+        habilitarBtnCadVeiculo();
+    })
+})
+
+function validaAnoVeiculo() {
+    let retorno = false;
+    let anoFabricacao = document.querySelector('#anoFabricacao').value
+    let anoModelo = document.querySelector('#anoModelo').value
+    if (anoFabricacao.length === 4 && anoModelo.length === 4) {
+        retorno =  anoModelo >= anoFabricacao ? true : false
+        document.querySelector('#anoInvalido').hidden = true;
+        document.querySelector('#anoInvalido').hidden = true;
+        document.querySelector('#AnoFabMaior').hidden = true;
+        document.querySelector('#AnoModMaior').hidden = true;
+        document.querySelector('#anoFabricacao').style.border = "1px solid grey";
+        document.querySelector('#anoModelo').style.border = "1px solid grey";
+        if(!retorno) {
+            document.querySelector('#anoInvalido').hidden = false;
+            document.querySelector('#anoFabricacao').style.border = "1px solid red";
+            document.querySelector('#anoModelo').style.border = "1px solid red";
+        }
+    } else if(anoFabricacao.length > 4) {
+        document.querySelector('#AnoFabMaior').hidden = false;
+        document.querySelector('#anoFabricacao').style.border = "1px solid red";
+    } else if(anoModelo.length > 4) {
+        document.querySelector('#AnoModMaior').hidden = false;
+        document.querySelector('#anoModelo').style.border = "1px solid red";
+    }
+    return retorno;
+}
+
+function habilitarBtnCadVeiculo() {
+    if (validaAnoVeiculo()) {
+        document.querySelector('#btnCadastro').disabled = false;
+    } else {
+        document.querySelector('#btnCadastro').disabled = true;
+        
+
+    }
+}
+
 function setInformations(idInputs, values = null) {
     let i = 0;
     while (idInputs[i] != null) {
@@ -66,8 +110,8 @@ function consumirAPIViaCEP() {
     if (cepFormatado.length === 8) {
         let url = "https://viacep.com.br/ws/" + cepFormatado + "/json/";
         fetch(url).then(function (response) {
-            response.json().then(function (dados) {              
-                if (!dados.erro)  {
+            response.json().then(function (dados) {
+                if (!dados.erro) {
                     document.getElementById('cep').style.border = "1px solid grey";
                     document.querySelector('#cepInvalido').hidden = true;
                     setInformations(['cidade', 'estado'], [dados.localidade, dados.uf]);
@@ -92,6 +136,10 @@ function mascaraCPF() {
     cpf = cpf.replace(/^(\d{3}\.\d{3})(\d)/, "$1.$2");
     cpf = cpf.replace(/(.{11})(\d)/, "$1-$2");
     document.getElementById('cpf').value = cpf;
+}
+
+function mascaraTelefone() {
+    let telefone = document.querySelector('#').value
 }
 
 function mascaraCEP() {
@@ -182,7 +230,7 @@ function habilitarBtnCadastro() {
 function isValidCPF() {
     let cpf = document.querySelector('#cpf').value
     cpf = cpf.replace(/[^\d]+/g, '')
-    if (cpf.length == 11) {   
+    if (cpf.length == 11) {
         cpf = cpf.split('')
         const validator = cpf
             .filter((digit, index, array) => index >= array.length - 2 && digit)
@@ -205,5 +253,5 @@ function isValidCPF() {
             return condicao;
         }
     }
-    
+
 }

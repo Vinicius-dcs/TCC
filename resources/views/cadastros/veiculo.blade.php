@@ -49,11 +49,14 @@ use App\Http\Controllers\ClienteController;
                             <label>Ano Fabricação</label>
                             <input type="number" class="form-control" name="anoFabricacao" id="anoFabricacao"
                                 placeholder="Ex: 2000, 2010..." required>
+                                <p hidden id="anoInvalido" style="position: absolute; font-size:12px; color:red;"> Ano Modelo não pode ser menor que o ano fabricação! </p>
+                                <p hidden id="AnoFabMaior" style="position: absolute; font-size:12px; color:red;"> O ano deve conter 4 digitos! </p>
                         </div>
                         <div class="col-4">
                             <label>Ano Modelo</label>
                             <input type="number" class="form-control" name="anoModelo" id="anoModelo"
                                 placeholder="Ex: 2000, 2010..." required>
+                                <p hidden id="AnoModMaior" style="position: absolute; font-size:12px; color:red;"> O ano deve conter 4 digitos! </p>
                         </div>
                     </div>
                     <!-- -->
@@ -88,7 +91,7 @@ use App\Http\Controllers\ClienteController;
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3">Cadastrar</button>
+                <button id="btnCadastro" type="submit" class="btn btn-primary mt-3" disabled>Cadastrar</button>
             </form>
         </div>
     </div>
