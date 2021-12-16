@@ -54,7 +54,8 @@
                         </div>
                         <div class="col">
                             <label>Telefone</label>
-                            <input type="number" class="form-control" name="telefone" id="telefone" required>
+                            <input type="" class="form-control" name="telefone" id="telefone"
+                                placeholder="(xx) xxxxx-xxxx" maxlength="15" required>
                         </div>
                     </div>
                 </div>
