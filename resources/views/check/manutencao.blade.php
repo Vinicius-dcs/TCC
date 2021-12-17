@@ -33,18 +33,25 @@ use App\Http\Controllers\FuncionarioController;
                         $funcionarioController = new FuncionarioController();
                         $arraySelect = $manutencaoController->listarManutencao();
 
-                        foreach ($arraySelect as $retorno) 
+                        foreach ($arraySelect as $retorno)  {
                             $retornoVeiculo = $veiculoController->listarVeiculo($retorno['idVeiculo']);
                             $retornoFuncionario = $funcionarioController->listarFuncionarios($retorno['idFuncionario']);
-                        {
-                    ?>
+                        ?>
                     <tr>
                         <th scope="row" class="col"> <?php echo $retorno['id']; ?> </th>
-                        <td class="col"> <?php echo $retorno['Data']; ?> </td>
+                        <td class="col">
+                            <?php
+                            $data = $retorno['data'];
+                            $ano = substr($data, 0, 4);
+                            $mes = substr($data, 5, 2);
+                            $dia = substr($data, 8, 2);
+                            echo "$dia-$mes-$ano";
+                            ?>
+                        </td>
                         <td class="col"><?php echo $retorno['horario']; ?></td>
                         <td class="col"><?php echo $retorno['descricao']; ?></td>
                         <td class="col"> <?php echo $retorno['valor']; ?> </td>
-                        <td class="col"> <?php echo $retorno['veiculo']; ?> </td>
+                        <td class="col"> <?php echo $retornoVeiculo[0]['descricao']; ?> </td>
                         <td class="col"> <?php echo $retornoFuncionario[0]['nome']; ?> </td>
 
                         <td class="col">
