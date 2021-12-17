@@ -16,6 +16,7 @@ class CreateTableManutencao extends Migration
             $table->string('descricao');
             $table->double('valor');
             $table->string('tipoManutencao');
+            $table->string('situacao');
             $table->unsignedBigInteger('idVeiculo');
             $table->unsignedBigInteger('idFuncionario');
         });

@@ -28,6 +28,7 @@ class ManutencaoController extends Controller
             $this->manutencao->setValor($_POST['valor']);
             $this->manutencao->setDescricao($_POST['descricao']);
             $this->manutencao->setTipoManutencao($_POST['tipoManutencao']);
+            $this->manutencao->setSituacao("pendente");
 
             $this->manutencaoDAO->cadManutencao($this->manutencao);
             $_SESSION['mensagem'] = "Manutenção  cadastrada com sucesso!";
