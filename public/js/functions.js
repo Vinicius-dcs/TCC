@@ -63,27 +63,75 @@ jQuery(document).ready(function () {
     })
 })
 
+/* ------------------------------------------------------------------- */
+/* DOM botões CONCLUIR, ADIAR, CANCELAR tela check manutenções */
+
+/* Mostrar div botão CONCLUIR*/
+jQuery(document).ready(function () {
+    jQuery('#btnConcluirManutencao').on('click', function () {
+        document.querySelector('#divBotoesConcluir').hidden = false;
+        document.querySelector('#divBotoesAdiar').hidden = true;
+        document.querySelector('#divBotoesCancelar').hidden = true;
+    });
+})
+
+/* Mostrar div botão ADIAR*/
+jQuery(document).ready(function () {
+    jQuery('#btnAdiarManutencao').on('click', function () {
+        document.querySelector('#divBotoesAdiar').hidden = false;
+        document.querySelector('#divBotoesConcluir').hidden = true;
+        document.querySelector('#divBotoesCancelar').hidden = true;
+    });
+})
+
+/* Mostrar div botão CANCELAR*/
+jQuery(document).ready(function () {
+    jQuery('#btnCancelarManutencao').on('click', function () {
+        document.querySelector('#divBotoesCancelar').hidden = false;
+        document.querySelector('#divBotoesConcluir').hidden = true;
+        document.querySelector('#divBotoesAdiar').hidden = true;
+    });
+})
+
+/* Esconder div botão modal visualizar manutenção*/
+jQuery(document).ready(function () {
+    jQuery('#fecharBtnManutencao, #btnFecharModal').on('click', function () {
+        document.querySelector('#divBotoesConcluir').hidden = true;
+        document.querySelector('#divBotoesAdiar').hidden = true;
+        document.querySelector('#divBotoesCancelar').hidden = true;
+    });
+})
+
+/* Redirecionar action check manutenção CANCELAR*/
+jQuery(document).ready(function () {
+    jQuery('#btnCancelarManutencao').on('click', function () {
+        document.querySelector('#formAcoesManutencao').action = '../manutencao/cancelar';
+    });
+})
+
+/* ------------------------------------------------------------------- */
+
 function validaAnoVeiculo() {
     let retorno = false;
     let anoFabricacao = document.querySelector('#anoFabricacao').value
     let anoModelo = document.querySelector('#anoModelo').value
     if (anoFabricacao.length === 4 && anoModelo.length === 4) {
-        retorno =  anoModelo >= anoFabricacao ? true : false
+        retorno = anoModelo >= anoFabricacao ? true : false
         document.querySelector('#anoInvalido').hidden = true;
         document.querySelector('#anoInvalido').hidden = true;
         document.querySelector('#AnoFabMaior').hidden = true;
         document.querySelector('#AnoModMaior').hidden = true;
         document.querySelector('#anoFabricacao').style.border = "1px solid grey";
         document.querySelector('#anoModelo').style.border = "1px solid grey";
-        if(!retorno) {
+        if (!retorno) {
             document.querySelector('#anoInvalido').hidden = false;
             document.querySelector('#anoFabricacao').style.border = "1px solid red";
             document.querySelector('#anoModelo').style.border = "1px solid red";
         }
-    } else if(anoFabricacao.length > 4) {
+    } else if (anoFabricacao.length > 4) {
         document.querySelector('#AnoFabMaior').hidden = false;
         document.querySelector('#anoFabricacao').style.border = "1px solid red";
-    } else if(anoModelo.length > 4) {
+    } else if (anoModelo.length > 4) {
         document.querySelector('#AnoModMaior').hidden = false;
         document.querySelector('#anoModelo').style.border = "1px solid red";
     }
@@ -95,7 +143,7 @@ function habilitarBtnCadVeiculo() {
         document.querySelector('#btnCadastro').disabled = false;
     } else {
         document.querySelector('#btnCadastro').disabled = true;
-        
+
 
     }
 }
@@ -147,9 +195,9 @@ function mascaraCPF() {
 
 function mascaraTelefone() {
     let telefone = document.querySelector('#telefone').value
-    telefone=telefone.replace(/\D/g,"");             //Remove tudo o que não é dígito
-    telefone=telefone.replace(/^(\d{2})(\d)/g,"($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
-    telefone=telefone.replace(/(\d)(\d{4})$/,"$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
+    telefone = telefone.replace(/\D/g, "");             //Remove tudo o que não é dígito
+    telefone = telefone.replace(/^(\d{2})(\d)/g, "($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+    telefone = telefone.replace(/(\d)(\d{4})$/, "$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
 
     document.querySelector('#telefone').value = telefone
     console.log(telefone)
@@ -268,3 +316,4 @@ function isValidCPF() {
     }
 
 }
+

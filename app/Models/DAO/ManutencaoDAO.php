@@ -46,4 +46,36 @@ class ManutencaoDAO extends BaseDAO
             return json_encode("erro=>$erro");
         }
     }
+
+    public function concluirManutencaoDAO(Manutencao $manutencao) {
+        try {
+            $id = $manutencao->getId();
+            $sql = "UPDATE manutencoes SET situacao = 'concluida' WHERE id = '$id'";
+            $this->update($sql);
+        } catch (\Exception $erro) {
+            echo "(ManutencaoDAO) Erro ao concluir manutenção " . $erro;
+        }
+    }
+
+    public function adiarManutencaoDAO(Manutencao $manutencao) {
+        try {
+            $data = $manutencao->getData();
+            $id = $manutencao->getId();
+            $sql = "UPDATE manutencoes SET data = '$data' WHERE id = '$id'";
+            $this->update($sql);
+        } catch (\Exception $erro) {
+            echo "(ManutencaoDAO) Erro ao adiar manutenção " . $erro;
+        }
+    }
+
+    public function cancelarManutencaoDAO(Manutencao $manutencao) {
+        try {
+            $id = $manutencao->getId();
+            $sql = "UPDATE manutencoes SET situacao = 'cancelada' WHERE id = '$id'";
+            $this->update($sql);
+        } catch (\Exception $erro) {
+            echo "(ManutencaoDAO) Erro ao cancelar manutenção " . $erro;
+        }
+    }
+
 }

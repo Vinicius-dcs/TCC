@@ -95,5 +95,8 @@ Route::prefix('sistema')->group(function () {
     Route::post('/funcionario/excluir', [FuncionarioController::class, 'deletarFuncionario']);
 
     Route::get('/manutencao/api/get', [ManutencaoDAO::class, 'selectManutencaoAPI']);
-    Route::post('/manutencao/cadastrar', [ManutencaoCOntroller::class, 'cadastrarManutencao']);
+    Route::post('/manutencao/cadastrar', [ManutencaoController::class, 'cadastrarManutencao']);
+    Route::post('/manutencao/concluir', [ManutencaoController::class, 'concluirManutencao']);
+    Route::post('/manutencao/adiar', [ManutencaoController::class, 'adiarManutencao']);
+    Route::post('/manutencao/cancelar', [ManutencaoController::class, 'cancelarManutencao']);
 });
