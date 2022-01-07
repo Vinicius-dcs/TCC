@@ -46,14 +46,14 @@
                             echo "$parte1.$parte2.$parte3-$parte4";
                             ?>
                         </td>
-                        <td class="col"> 
-                            <?php 
-                                $data = $retorno['dataNascimento'];
-                                $ano = substr($data, 0, 4); 
-                                $mes = substr($data, 5, 2); 
-                                $dia = substr($data, 8, 2);
-                                echo "$dia-$mes-$ano"; 
-                            ?> 
+                        <td class="col">
+                            <?php
+                            $data = $retorno['dataNascimento'];
+                            $ano = substr($data, 0, 4);
+                            $mes = substr($data, 5, 2);
+                            $dia = substr($data, 8, 2);
+                            echo "$dia-$mes-$ano";
+                            ?>
                         </td>
                         <td class="col"> <?php echo $retorno['endereco']; ?> </td>
                         <td class="col">
@@ -76,8 +76,20 @@
                                     '<?php echo $retorno['nome']; ?>',
                                     '<?php echo $retorno['dataNascimento']; ?>',
                                     '<?php echo $retorno['endereco']; ?>',
-                                    '<?php echo $retorno['cpf']; ?>',
-                                    '<?php echo $retorno['cep']; ?>',
+                                    '<?php
+                                    $cpf = $retorno['cpf'];
+                                    $parte1 = substr($cpf, 0, 3);
+                                    $parte2 = substr($cpf, 3, 3);
+                                    $parte3 = substr($cpf, 6, 3);
+                                    $parte4 = substr($cpf, 9, 2);
+                                    echo "$parte1.$parte2.$parte3-$parte4";
+                                    ?>',
+                                    '<?php
+                                    $cep = $retorno['cep'];
+                                    $parte1 = substr($cep, 0, 5);
+                                    $parte2 = substr($cep, 5, 3);
+                                    echo "$parte1-$parte2";
+                                    ?>',
                                     '<?php echo $retorno['cidade']; ?>',
                                     '<?php echo $retorno['estado']; ?>'
                                 ]
@@ -107,12 +119,12 @@
     </div>
 
     <!-- Modal Alterar -->
-    <div class="modal fade" id="modalAlterar" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modalAlterar" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Alterar Cliente</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" id="btnModalFechar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="../cliente/alterar">
@@ -122,6 +134,7 @@
                             <div class="row">
                                 <div class="col-7">
                                     <input type="hidden" class="form-control" name="id" id="id" value="">
+                                    <input type="hidden" class="form-control" name="validaCadastroOuAlterar" id="validaCadastroOuAlterar" value="1">
                                     <label>Nome</label>
                                     <input type="text" class="form-control" name="nome" id="nome" required>
                                 </div>
@@ -140,6 +153,8 @@
                                 <div class="col-5">
                                     <label>CPF</label>
                                     <input type="" class="form-control" name="cpf" id="cpf" required>
+                                    <p hidden id="cpfInvalido" style="position: absolute; font-size:12px"> CPF inválido!
+                                    </p>
                                 </div>
                             </div>
                             <!-- -->
@@ -147,6 +162,7 @@
                                 <div class="col-4">
                                     <label>CEP</label>
                                     <input type="text" class="form-control" name="cep" id="cep" required>
+                                    <p hidden id="cepInvalido" style="font-size:12px"> CEP inválido! </p>
                                 </div>
                                 <div class="col-4">
                                     <label>Cidade</label>
@@ -162,8 +178,8 @@
                             <!-- -->
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-danger">Confirmar Alteração</button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-danger" id="btnAlterar" disabled>Confirmar Alteração</button>
+                            <button type="button" class="btn btn-primary" id="btnFecharModalCliente" data-bs-dismiss="modal">Fechar</button>
                         </div>
                     </form>
                 </div>

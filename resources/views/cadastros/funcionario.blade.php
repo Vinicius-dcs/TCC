@@ -15,6 +15,7 @@
                         <div class="col">
                             <label>Nome</label>
                             <input type="text" class="form-control" name="nome" id="nome" required>
+                            <input type="hidden" class="form-control" name="validaCadastroOuAlterar" id="validaCadastroOuAlterar" value="0" required>
                         </div>
                     </div>
                     <!-- -->
@@ -59,7 +60,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3">Cadastrar</button>
+                <button type="submit" class="btn btn-primary mt-3" id="btnCadastrar" name="btnCadastrar" disabled>Cadastrar</button>
             </form>
         </div>
     </div>

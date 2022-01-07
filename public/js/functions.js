@@ -1,14 +1,13 @@
 /* Consumir API Via CEP */
 jQuery(document).ready(function () {
-    jQuery('#cep').on('keyup', function () {
+    jQuery('#cep, #cepAlterar').on('keyup', function () {
         consumirAPIViaCEP();
-        habilitarBtnCadastro();
     });
 })
 
 /* Mascara campo CPF */
 jQuery(document).ready(function () {
-    jQuery('#cpf').on('keyup', function () {
+    jQuery('#cpf, #cpfAlterar').on('keyup', function () {
         mascaraCPF();
     });
 })
@@ -41,15 +40,19 @@ jQuery(document).ready(function () {
     })
 })
 
-/*Habilita botão cadastro após receber true do validador CPF e CEP */
+/*Habilita botão cadastro após receber true do validador CPF e CEP ou somente CPF no caso do funcionario*/
 jQuery(document).ready(function () {
-    jQuery('#cpf').on('keyup', function () {
+    jQuery('#cpf, #cep').on('keyup', function () {
         isValidCPF();
-        habilitarBtnCadastro();
+        if (document.querySelector('#validaCadastroOuAlterar') == null) {
+            habilitarBtnCadastro()
+        } else if (document.querySelector('#validaCadastroOuAlterar').value == 0) {
+            habilitarBtnCadastroFuncionario()
+        }
     })
 })
 
-/* Habilitar botão cadastyro veículo após true do validador de ano */
+/* Habilitar botão cadastro veículo após true do validador de ano */
 jQuery(document).ready(function () {
     jQuery('#anoFabricacao, #anoModelo').on('keyup', function () {
         habilitarBtnCadVeiculo();
@@ -60,6 +63,27 @@ jQuery(document).ready(function () {
 jQuery(document).ready(function () {
     jQuery('#telefone').on('keyup', function () {
         mascaraTelefone();
+    })
+})
+
+/* Desabilitar botão ao sair do modal ALTERAÇÃO DE CLIENTES */
+jQuery(document).ready(function () {
+    jQuery('#btnModalFechar, #btnFecharModalCliente').on('click', function () {
+        document.querySelector('#btnAlterar').disabled = true;
+    })
+})
+
+/* Habilitar botão confirmar alteração no ALTERAÇÃO DE VEÍCULOS */
+jQuery(document).ready(function () {
+    jQuery('#descricao, #marca, #cor, #anoFabricacao, #anoModelo, #placa, #origem, #cliente').on('change keyup', function () {
+        habilitarBtnCadVeiculo()
+    })
+})
+
+/* Desabilitar botão confirmar alteração ao sair do modal ALTERAÇÃO DE VEÍCULOS */
+jQuery(document).ready(function () {
+    jQuery('#btnFecharModalVeiculoAlterar, #fecharModalAlterarVeiculo').on('click', function () {
+        document.querySelector('#btnCadastro').disabled = true;
     })
 })
 
@@ -102,13 +126,6 @@ jQuery(document).ready(function () {
     });
 })
 
-/* Redirecionar action check manutenção CANCELAR*/
-jQuery(document).ready(function () {
-    jQuery('#btnCancelarManutencao').on('click', function () {
-        document.querySelector('#formAcoesManutencao').action = '../manutencao/cancelar';
-    });
-})
-
 /* ------------------------------------------------------------------- */
 
 function validaAnoVeiculo() {
@@ -143,8 +160,6 @@ function habilitarBtnCadVeiculo() {
         document.querySelector('#btnCadastro').disabled = false;
     } else {
         document.querySelector('#btnCadastro').disabled = true;
-
-
     }
 }
 
@@ -200,7 +215,6 @@ function mascaraTelefone() {
     telefone = telefone.replace(/(\d)(\d{4})$/, "$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
 
     document.querySelector('#telefone').value = telefone
-    console.log(telefone)
 }
 
 function mascaraCEP() {
@@ -285,7 +299,48 @@ function habilitarBtnCadastro() {
             document.querySelector('#btnCadastrar').disabled = true;
         }
     }, 10);
+}
 
+function habilitarBtnCadastroFuncionario() {
+    setTimeout(() => {
+        if (isValidCPF() === true) {
+            document.querySelector('#btnCadastrar').disabled = false;
+        } else {
+            document.querySelector('#btnCadastrar').disabled = true;
+        }
+    }, 10);
+}
+
+/* Habilita botão confirmar alteração */
+jQuery(document).ready(function () {
+    jQuery('#nome, #dataNascimento, #endereco, #cpf, #cep').on('change keyup', function () {
+        if (document.querySelector('#validaCadastroOuAlterar') != null) {
+            if (document.querySelector('#validaCadastroOuAlterar').value == 1) {
+                habilitarBtnConfirmarAlteracao();
+            }
+        }
+    });
+})
+
+function habilitarBtnConfirmarAlteracao() {
+    setTimeout(() => {
+        if (isValidCEP() && isValidCPF()) {
+            document.querySelector('#btnAlterar').disabled = false;
+        } else {
+            document.querySelector('#btnAlterar').disabled = true;
+            isValidCEP()
+        }
+    }, 10);
+}
+
+function isValidCEP() {
+    let cep = document.querySelector('#cep').value
+    cep = cep.replace(/[^a-zA-Z0-9]/g, '')
+    if (document.getElementById('cep').style.border != "1px solid red") {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function isValidCPF() {

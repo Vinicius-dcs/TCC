@@ -61,7 +61,7 @@ class ManutencaoDAO extends BaseDAO
         try {
             $data = $manutencao->getData();
             $id = $manutencao->getId();
-            $sql = "UPDATE manutencoes SET data = '$data' WHERE id = '$id'";
+            $sql = "UPDATE manutencoes SET data = '$data', situacao = 'pendente' WHERE id = '$id'";
             $this->update($sql);
         } catch (\Exception $erro) {
             echo "(ManutencaoDAO) Erro ao adiar manutenção " . $erro;

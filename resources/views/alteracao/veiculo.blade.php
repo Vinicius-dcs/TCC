@@ -63,7 +63,7 @@ use App\Http\Controllers\ClienteController;
                         <td class="col"> <?php echo ucfirst($retorno['origem']); ?> </td>
                         <td>
 
-                            <button type="button" id="btnAlterar" name="btnAlterar" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#modalAlterar" onclick="setInformations
                                 (
                                     ['id', 'descricao', 'marca', 'cor' , 'anoFabricacao', 'anoModelo', 'placa', 'origem', 'cliente'],
@@ -103,12 +103,12 @@ use App\Http\Controllers\ClienteController;
     </div>
 
     <!-- Modal Alterar -->
-    <div class="modal fade" id="modalAlterar" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modalAlterar" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Alterar Veículo</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" id="btnFecharModalVeiculoAlterar" name="btnFecharModalVeiculoAlterar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="../veiculo/alterar">
@@ -149,11 +149,14 @@ use App\Http\Controllers\ClienteController;
                                     <label>Ano Fabricação</label>
                                     <input type="number" class="form-control" name="anoFabricacao" id="anoFabricacao"
                                         placeholder="Ex: 2000, 2010..." required>
+                                        <p hidden id="anoInvalido" style="position: absolute; font-size:12px; color:red;"> Ano Modelo não pode ser menor que o ano fabricação! </p>
+                                        <p hidden id="AnoFabMaior" style="position: absolute; font-size:12px; color:red;"> O ano deve conter 4 digitos! </p>
                                 </div>
                                 <div class="col-4">
                                     <label>Ano Modelo</label>
                                     <input type="number" class="form-control" name="anoModelo" id="anoModelo"
                                         placeholder="Ex: 2000, 2010..." required>
+                                        <p hidden id="AnoModMaior" style="position: absolute; font-size:12px; color:red;"> O ano deve conter 4 digitos! </p>
                                 </div>
                             </div>
                             <!-- -->
@@ -191,8 +194,8 @@ use App\Http\Controllers\ClienteController;
                             </div>
                         </div>
                         <div class="modal-footer mt-3">
-                            <button type="submit" class="btn btn-danger">Confirmar Alteração</button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-danger" id="btnCadastro" name="btnCadastro" disabled>Confirmar Alteração</button>
+                            <button type="button" class="btn btn-primary" id="fecharModalAlterarVeiculo" name="fecharModalAlterarVeiculo" data-bs-dismiss="modal">Fechar</button>
                         </div>
                     </form>
                 </div>

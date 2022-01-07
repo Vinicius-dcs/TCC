@@ -139,7 +139,7 @@ use App\Http\Controllers\FuncionarioController;
                             <div class="row mt-2">
                                 <div class="col">
                                     <label>Data</label>
-                                    <input type="text" class="form-control" name="data" id="data" disabled>
+                                    <input type="date" class="form-control" name="data" id="data" disabled>
                                 </div>
                                 <div class="col">
                                     <label>Horário</label>

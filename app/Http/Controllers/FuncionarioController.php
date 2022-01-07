@@ -27,7 +27,7 @@ class FuncionarioController extends Controller
             $this->funcionario->setEmail($_POST['email']);
             $this->funcionario->setSexo($_POST['sexo']);
             $this->funcionario->setCpf(str_replace(array(".", "-"), '', $_POST['cpf']));
-            $this->funcionario->setTelefone($_POST['telefone']);
+            $this->funcionario->setTelefone(str_replace(array("-", "(", ")", " "), '', $_POST['telefone']));
 
             $this->funcionarioDAO->cadFuncionario($this->funcionario);
             $_SESSION['mensagem'] = "Funcionário cadastrado com sucesso!";

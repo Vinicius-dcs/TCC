@@ -4,7 +4,7 @@
 
 <body>
     <div class="position-relative vh-100">
-        <h1 class="display-4 text-center">Alteração de Clientes</h1>
+        <h1 class="display-4 text-center">Alteração de Funcionários</h1>
 
         <div class="container mt-4">
             @include('layouts.alert')
@@ -88,10 +88,18 @@
                                     '<?php echo $retorno['email']; ?>',
                                     '<?php echo $retorno['sexo']; ?>',
                                     '<?php echo $retorno['cpf']; ?>',
-                                    '<?php echo $retorno['telefone']; ?>']
+                                    '<?php
+                                        $telefone = $retorno['telefone'];
+                                        $parte1 = substr($telefone, 0, 2);
+                                        $parte2 = substr($telefone, 2, 1);
+                                        $parte3 = substr($telefone, 3, 4);
+                                        $parte4 = substr($telefone, 7, 4);
+                                        echo "($parte1) $parte2 $parte3-$parte4";
+                                    ?>']
                                 )">
                                 <ion-icon name="build">
                             </button>
+
                             <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#modalExcluir" onclick="setInformations
                                 (
@@ -167,10 +175,13 @@
                                 <div class="col">
                                     <label>CPF</label>
                                     <input type="" class="form-control" name="cpf" id="cpf" required>
+                                    <p hidden id="cpfInvalido" style="position: absolute; font-size:12px"> CPF inválido!
+                                    </p>
                                 </div>
                                 <div class="col">
                                     <label>Telefone</label>
-                                    <input type="number" class="form-control" name="telefone" id="telefone" required>
+                                    <input type="" class="form-control" name="telefone" id="telefone" maxlength="15"
+                                        required>
                                 </div>
                             </div>
                         </div>
