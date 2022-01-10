@@ -87,6 +87,24 @@ jQuery(document).ready(function () {
     })
 })
 
+/* Habilitar botão alterar funcionário */
+jQuery(document).ready(function () {
+    jQuery('#nome, #dataNascimento, #dataAdmissao, #email, #sexo, #cpf, #telefone').on('keyup change', function () {
+        if (isValidCPF()) {
+            document.querySelector('#btnAlterarFuncionario').disabled = false;
+        } else {
+            document.querySelector('#btnAlterarFuncionario').disabled = true;
+        }
+    })
+})
+
+/* Desabilitar botão confirmar alteração funcionário ao sair do modal*/
+jQuery(document).ready(function () {
+    jQuery('#fecharModalAlterarFuncionario, #ModalAlterarFuncionariofechar').on('click', function () {
+        document.querySelector('#btnAlterarFuncionario').disabled = true;
+    })
+})
+
 /* ------------------------------------------------------------------- */
 /* DOM botões CONCLUIR, ADIAR, CANCELAR tela check manutenções */
 

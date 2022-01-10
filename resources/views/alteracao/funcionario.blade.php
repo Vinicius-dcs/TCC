@@ -87,15 +87,21 @@
                                     '<?php echo $retorno['dataAdmissao']; ?>',
                                     '<?php echo $retorno['email']; ?>',
                                     '<?php echo $retorno['sexo']; ?>',
-                                    '<?php echo $retorno['cpf']; ?>',
+                                    '<?php 
+                                        $cpf = $retorno['cpf'];
+                                        $parte1 = substr($cpf, 0, 3);
+                                        $parte2 = substr($cpf, 3, 3);
+                                        $parte3 = substr($cpf, 6, 3);
+                                        $parte4 = substr($cpf, 9, 2);
+                                        echo "$parte1.$parte2.$parte3-$parte4";
+                                    ?>',
                                     '<?php
                                         $telefone = $retorno['telefone'];
                                         $parte1 = substr($telefone, 0, 2);
                                         $parte2 = substr($telefone, 2, 1);
                                         $parte3 = substr($telefone, 3, 4);
                                         $parte4 = substr($telefone, 7, 4);
-                                        echo "($parte1) $parte2 $parte3-$parte4";
-                                    ?>']
+                                        echo "($parte1) $parte2 $parte3-$parte4"; ?>']
                                 )">
                                 <ion-icon name="build">
                             </button>
@@ -122,12 +128,12 @@
     </div>
 
     <!-- Modal Alterar -->
-    <div class="modal fade" id="modalAlterar" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modalAlterar" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Alterar Cliente</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title">Alterar Funcionário</h5>
+                    <button type="button" id="fecharModalAlterarFuncionario" name="fecharModalAlterarFuncionario" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="../funcionario/alterar">
@@ -160,7 +166,6 @@
                                     <label>E-mail</label>
                                     <input type="email" class="form-control" name="email" id="email" required>
                                 </div>
-
                                 <div class="col">
                                     <label>Sexo</label>
                                     <select class="form-control" name="sexo" id="sexo" required>
@@ -180,14 +185,14 @@
                                 </div>
                                 <div class="col">
                                     <label>Telefone</label>
-                                    <input type="" class="form-control" name="telefone" id="telefone" maxlength="15"
+                                     <input type="" class="form-control" name="telefone" id="telefone" maxlength="15"
                                         required>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer mt-3">
-                            <button type="submit" class="btn btn-danger">Confirmar Alteração</button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" id="btnAlterarFuncionario" name="btnAlterarFuncionario" class="btn btn-danger" disabled>Confirmar Alteração</button>
+                            <button type="button" class="btn btn-primary" id="fecharModalAlterarFuncionario" name="ModalAlterarFuncionariofechar" data-bs-dismiss="modal">Fechar</button>
                         </div>
                     </form>
                 </div>

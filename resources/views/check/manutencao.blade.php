@@ -69,33 +69,7 @@ use App\Http\Controllers\FuncionarioController;
                                     '<?php echo $retornoFuncionario[0]['nome']; ?>',
                                     '<?php echo ucfirst($retorno['situacao']); ?>']
                                 )">
-                                <ion-icon name="layers"></ion-icon>
-                            </button>
-
-                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#modalAlterar" onclick="setInformations
-                                (
-                                    ['id', 'nome', 'dataNascimento', 'endereco', 'cpf', 'cep', 'cidade', 'estado'],
-                                    [<?php echo $retorno['id']; ?>, 
-                                    '<?php echo $retorno['nome']; ?>',
-                                    '<?php echo $retorno['dataNascimento']; ?>',
-                                    '<?php echo $retorno['endereco']; ?>',
-                                    '<?php echo $retorno['cpf']; ?>',
-                                    '<?php echo $retorno['cep']; ?>',
-                                    '<?php echo $retorno['cidade']; ?>',
-                                    '<?php echo $retorno['estado']; ?>'
-                                ]
-                                )">
-                                <ion-icon name="build">
-                            </button>
-
-                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#modalExcluir" onclick="setInformations
-                                (
-                                    ['idExcluir'],
-                                    [<?php echo $retorno['id']; ?>]
-                                )">
-                                <ion-icon name="trash">
+                                <ion-icon name="construct"></ion-icon>
                             </button>
                         </td>
                     </tr>
@@ -232,9 +206,6 @@ use App\Http\Controllers\FuncionarioController;
             </div>
         </div>
         </form>
-    </div>
-    </div>
-    </div>
     </div>
 
 </body>

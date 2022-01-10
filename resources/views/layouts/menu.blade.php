@@ -43,12 +43,13 @@ UsuarioController::verificaSeExisteSessao();
                             <a href="/carimports/public/sistema/alteracao/marca" class="collapse__sublink">Marca</a>
                             <a href="/carimports/public/sistema/alteracao/veiculo" class="collapse__sublink">Veículo</a>
                             <a href="/carimports/public/sistema/alteracao/funcionario" class="collapse__sublink">Funcionario</a>
+                            <a href="/carimports/public/sistema/alteracao/manutencao" class="collapse__sublink">Manutenção</a>
                         </ul>
                     </div>
 
                     <div class="nav__link collapseMenu">
                         <ion-icon name="construct-outline" class="nav__icon"></ion-icon>
-                        <span class="nav__name">Check Manut.</span>
+                        <span class="nav__name">Checagem</span>
                         <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
                         <ul class="collapse__menu">
                             <a href="/carimports/public/sistema/check/manutencao" class="collapse__sublink">Manutenção</a>

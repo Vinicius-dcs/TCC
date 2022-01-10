@@ -70,6 +70,10 @@ Route::prefix('sistema')->group(function () {
         Route::get('/funcionario', function () {
             return view('alteracao.funcionario');
         });
+
+        Route::get('/manutencao', function () {
+            return view('alteracao.manutencao');
+        });
     });
 
     Route::prefix('check')->group(function () {
