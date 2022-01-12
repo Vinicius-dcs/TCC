@@ -93,4 +93,14 @@ class VeiculoDAO extends BaseDAO
             echo "(VeiculoDAO) Erro ao consultar veículo " . $erro;
         }
     }
+
+    public function selectVeiculoConcessionaria()
+    {
+        try {
+            $sql = "SELECT * FROM veiculos WHERE origem = 'concessionária'";
+            return $this->select($sql);
+        } catch (\Exception $erro) {
+            echo "(TesteDriveDAO) Erro ao consultar teste drive " . $erro;
+        }
+    }
 }

@@ -285,6 +285,32 @@ function desabilitarHorariosOcupados() {
     })
 }
 
+function desabilitarHorariosOcupadosTesteDrive() {
+    let urlAtual = window.location.host;
+    let url = "http://" + urlAtual + "/carimports/public/sistema/manutencao/api/get";
+    let data = document.querySelector('#data').value;
+    let idFuncionario = document.querySelector('#funcionario').value;
+    let select = document.querySelector('#horario');
+
+
+    fetch(url).then(function (response) {
+        response.json().then(function (dados) {
+            dados.forEach(element => {
+                let text = element['horario'];
+                if (idFuncionario == element['idFuncionario'] && data == element['data']) {
+                    for (let i = 0; i < select.options.length; i++) {
+                        if (select.options[i].text == text) {
+                            select.options[i].text = " " + element['horario'] + " - Indisponível";
+                            select.options[i].disabled = true;
+                        }
+                    }
+                }
+            });
+
+        })
+    })
+}
+
 function habilitarCampoHorario() {
     let data = document.querySelector('#data').value;
     let idFuncionario = document.querySelector('#funcionario').value;

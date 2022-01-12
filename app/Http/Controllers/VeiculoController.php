@@ -60,6 +60,15 @@ class VeiculoController extends Controller
         }
     }
 
+    public function listarVeiculosConcessionaria()
+    {
+        try {
+            return $this->veiculoDAO->selectVeiculoConcessionaria();
+        } catch (\Exception $erro) {
+            echo "(VeiculoController) Erro ao consultar veículo: " . $erro;
+        }
+    }
+
     public function alterarVeiculo()
     {
         session_start();

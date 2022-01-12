@@ -31,6 +31,7 @@ UsuarioController::verificaSeExisteSessao();
                             <a href="/carimports/public/sistema/cadastro/veiculo" class="collapse__sublink">Veículo</a>
                             <a href="/carimports/public/sistema/cadastro/funcionario" class="collapse__sublink">Funcionário</a>
                             <a href="/carimports/public/sistema/cadastro/manutencao" class="collapse__sublink">Manutenção</a>
+                            <a href="/carimports/public/sistema/cadastro/testedrive" class="collapse__sublink">Teste_Drive</a>
                         </ul>
                     </div>
 
@@ -53,8 +54,7 @@ UsuarioController::verificaSeExisteSessao();
                         <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
                         <ul class="collapse__menu">
                             <a href="/carimports/public/sistema/check/manutencao" class="collapse__sublink">Manutenção</a>
-                            <a href="" class="collapse__sublink"></a>
-                            <a href="" class="collapse__sublink"></a>
+                            <a href="/carimports/public/sistema/check/testedrive" class="collapse__sublink">Teste_Drive</a>
                         </ul>
                     </div>
 

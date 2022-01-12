@@ -1,13 +1,15 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ManutencaoController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\VeiculoController;
+use App\Http\Controllers\TesteDriveController;
 use App\Models\DAO\ManutencaoDAO;
+use App\Models\DAO\TesteDriveDAO;
 
 Route::get('/', function () {
     return view('welcome');
@@ -52,6 +54,10 @@ Route::prefix('sistema')->group(function () {
         Route::get('/manutencao', function () {
             return view('cadastros.manutencao');
         });
+
+        Route::get('/testedrive', function () {
+            return view('cadastros.testeDrive');
+        });
     });
 
     Route::prefix('alteracao')->group(function () {
@@ -74,12 +80,21 @@ Route::prefix('sistema')->group(function () {
         Route::get('/manutencao', function () {
             return view('alteracao.manutencao');
         });
+
+        Route::get('/testedrive', function () {
+            return view('alteracao.testeDrive');
+        });
     });
 
     Route::prefix('check')->group(function () {
         Route::get('manutencao', function () {
             return view('check.manutencao');
         });
+
+        Route::get('testedrive', function () {
+            return view('check.testeDri  ve');
+        });
+
     });
 
     Route::post('/marca/cadastrar', [MarcaController::class, 'cadastrarMarca']);
@@ -105,4 +120,7 @@ Route::prefix('sistema')->group(function () {
     Route::post('/manutencao/cancelar', [ManutencaoController::class, 'cancelarManutencao']);
     Route::post('/manutencao/alterar', [ManutencaoController::class, 'alterarManutencao']);
     Route::post('/manutencao/excluir', [ManutencaoController::class, 'excluirManutencao']);
+
+    Route::get('/testedrive/api/get', [TesteDriveDAO::class, 'selectTesteDriveAPI']);
+    Route::post('/testedrive/cadastrar', [TesteDriveController::class, 'cadastrarTesteDrive']);
 });
