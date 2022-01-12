@@ -18,6 +18,8 @@ use App\Http\Controllers\FuncionarioController;
                     <div class="row">
 
                         <div class="col">
+                            <input type="hidden" class="form-control" name="selecionaURLAPI" id="selecionaURLAPI"
+                                value="1" required>
                             <label>Veículo</label>
                             <select class="form-control" name="veiculo" id="veiculo" required>
                                 <option value="" selected disabled>Selecionar...</option>

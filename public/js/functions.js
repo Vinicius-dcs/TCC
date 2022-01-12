@@ -260,12 +260,19 @@ function disableSelectOrigem() {
 }
 
 function desabilitarHorariosOcupados() {
+    let valueSelectURLAPI = document.querySelector('#selecionaURLAPI').value;
     let urlAtual = window.location.host;
-    let url = "http://" + urlAtual + "/carimports/public/sistema/manutencao/api/get";
+    let url;
+
+    if(valueSelectURLAPI == 1) {
+        url = "http://" + urlAtual + "/carimports/public/sistema/manutencao/api/get";
+    } else if (valueSelectURLAPI == 2) {
+        url = "http://" + urlAtual + "/carimports/public/sistema/testedrive/api/get";
+    }
+
     let data = document.querySelector('#data').value;
     let idFuncionario = document.querySelector('#funcionario').value;
     let select = document.querySelector('#horario');
-
 
     fetch(url).then(function (response) {
         response.json().then(function (dados) {
@@ -285,9 +292,9 @@ function desabilitarHorariosOcupados() {
     })
 }
 
-function desabilitarHorariosOcupadosTesteDrive() {
+/* function desabilitarHorariosOcupadosTesteDrive() {
     let urlAtual = window.location.host;
-    let url = "http://" + urlAtual + "/carimports/public/sistema/manutencao/api/get";
+    let url = "http://" + urlAtual + "/carimports/public/sistema/testedrive/api/get";
     let data = document.querySelector('#data').value;
     let idFuncionario = document.querySelector('#funcionario').value;
     let select = document.querySelector('#horario');
@@ -296,11 +303,11 @@ function desabilitarHorariosOcupadosTesteDrive() {
     fetch(url).then(function (response) {
         response.json().then(function (dados) {
             dados.forEach(element => {
-                let text = element['horario'];
+                let text = element['horarioTesteDrive'];
                 if (idFuncionario == element['idFuncionario'] && data == element['data']) {
                     for (let i = 0; i < select.options.length; i++) {
                         if (select.options[i].text == text) {
-                            select.options[i].text = " " + element['horario'] + " - Indisponível";
+                            select.options[i].text = " " + element['horarioTesteDrive'] + " - Indisponível";
                             select.options[i].disabled = true;
                         }
                     }
@@ -309,7 +316,7 @@ function desabilitarHorariosOcupadosTesteDrive() {
 
         })
     })
-}
+} */
 
 function habilitarCampoHorario() {
     let data = document.querySelector('#data').value;

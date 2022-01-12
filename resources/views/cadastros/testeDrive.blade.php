@@ -20,6 +20,7 @@ use App\Http\Controllers\ClienteController;
                     <div class="row">
 
                         <div class="col">
+                            <input type="hidden" class="form-control" name="selecionaURLAPI" id="selecionaURLAPI" value="2" required>
                             <label>Cliente</label>
                             <select class="form-control" name="cliente" id="cliente" required>
                                 <option value="" selected disabled>Selecionar...</option>
@@ -79,7 +80,7 @@ use App\Http\Controllers\ClienteController;
 
                         <div class="col">
                             <label>Horário</label>
-                            <select class="form-control" name="horarioTesteDrive" id="horarioTesteDrive" required>
+                            <select class="form-control" name="horario" id="horario" required disabled>
                                 <option value="" selected disabled>Selecionar...</option>
                                 <option value="08:00">08:00</option>
                                 <option value="09:00">09:00</option>

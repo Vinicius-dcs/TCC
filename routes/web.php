@@ -92,7 +92,7 @@ Route::prefix('sistema')->group(function () {
         });
 
         Route::get('testedrive', function () {
-            return view('check.testeDri  ve');
+            return view('check.testeDrive');
         });
 
     });

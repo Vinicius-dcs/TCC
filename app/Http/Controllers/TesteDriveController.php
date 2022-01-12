@@ -25,7 +25,7 @@ class TesteDriveController extends Controller
             $this->testeDrive->setIdVeiculo($_POST['veiculo']);
             $this->testeDrive->setIdFuncionario($_POST['funcionario']);
             $this->testeDrive->setData($_POST['data']);
-            $this->testeDrive->setHorario($_POST['horarioTesteDrive']);
+            $this->testeDrive->setHorario($_POST['horario']);
             $this->testeDrive->setObservacao($_POST['observacao']);
 
             $this->testeDriveDAO->cadTesteDrive($this->testeDrive);
@@ -40,4 +40,21 @@ class TesteDriveController extends Controller
             exit;
         }
     }
+
+    public function listarTesteDrive($id = null, $semLimiteConsulta = null)
+    {
+        try {
+            if (empty($id) && empty($semLimiteConsulta)) {
+                return $this->testeDrive->Paginate(8);
+            } elseif (!empty($id) && empty($semLimiteConsulta)) {
+                $this->testeDrive->setId($id);
+                // return $this->testeDriveDAO->selectTesteDrive($this->testeDrive);
+            } elseif (!empty($id) && !empty($semLimiteConsulta)) {
+                return $this->testeDrive->all();
+            }
+        } catch (\Exception $erro) {
+            echo "(TesteDriveController) Erro ao consultar teste drive: " . $erro;
+        }
+    }
+
 }
