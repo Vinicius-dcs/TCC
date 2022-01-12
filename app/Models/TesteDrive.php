@@ -15,6 +15,7 @@ class TesteDrive extends Model
     private $idCliente;
     private $idFuncionario;
     private $idVeiculo;
+    protected $table = "testedrives";
 
     public function getId() {
         return $this->id;

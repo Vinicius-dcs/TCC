@@ -5,6 +5,7 @@
 use App\Http\Controllers\TesteDriveController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\VeiculoController;
+use App\Http\Controllers\ClienteController;
 ?>
 
 <body>
@@ -24,6 +25,7 @@ use App\Http\Controllers\VeiculoController;
                         <th scope="col">Data</th>
                         <th scope="col">Horário</th>
                         <th scope="col">Observações</th>
+                        <th scope="col">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,16 +33,19 @@ use App\Http\Controllers\VeiculoController;
                     $testeDriveController = new TesteDriveController();
                     $funcionarioController = new FuncionarioController();
                     $veiculoController = new VeiculoController();
+                    $clienteController = new ClienteController();
                     $arraySelect = $testeDriveController->listarTesteDrive();
 
                     foreach ($arraySelect as $retorno) {
                         $retornoVeiculo = $veiculoController->listarVeiculo($retorno['idVeiculo']);
                         $retornoFuncionario = $funcionarioController->listarFuncionarios($retorno['idFuncionario']);
+                        $retornoCliente = $clienteController->listarClientes($retorno['idCliente']);
                     ?>
                         <tr>
                             <th scope="row" class="col"><?php echo $retorno['id']; ?> </th>
-                            <td class="col"> <?php echo $retorno['horario']; ?> </td>
+                            <td class="col"> <?php echo $retornoCliente[0]['nome']; ?> </td>
                             <td class="col"> <?php echo $retornoVeiculo[0]['descricao']; ?> </td>
+                            <td class="col"> <?php echo $retornoFuncionario[0]['nome']; ?> </td>
                             <td class="col">
                                 <?php
                                 $data = $retorno['data'];
@@ -51,23 +56,26 @@ use App\Http\Controllers\VeiculoController;
                                 ?>
                             </td>
                             <td class="col"> <?php echo $retorno['horario']; ?> </td>
-                            <td class="col"> <?php echo $retorno['valor']; ?> </td>
-                            <td class="col"> <?php echo ucfirst($retorno['tipoManutencao']); ?> </td>
-                            <td class="col"> <?php echo ucfirst($retorno['situacao']); ?> </td>
-                            <td class="col"> <?php echo $retornoFuncionario[0]['nome']; ?> </td>
+                            <td class="col">
+                                <?php
+                                if (empty($retorno['observacao'])) {
+                                    echo "-";
+                                } else {
+                                    echo $retorno['observacao'];
+                                }
+                                ?>
+                            </td>
 
                             <td class="col">
                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalAlterar" onclick="setInformations
-                                (['id', 'veiculo', 'data', 'horario', 'valor', 'tipoManutencao', 'situacao', 'funcionario', 'descricao'],
+                                (['id', 'cliente', 'veiculo', 'funcionario', 'data', 'horario', 'observacao'],
                                     [<?php echo $retorno['id']; ?>, 
+                                    '<?php echo $retorno['idCliente']; ?>',
                                     '<?php echo $retorno['idVeiculo']; ?>',
+                                    '<?php echo $retorno['idFuncionario']; ?>',
                                     '<?php echo $retorno['data']; ?>',
                                     '<?php echo $retorno['horario']; ?>',
-                                    '<?php echo $retorno['valor']; ?>',
-                                    '<?php echo $retorno['tipoManutencao']; ?>',
-                                    '<?php echo ucfirst($retorno['situacao']); ?>',
-                                    '<?php echo $retorno['idFuncionario']; ?>',
-                                    '<?php echo $retorno['descricao']; ?>']
+                                    '<?php echo $retorno['observacao']; ?>']
                                 )">
                                     <ion-icon name="build">
                                 </button>
@@ -101,19 +109,36 @@ use App\Http\Controllers\VeiculoController;
                     <button type="button" id="" name="" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="../manutencao/alterar">
+                    <form method="POST" action="../testedrive/alterar">
                         @csrf
                         <div class="form-group">
                             <div class="row">
 
                                 <div class="col">
-                                    <label>Veículo</label>
                                     <input type="hidden" class="form-control" name="id" id="id" required>
+                                    <input type="hidden" class="form-control" name="selecionaURLAPI" id="selecionaURLAPI" value="2" required>
+                                    <label>Cliente</label>
+                                    <select class="form-control" name="cliente" id="cliente" required>
+                                        <option value="" selected disabled>Selecionar...</option>
+                                        <?php
+                                        $clienteController = new ClienteController();
+                                        $arraySelect = $clienteController->listarClientes(1, 1);
+                                        foreach ($arraySelect as $retorno) {
+                                        ?>
+                                            <option value="<?php echo $retorno['id']; ?>">
+                                                <?php echo $retorno['id']; ?> - <?php echo $retorno['nome']; ?>
+                                            </option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+
+                                <div class="col">
+                                    <label>Veículo</label>
                                     <select class="form-control" name="veiculo" id="veiculo" required>
                                         <option value="" selected disabled>Selecionar...</option>
                                         <?php
                                         $veiculoController = new VeiculoController();
-                                        $arraySelect = $veiculoController->listarVeiculo(1, 1);
+                                        $arraySelect = $veiculoController->listarVeiculosConcessionaria(1, 1);
                                         foreach ($arraySelect as $retorno) {
                                         ?>
                                             <option value="<?php echo $retorno['id']; ?>">
@@ -123,14 +148,25 @@ use App\Http\Controllers\VeiculoController;
                                     </select>
                                 </div>
 
-                                <div class="col">
-                                    <label>Data Manutenção</label>
-                                    <input type="date" class="form-control" name="data" id="data" required>
-                                </div>
-
                             </div>
                             <!-- -->
                             <div class="row mt-3">
+
+                                <div class="col">
+                                    <label>Funcionário</label>
+                                    <select class="form-control" name="funcionario" id="funcionario" required>
+                                        <option value="" selected disabled>Selecionar...</option>
+                                        <?php
+                                        $funcionarioController = new FuncionarioController();
+                                        $arraySelect = $funcionarioController->listarFuncionarios(1, 1);
+                                        foreach ($arraySelect as $retorno) { ?>
+                                            <option value="<?php echo $retorno['id']; ?>">
+                                                <?php echo $retorno['id']; ?> - <?php echo $retorno['nome']; ?>
+                                            </option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+
                                 <div class="col">
                                     <label>Horário</label>
                                     <select class="form-control" name="horario" id="horario" required>
@@ -145,47 +181,20 @@ use App\Http\Controllers\VeiculoController;
                                         <option value="17:00">17:00</option>
                                     </select>
                                 </div>
-                                <div class="col">
-                                    <label>Valor</label>
-                                    <input type="text" class="form-control" name="valor" id="valor" required>
-                                </div>
-                                <div class="col">
-                                    <label>Tipo</label>
-                                    <select class="form-control" name="tipoManutencao" id="tipoManutencao" required>
-                                        <option value="" selected disabled>Selecionar...</option>
-                                        <option value="preventiva">Preventiva</option>
-                                        <option value="corretiva">Corretiva</option>
-                                    </select>
-                                </div>
                             </div>
                         </div>
 
                         <div class="row mt-3">
                             <div class="col">
-                                <label>Situação</label>
-                                <input type="text" class="form-control" name="situacao" id="situacao" required readonly>
-                            </div>
-
-                            <div class="col">
-                                <label>Funcionário</label>
-                                <select class="form-control" name="funcionario" id="funcionario" required>
-                                    <option value="" selected disabled>Selecionar...</option>
-                                    <?php
-                                    $funcionarioController = new FuncionarioController();
-                                    $arraySelect = $funcionarioController->listarFuncionarios(1, 1);
-                                    foreach ($arraySelect as $retorno) { ?>
-                                        <option value="<?php echo $retorno['id']; ?>">
-                                            <?php echo $retorno['id']; ?> - <?php echo $retorno['nome']; ?>
-                                        </option>
-                                    <?php } ?>
-                                </select>
+                                <label>Data</label>
+                                <input type="date" class="form-control" name="data" id="data" required>
                             </div>
                         </div>
 
                         <div class="row mt-3">
                             <div class="col">
-                                <label>Descrição da Manutenção</label>
-                                <input type="text" class="form-control" name="descricao" id="descricao" required>
+                                <label>Observação</label>
+                                <input type="text" class="form-control" name="observacao" id="observacao">
                             </div>
                         </div>
                         <div class="modal-footer mt-3">
@@ -203,13 +212,13 @@ use App\Http\Controllers\VeiculoController;
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Excluir Manutenção</h5>
+                    <h5 class="modal-title">Excluir Teste Drive</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="../manutencao/excluir">
+                    <form method="POST" action="../testedrive/excluir">
                         @csrf
-                        <p>Deseja realmente excluir a manutenção selecionado?</p>
+                        <p>Deseja realmente excluir o teste drive selecionado?</p>
                         <div class="form-group">
                             <input type="hidden" class="form-control" name="idExcluir" id="idExcluir" value="">
                         </div>

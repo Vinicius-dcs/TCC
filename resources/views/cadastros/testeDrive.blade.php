@@ -5,6 +5,7 @@
 use App\Http\Controllers\VeiculoController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\TesteDriveController;
 ?>
 
 <body>

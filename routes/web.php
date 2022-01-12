@@ -123,4 +123,6 @@ Route::prefix('sistema')->group(function () {
 
     Route::get('/testedrive/api/get', [TesteDriveDAO::class, 'selectTesteDriveAPI']);
     Route::post('/testedrive/cadastrar', [TesteDriveController::class, 'cadastrarTesteDrive']);
+    Route::post('/testedrive/alterar', [TesteDriveController::class, 'alterarTesteDrive']);
+    Route::post('/testedrive/excluir', [TesteDriveController::class, 'deletarTesteDrive']);
 });
