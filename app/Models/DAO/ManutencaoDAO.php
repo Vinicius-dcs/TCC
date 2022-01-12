@@ -47,7 +47,8 @@ class ManutencaoDAO extends BaseDAO
         }
     }
 
-    public function concluirManutencaoDAO(Manutencao $manutencao) {
+    public function concluirManutencaoDAO(Manutencao $manutencao)
+    {
         try {
             $id = $manutencao->getId();
             $sql = "UPDATE manutencoes SET situacao = 'concluida' WHERE id = '$id'";
@@ -57,7 +58,8 @@ class ManutencaoDAO extends BaseDAO
         }
     }
 
-    public function adiarManutencaoDAO(Manutencao $manutencao) {
+    public function adiarManutencaoDAO(Manutencao $manutencao)
+    {
         try {
             $data = $manutencao->getData();
             $id = $manutencao->getId();
@@ -68,7 +70,8 @@ class ManutencaoDAO extends BaseDAO
         }
     }
 
-    public function cancelarManutencaoDAO(Manutencao $manutencao) {
+    public function cancelarManutencaoDAO(Manutencao $manutencao)
+    {
         try {
             $id = $manutencao->getId();
             $sql = "UPDATE manutencoes SET situacao = 'cancelada' WHERE id = '$id'";
@@ -78,4 +81,42 @@ class ManutencaoDAO extends BaseDAO
         }
     }
 
+    public function altManutencao(Manutencao $manutencao)
+    {
+        try {
+            $id = $manutencao->getId();
+            $idVeiculo = $manutencao->getIdVeiculo();
+            $data = $manutencao->getData();
+            $horario = $manutencao->getHorario();
+            $valor = $manutencao->getValor();
+            $tipoManutencao = $manutencao->getTipoManutencao();
+            $situacao = $manutencao->getSituacao();
+            $idFuncionario = $manutencao->getIdFuncionario();
+            $descricao = $manutencao->getDescricao();
+
+            $sql = "UPDATE manutencoes SET idVeiculo = '$idVeiculo',
+                    data = '$data',
+                    horario = '$horario',
+                    valor = '$valor',
+                    tipoManutencao = '$tipoManutencao',
+                    situacao = '$situacao',
+                    idFuncionario = '$idFuncionario',
+                    descricao = '$descricao'
+                    WHERE id = $id";
+            $this->update($sql);        
+        } catch (\Exception $erro) {
+            echo "(ManutencaoDAO) Erro ao alterar manutenção: " . $erro;
+        }
+    }
+
+    public function excluirManutencao(Manutencao $manutencao)
+    {
+        try {
+            $id = $manutencao->getId();
+            $sql = "DELETE FROM manutencoes WHERE id = '$id'";
+            $this->delete($sql);
+        } catch (\Exception $erro) {
+            echo "(ManutencaoDAO) Erro ao excluir manutenção: " . $erro;
+        }
+    }
 }

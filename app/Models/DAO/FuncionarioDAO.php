@@ -48,18 +48,18 @@ class funcionarioDAO extends BaseDAO
             $cpf = $funcionario->getCpf();
             $telefone = $funcionario->getTelefone();
 
-            $sql = "UPDATE funcionarios SET nome = '$nome',
-            dataNascimento = '$dataNascimento',
-            dataAdmissao = '$dataAdmissao',
-            email = '$email',
-            sexo = '$sexo',
-            cpf = '$cpf',
-            telefone = '$telefone'
-            WHERE id = $id";
-
+            $sql = "UPDATE funcionarios SET 
+                    nome = '$nome',
+                    dataNascimento = '$dataNascimento',
+                    dataAdmissao = '$dataAdmissao',
+                    email = '$email',
+                    sexo = '$sexo',
+                    cpf = '$cpf',
+                    telefone = '$telefone'
+                    WHERE id = $id";
             $this->update($sql);
         } catch (\Exception $erro) {
-            echo "(FuncioanrioDAO) Erro ao alterar funcionário: " . $erro;
+            echo "(FuncionarioDAO) Erro ao alterar funcionário: " . $erro;
         }
     }
 

@@ -103,4 +103,6 @@ Route::prefix('sistema')->group(function () {
     Route::post('/manutencao/concluir', [ManutencaoController::class, 'concluirManutencao']);
     Route::post('/manutencao/adiar', [ManutencaoController::class, 'adiarManutencao']);
     Route::post('/manutencao/cancelar', [ManutencaoController::class, 'cancelarManutencao']);
+    Route::post('/manutencao/alterar', [ManutencaoController::class, 'alterarManutencao']);
+    Route::post('/manutencao/excluir', [ManutencaoController::class, 'excluirManutencao']);
 });

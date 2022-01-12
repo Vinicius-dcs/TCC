@@ -101,17 +101,13 @@
                                         $parte2 = substr($telefone, 2, 1);
                                         $parte3 = substr($telefone, 3, 4);
                                         $parte4 = substr($telefone, 7, 4);
-                                        echo "($parte1) $parte2 $parte3-$parte4"; ?>']
-                                )">
+                                        echo "($parte1) $parte2 $parte3-$parte4"; ?>'])">
                                 <ion-icon name="build">
                             </button>
 
                             <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#modalExcluir" onclick="setInformations
-                                (
-                                    ['idExcluir'],
-                                    [<?php echo $retorno['id']; ?>]
-                                )">
+                                data-bs-target="#modalExcluir" onclick=
+                                "setInformations(['idExcluir'], [<?php echo $retorno['id']; ?>])">
                                 <ion-icon name="trash">
                             </button>
                         </td>

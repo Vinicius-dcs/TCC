@@ -58,7 +58,8 @@ class ManutencaoController extends Controller
         }
     }
 
-    public function listarManutencoesPeA() {
+    public function listarManutencoesPeA()
+    {
         try {
             return $this->manutencao->where('situacao', '=', 'pendente')->orWhere('situacao', '=', 'atrasada')->Paginate(8);
         } catch (\Exception $erro) {
@@ -66,10 +67,11 @@ class ManutencaoController extends Controller
         }
     }
 
-    public function concluirManutencao() {
+    public function concluirManutencao()
+    {
         session_start();
         try {
-            $this->manutencao->setId($_POST['id']);    
+            $this->manutencao->setId($_POST['id']);
             $this->manutencaoDAO->concluirManutencaoDAO($this->manutencao);
 
             $_SESSION['mensagem'] = "Manutenção concluída com sucesso!";
@@ -83,7 +85,8 @@ class ManutencaoController extends Controller
         }
     }
 
-    public function adiarManutencao() {
+    public function adiarManutencao()
+    {
         session_start();
         try {
             $this->manutencao->setId($_POST['id']);
@@ -101,7 +104,8 @@ class ManutencaoController extends Controller
         }
     }
 
-    public function cancelarManutencao() {
+    public function cancelarManutencao()
+    {
         session_start();
         try {
             $this->manutencao->setId($_POST['id']);
@@ -111,11 +115,54 @@ class ManutencaoController extends Controller
             $_SESSION['tipoAlert'] = "success";
             header('Location: ../check/manutencao');
             exit;
-        } catch(\Exception $erro) {
+        } catch (\Exception $erro) {
             $_SESSION['mensagem'] = "Erro ao cancelar manutenção: " . $erro;
             $_SESSION['tipoAlert'] = "danger";
             echo "(ManutencaoController) Erro ao cancelar manutenção: " . $erro;
         }
     }
 
+    public function alterarManutencao()
+    {
+        session_start();
+        try {
+            $this->manutencao->setId($_POST['id']);
+            $this->manutencao->setIdVeiculo($_POST['veiculo']);
+            $this->manutencao->setData($_POST['data']);
+            $this->manutencao->setHorario($_POST['horario']);
+            $this->manutencao->setValor($_POST['valor']);
+            $this->manutencao->setTipoManutencao($_POST['tipoManutencao']);
+            $this->manutencao->setSituacao($_POST['situacao']);
+            $this->manutencao->setIdFuncionario($_POST['funcionario']);
+            $this->manutencao->setDescricao($_POST['descricao']);
+
+            $this->manutencaoDAO->altManutencao($this->manutencao);
+            $_SESSION['mensagem'] = "Manutenção alterada com sucesso!";
+            $_SESSION['tipoAlert'] = "success";
+            header('Location: ../alteracao/manutencao');
+            exit;
+        } catch (\Exception $erro) {
+            $_SESSION['mensagem'] = "(ManutencaoController) Erro ao alterar manutenção: " . $erro;
+            $_SESSION['tipoAlert'] = "danger";
+            echo $erro;
+        }
+    }
+
+    public function excluirManutencao()
+    {
+        session_start();
+        try {
+            $this->manutencao->setId($_POST['idExcluir']);
+
+            $this->manutencaoDAO->excluirManutencao($this->manutencao);
+            $_SESSION['mensagem'] = "Manutenção excluída com sucesso!";
+            $_SESSION['tipoAlert'] = "success";
+            header('Location: ../alteracao/manutencao');
+            exit;
+        } catch (\Exception $erro) {
+            $_SESSION['mensagem'] = "(ManutencaoController) Erro ao excluir manutenção: " . $erro;
+            $_SESSION['tipoAlert'] = "danger";
+            echo $erro;
+        }
+    }
 }

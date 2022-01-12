@@ -260,7 +260,8 @@ function disableSelectOrigem() {
 }
 
 function desabilitarHorariosOcupados() {
-    let url = "http://localhost/carimports/public/sistema/manutencao/api/get";
+    let urlAtual = window.location.host;
+    let url = "http://" + urlAtual + "/carimports/public/sistema/manutencao/api/get";
     let data = document.querySelector('#data').value;
     let idFuncionario = document.querySelector('#funcionario').value;
     let select = document.querySelector('#horario');
