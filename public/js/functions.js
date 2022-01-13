@@ -106,36 +106,36 @@ jQuery(document).ready(function () {
 })
 
 /* ------------------------------------------------------------------- */
-/* DOM botões CONCLUIR, ADIAR, CANCELAR tela check manutenções */
+/* DOM botões CONCLUIR, ADIAR, CANCELAR telas CHECAGEM (manutenções e testes drives) */
 
-/* Mostrar div botão CONCLUIR*/
+/* Mostrar div botão CONCLUIR CHECAGEM*/
 jQuery(document).ready(function () {
-    jQuery('#btnConcluirManutencao').on('click', function () {
+    jQuery('#btnConcluir').on('click', function () {
         document.querySelector('#divBotoesConcluir').hidden = false;
         document.querySelector('#divBotoesAdiar').hidden = true;
         document.querySelector('#divBotoesCancelar').hidden = true;
     });
 })
 
-/* Mostrar div botão ADIAR*/
+/* Mostrar div botão ADIAR CHECAGEM*/
 jQuery(document).ready(function () {
-    jQuery('#btnAdiarManutencao').on('click', function () {
+    jQuery('#btnAdiar').on('click', function () {
         document.querySelector('#divBotoesAdiar').hidden = false;
         document.querySelector('#divBotoesConcluir').hidden = true;
         document.querySelector('#divBotoesCancelar').hidden = true;
     });
 })
 
-/* Mostrar div botão CANCELAR*/
+/* Mostrar div botão CANCELAR CHECAGEM*/
 jQuery(document).ready(function () {
-    jQuery('#btnCancelarManutencao').on('click', function () {
+    jQuery('#btnCancelar').on('click', function () {
         document.querySelector('#divBotoesCancelar').hidden = false;
         document.querySelector('#divBotoesConcluir').hidden = true;
         document.querySelector('#divBotoesAdiar').hidden = true;
     });
 })
 
-/* Esconder div botão modal visualizar manutenção*/
+/* Esconder div botão modal visualizar CHECAGEM*/
 jQuery(document).ready(function () {
     jQuery('#fecharBtnManutencao, #btnFecharModal').on('click', function () {
         document.querySelector('#divBotoesConcluir').hidden = true;
@@ -291,32 +291,6 @@ function desabilitarHorariosOcupados() {
         })
     })
 }
-
-/* function desabilitarHorariosOcupadosTesteDrive() {
-    let urlAtual = window.location.host;
-    let url = "http://" + urlAtual + "/carimports/public/sistema/testedrive/api/get";
-    let data = document.querySelector('#data').value;
-    let idFuncionario = document.querySelector('#funcionario').value;
-    let select = document.querySelector('#horario');
-
-
-    fetch(url).then(function (response) {
-        response.json().then(function (dados) {
-            dados.forEach(element => {
-                let text = element['horarioTesteDrive'];
-                if (idFuncionario == element['idFuncionario'] && data == element['data']) {
-                    for (let i = 0; i < select.options.length; i++) {
-                        if (select.options[i].text == text) {
-                            select.options[i].text = " " + element['horarioTesteDrive'] + " - Indisponível";
-                            select.options[i].disabled = true;
-                        }
-                    }
-                }
-            });
-
-        })
-    })
-} */
 
 function habilitarCampoHorario() {
     let data = document.querySelector('#data').value;

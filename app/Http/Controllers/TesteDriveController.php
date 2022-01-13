@@ -27,6 +27,7 @@ class TesteDriveController extends Controller
             $this->testeDrive->setData($_POST['data']);
             $this->testeDrive->setHorario($_POST['horario']);
             $this->testeDrive->setObservacao($_POST['observacao']);
+            $this->testeDrive->setSituacao("pendente");
 
             $this->testeDriveDAO->cadTesteDrive($this->testeDrive);
             $_SESSION['mensagem'] = "Teste drive cadastrado com sucesso!";
@@ -98,6 +99,61 @@ class TesteDriveController extends Controller
             }
         } catch (\Exception $erro) {
             echo "(TesteDriveController) Erro ao consultar teste drive: " . $erro;
+        }
+    }
+
+    public function concluirTesteDrive()
+    {
+        session_start();
+        try {
+            $this->testeDrive->setId($_POST['id']);
+            $this->testeDriveDAO->concluirTesteDriveDAO($this->testeDrive);
+
+            $_SESSION['mensagem'] = "Teste Drive concluído com sucesso!";
+            $_SESSION['tipoAlert'] = "success";
+            header('Location: ../check/testedrive');
+            exit;
+        } catch (\Exception $erro) {
+            $_SESSION['mensagem'] = "Erro ao concluir teste drive: " . $erro;
+            $_SESSION['tipoAlert'] = "danger";
+            echo "(TesteDriveController) Erro ao concluir teste drive: " . $erro;
+        }
+    }
+
+    public function adiarTesteDrive()
+    {
+        session_start();
+        try {
+            $this->testeDrive->setId($_POST['id']);
+            $this->testeDrive->setData($_POST['novaData']);
+            $this->testeDriveDAO->adiarTesteDriveDAO($this->testeDrive);
+
+            $_SESSION['mensagem'] = "Teste drive adiado com sucesso!";
+            $_SESSION['tipoAlert'] = "success";
+            header('Location: ../check/testedrive');
+            exit;
+        } catch (\Exception $erro) {
+            $_SESSION['mensagem'] = "Erro ao adiar teste drive: " . $erro;
+            $_SESSION['tipoAlert'] = "danger";
+            echo "(TesteDriveController) Erro ao adiar teste drive: " . $erro;
+        }
+    }
+
+    public function cancelarTesteDrive()
+    {
+        session_start();
+        try {
+            $this->testeDrive->setId($_POST['id']);
+            $this->testeDriveDAO->cancelarTesteDriveDAO($this->testeDrive);
+
+            $_SESSION['mensagem'] = "Teste drive cancelado com sucesso!";
+            $_SESSION['tipoAlert'] = "success";
+            header('Location: ../check/testedrive');
+            exit;
+        } catch (\Exception $erro) {
+            $_SESSION['mensagem'] = "Erro ao cancelar teste drive: " . $erro;
+            $_SESSION['tipoAlert'] = "danger";
+            echo "(TesteDriveController) Erro ao cancelar teste drive: " . $erro;
         }
     }
 }

@@ -14,6 +14,7 @@ class CreateTableTestedrive extends Migration
             $table->date('data');
             $table->string('horario');
             $table->string('observacao');
+            $table->string('situacao');
             $table->unsignedBigInteger('idCliente');
             $table->unsignedBigInteger('idVeiculo');
             $table->unsignedBigInteger('idFuncionario');

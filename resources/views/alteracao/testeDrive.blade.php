@@ -24,7 +24,7 @@ use App\Http\Controllers\ClienteController;
                         <th scope="col">Funcionário</th>
                         <th scope="col">Data</th>
                         <th scope="col">Horário</th>
-                        <th scope="col">Observações</th>
+                        <th scope="col">Situação</th>
                         <th scope="col">Ações</th>
                     </tr>
                 </thead>
@@ -56,25 +56,18 @@ use App\Http\Controllers\ClienteController;
                                 ?>
                             </td>
                             <td class="col"> <?php echo $retorno['horario']; ?> </td>
-                            <td class="col">
-                                <?php
-                                if (empty($retorno['observacao'])) {
-                                    echo "-";
-                                } else {
-                                    echo $retorno['observacao'];
-                                }
-                                ?>
-                            </td>
+                            <td class="col"> <?php echo ucfirst($retorno['situacao']); ?> </td>
 
                             <td class="col">
                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalAlterar" onclick="setInformations
-                                (['id', 'cliente', 'veiculo', 'funcionario', 'data', 'horario', 'observacao'],
+                                (['id', 'cliente', 'veiculo', 'funcionario', 'data', 'horario', 'situacao', 'observacao'],
                                     [<?php echo $retorno['id']; ?>, 
                                     '<?php echo $retorno['idCliente']; ?>',
                                     '<?php echo $retorno['idVeiculo']; ?>',
                                     '<?php echo $retorno['idFuncionario']; ?>',
                                     '<?php echo $retorno['data']; ?>',
                                     '<?php echo $retorno['horario']; ?>',
+                                    '<?php echo ucfirst($retorno['situacao']); ?>',
                                     '<?php echo $retorno['observacao']; ?>']
                                 )">
                                     <ion-icon name="build">
@@ -188,6 +181,10 @@ use App\Http\Controllers\ClienteController;
                             <div class="col">
                                 <label>Data</label>
                                 <input type="date" class="form-control" name="data" id="data" required>
+                            </div>
+                            <div class="col">
+                                <label>Situação</label>
+                                <input type="text" class="form-control" name="situacao" id="situacao" required disabled>
                             </div>
                         </div>
 

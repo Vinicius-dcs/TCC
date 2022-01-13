@@ -2,14 +2,15 @@
 
 <?php
 
-use App\Http\Controllers\ManutencaoController;
-use App\Http\Controllers\VeiculoController;
+use App\Http\Controllers\TesteDriveController;
 use App\Http\Controllers\FuncionarioController;
+use App\Http\Controllers\VeiculoController;
+use App\Http\Controllers\ClienteController;
 ?>
 
 <body>
-    <div class="position-relative vh-100" id="divPrincipal">
-        <h1 class="display-4 text-center mt">Manutenções Pendetes e Atrasadas</h1>
+    <div class="position-relative vh-100">
+        <h1 class="display-4 text-center">Alteração de Teste Drive</h1>
 
         <div class="container mt-4">
             @include('layouts.alert')
@@ -18,29 +19,33 @@ use App\Http\Controllers\FuncionarioController;
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
+                        <th scope="col">Cliente</th>
                         <th scope="col">Veículo</th>
+                        <th scope="col">Funcionário</th>
                         <th scope="col">Data</th>
                         <th scope="col">Horário</th>
-                        <th scope="col">Valor</th>
-                        <th scope="col">Tipo</th>
                         <th scope="col">Situação</th>
                         <th scope="col">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $manutencaoController = new ManutencaoController();
-                    $veiculoController = new VeiculoController();
+                    $testeDriveController = new TesteDriveController();
                     $funcionarioController = new FuncionarioController();
-                    $arraySelect = $manutencaoController->listarManutencoesPeA();
+                    $veiculoController = new VeiculoController();
+                    $clienteController = new ClienteController();
+                    $arraySelect = $testeDriveController->listarTesteDrive();
 
                     foreach ($arraySelect as $retorno) {
                         $retornoVeiculo = $veiculoController->listarVeiculo($retorno['idVeiculo']);
                         $retornoFuncionario = $funcionarioController->listarFuncionarios($retorno['idFuncionario']);
+                        $retornoCliente = $clienteController->listarClientes($retorno['idCliente']);
                     ?>
                         <tr>
-                            <th scope="row" class="col"> <?php echo $retorno['id']; ?> </th>
-                            <td class="col"> <?php echo $retornoVeiculo[0]['descricao']; ?> </th>
+                            <th scope="row" class="col"><?php echo $retorno['id']; ?> </th>
+                            <td class="col"> <?php echo $retornoCliente[0]['nome']; ?> </td>
+                            <td class="col"> <?php echo $retornoVeiculo[0]['descricao']; ?> </td>
+                            <td class="col"> <?php echo $retornoFuncionario[0]['nome']; ?> </td>
                             <td class="col">
                                 <?php
                                 $data = $retorno['data'];
@@ -51,22 +56,18 @@ use App\Http\Controllers\FuncionarioController;
                                 ?>
                             </td>
                             <td class="col"> <?php echo $retorno['horario']; ?> </td>
-                            <td class="col"> <?php echo $retorno['valor']; ?> </td>
-                            <td class="col"> <?php echo ucfirst($retorno['tipoManutencao']); ?> </td>
                             <td class="col"> <?php echo ucfirst($retorno['situacao']); ?> </td>
 
                             <td class="col">
-                                <button type="button" class="btn btn-primary btn-sm" id="btnVisualizar" name="btnVisualizar" data-bs-toggle="modal" data-bs-target="#modalVisualizar" onclick="setInformations
-                                (
-                                    ['id', 'data', 'horario', 'valor', 'tipoManutencao', 'descricao', 'veiculo', 'funcionario', 'situacao'],
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalVisualizar" onclick="setInformations
+                                (['id', 'cliente', 'veiculo', 'funcionario', 'data', 'horario', 'observacao', 'situacao'],
                                     [<?php echo $retorno['id']; ?>, 
-                                    '<?php echo $retorno['data']; ?>',
-                                    '<?php echo $retorno['horario']; ?>',
-                                    '<?php echo $retorno['valor']; ?>',
-                                    '<?php echo ucfirst($retorno['tipoManutencao']); ?>',
-                                    '<?php echo ucfirst($retorno['descricao']); ?>',
+                                    '<?php echo $retornoCliente[0]['nome']; ?>',
                                     '<?php echo $retornoVeiculo[0]['descricao']; ?>',
                                     '<?php echo $retornoFuncionario[0]['nome']; ?>',
+                                    '<?php echo $retorno['data']; ?>',
+                                    '<?php echo $retorno['horario']; ?>',
+                                    '<?php echo $retorno['observacao']; ?>',
                                     '<?php echo ucfirst($retorno['situacao']); ?>']
                                 )">
                                     <ion-icon name="layers"></ion-icon>
@@ -81,7 +82,6 @@ use App\Http\Controllers\FuncionarioController;
                 {{ $arraySelect->links() }}
             </div>
 
-            <br>
         </div>
     </div>
 
@@ -90,7 +90,7 @@ use App\Http\Controllers\FuncionarioController;
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Visualizar Manutenção</h5>
+                    <h5 class="modal-title">Visualizar Teste Drive</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btnFecharModal"></button>
                 </div>
                 <div class="modal-body">
@@ -100,18 +100,18 @@ use App\Http\Controllers\FuncionarioController;
                             <div class="row">
                                 <div class="col">
                                     <input type="hidden" class="form-control" name="id" id="id">
-                                    <label>Veículo</label>
-                                    <input type="text" class="form-control" name="veiculo" id="veiculo" disabled>
+                                    <label>Cliente</label>
+                                    <input type="text" class="form-control" name="cliente" id="cliente" disabled>
                                 </div>
                                 <div class="col">
-                                    <label>Funcionário</label>
-                                    <input type="text" class="form-control" name="funcionario" id="funcionario" disabled>
+                                    <label>Veículo</label>
+                                    <input type="text" class="form-control" name="veiculo" id="veiculo" disabled>
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="col">
-                                    <label>Data</label>
-                                    <input type="date" class="form-control" name="data" id="data" disabled>
+                                    <label>Funcionário</label>
+                                    <input type="text" class="form-control" name="funcionario" id="funcionario" disabled>
                                 </div>
                                 <div class="col">
                                     <label>Horário</label>
@@ -120,18 +120,14 @@ use App\Http\Controllers\FuncionarioController;
                             </div>
                             <div class="row mt-2">
                                 <div class="col">
-                                    <label>Valor</label>
-                                    <input type="text" class="form-control" name="valor" id="valor" disabled>
-                                </div>
-                                <div class="col">
-                                    <label>Tipo</label>
-                                    <input type="text" class="form-control" name="tipoManutencao" id="tipoManutencao" disabled>
+                                    <label>Data</label>
+                                    <input type="date" class="form-control" name="data" id="data" disabled>
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="col">
-                                    <label>Descrição</label>
-                                    <textarea class="form-control" name="descricao" id="descricao" disabled></textarea>
+                                    <label>Observação</label>
+                                    <textarea class="form-control" name="observacao" id="observacao" disabled></textarea>
                                 </div>
                             </div>
                             <div class="row">
@@ -146,20 +142,20 @@ use App\Http\Controllers\FuncionarioController;
                             <div class="row justify-content-around">
 
                                 <button type="button" class="btn btn-primary ms-0 col-4" id="btnConcluir">
-                                    Concluir Manutenção
+                                    Concluir Teste Drive
                                 </button>
 
                                 <button type="button" class="btn btn-warning ms-0 col-4" id="btnAdiar">
-                                    Adiar Manutenção
+                                    Adiar Teste Drive
                                 </button>
 
                                 <button type="button" class="btn btn-danger ms-0 col-4" id="btnCancelar">
-                                    Cancelar Manutenção
+                                    Cancelar Teste Drive
                                 </button>
 
                                 {{-- Div concluir --}}
                                 <div class="row mx-auto mt-4" id="divBotoesConcluir" hidden>
-                                    <button type="submit" class="btn btn-success btn-sm mb-1" id="btnConfirmarConclusao" formaction="../manutencao/concluir">
+                                    <button type="submit" class="btn btn-success btn-sm mb-1" id="btnConfirmarConclusao" formaction="../testedrive/concluir">
                                         Confirmar Conclusão
                                     </button>
                                     <button type="button" class="btn btn-secondary btn-sm" id="fecharBtnManutencao">
@@ -169,10 +165,10 @@ use App\Http\Controllers\FuncionarioController;
 
                                 {{-- Div adiar --}}
                                 <div class="row mx-auto mt-4" id="divBotoesAdiar" hidden>
-                                    <label>Nova data da manutenção</label>
+                                    <label>Nova data do teste drive</label>
                                     <input type="date" class="form-control mb-2" name="novaData" id="novaData">
-                                    <button type="submit" class="btn btn-success btn-sm mb-1" id="btnConfirmarAdiar" formaction="../manutencao/adiar">
-                                        Alterar data manuteção
+                                    <button type="submit" class="btn btn-success btn-sm mb-1" id="btnConfirmarAdiar" formaction="../testedrive/adiar">
+                                        Alterar data teste drive
                                     </button>
                                     <button type="button" class="btn btn-secondary btn-sm" id="fecharBtnManutencao">
                                         Fechar
@@ -181,8 +177,8 @@ use App\Http\Controllers\FuncionarioController;
 
                                 {{-- Div cancelar --}}
                                 <div class="row mx-auto mt-4" id="divBotoesCancelar" hidden>
-                                    Deseja realmente cancelar a manutenção?
-                                    <button type="submit" class="btn btn-danger btn-sm mb-1" id="btnConfirmarCancelar" formaction="../manutencao/cancelar">
+                                    Deseja realmente cancelar o teste drive?
+                                    <button type="submit" class="btn btn-danger btn-sm mb-1" id="btnConfirmarCancelar" formaction="../testedrive/cancelar">
                                         Sim, quero cancelar
                                     </button>
                                     <button type="button" class="btn btn-secondary btn-sm" id="fecharBtnManutencao">

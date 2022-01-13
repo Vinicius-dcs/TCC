@@ -15,6 +15,7 @@ class TesteDrive extends Model
     private $idCliente;
     private $idFuncionario;
     private $idVeiculo;
+    private $situacao;
     protected $table = "testedrives";
 
     public function getId() {
@@ -47,6 +48,14 @@ class TesteDrive extends Model
 
     public function setObservacao($observacao) {
         $this->observacao = $observacao;
+    }
+
+    public function getSituacao() {
+        return $this->situacao;
+    }
+
+    public function setSituacao($situacao) {
+        $this->situacao = $situacao;
     }
 
     public function getIdCliente() {
@@ -88,6 +97,6 @@ class TesteDrive extends Model
     use HasFactory;
 
     protected $fillable = [
-        'data, horario, observacao, idCliente, idVeiculo, idFuncionario'
+        'data, horario, observacao, situacao, idCliente, idVeiculo, idFuncionario'
     ];
 }

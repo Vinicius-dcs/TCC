@@ -125,4 +125,7 @@ Route::prefix('sistema')->group(function () {
     Route::post('/testedrive/cadastrar', [TesteDriveController::class, 'cadastrarTesteDrive']);
     Route::post('/testedrive/alterar', [TesteDriveController::class, 'alterarTesteDrive']);
     Route::post('/testedrive/excluir', [TesteDriveController::class, 'deletarTesteDrive']);
+    Route::post('/testedrive/concluir', [TesteDriveController::class, 'concluirTesteDrive']);
+    Route::post('/testedrive/adiar', [TesteDriveController::class, 'adiarTesteDrive']);
+    Route::post('/testedrive/cancelar', [TesteDriveController::class, 'cancelarTesteDrive']);
 });

@@ -17,8 +17,9 @@ class TesteDriveDAO extends BaseDAO
             $data = $testeDrive->getData();
             $horario = $testeDrive->getHorario();
             $observacao = $testeDrive->getObservacao();
+            $situacao = $testeDrive->getSituacao();
 
-            $this->insert('testedrives', "data, horario, observacao, idCliente, idVeiculo, idFuncionario", "'$data', '$horario', '$observacao', '$idCliente', '$idVeiculo', '$idFuncionario'");
+            $this->insert('testedrives', "data, horario, observacao, situacao,  idCliente, idVeiculo, idFuncionario", "'$data', '$horario', '$observacao', '$situacao', '$idCliente', '$idVeiculo', '$idFuncionario'");
         } catch (\Exception $erro) {
             echo "(TesteDriveDAO) Erro ao cadastrar teste drive " . $erro;
         }
@@ -59,7 +60,8 @@ class TesteDriveDAO extends BaseDAO
         }
     }
 
-    public function deletTesteDrive(TesteDrive $testeDrive) {
+    public function deletTesteDrive(TesteDrive $testeDrive)
+    {
         try {
             $id = $testeDrive->getId();
 
@@ -70,4 +72,37 @@ class TesteDriveDAO extends BaseDAO
         }
     }
 
+    public function concluirTesteDriveDAO(TesteDrive $testeDrive)
+    {
+        try {
+            $id = $testeDrive->getId();
+            $sql = "UPDATE testedrives SET situacao = 'concluido' WHERE id = '$id'";
+            $this->update($sql);
+        } catch (\Exception $erro) {
+            echo "(TesteDriveDAO) Erro ao concluir teste drive " . $erro;
+        }
+    }
+
+    public function adiarTesteDriveDAO(TesteDrive $testeDrive)
+    {
+        try {
+            $data = $testeDrive->getData();
+            $id = $testeDrive->getId();
+            $sql = "UPDATE testedrives SET data = '$data', situacao = 'pendente' WHERE id = '$id'";
+            $this->update($sql);
+        } catch (\Exception $erro) {
+            echo "(TesteDriveDAO) Erro ao adiar teste drive " . $erro;
+        }
+    }
+
+    public function cancelarTesteDriveDAO(TesteDrive $testeDrive)
+    {
+        try {
+            $id = $testeDrive->getId();
+            $sql = "UPDATE testedrives SET situacao = 'cancelado' WHERE id = '$id'";
+            $this->update($sql);
+        } catch (\Exception $erro) {
+            echo "(TesteDriveDAO) Erro ao cancelar teste drive " . $erro;
+        }
+    }
 }
