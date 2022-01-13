@@ -1,5 +1,4 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link href="./css/login.css" rel="stylesheet">
 
 <?php
@@ -20,18 +19,18 @@ session_start();
                 <h2 class="titulo titulo-secundario mt-2">Crie sua conta</h2>
                 <div class="social-media">
                     <ul class="social-media-lista">
-                        <a href="#" class="link-social-midia">
+                        <a href="https://pt-br.facebook.com/" class="link-social-midia">
                             <li class="item-social-midia">
                                 <i class="fab fa-facebook-f">
                                 </i>
                             </li>
                         </a>
-                        <a href="#" class="link-social-midia">
+                        <a href="https://www.youtube.com/" class="link-social-midia">
                             <li class="item-social-midia">
-                                <i class="fab fa-google"></i>
+                                <i class="fab fa-youtube"></i>
                             </li>
                         </a>
-                        <a href="#" class="link-social-midia">
+                        <a href="https://br.linkedin.com/" class="link-social-midia">
                             <li class="item-social-midia">
                                 <i class="fab fa-linkedin-in">
                                 </i>
@@ -42,21 +41,19 @@ session_start();
 
                 <!-- Alerta Sucess -->
                 @if (isset($_SESSION['mensagemSucces']) == true)
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <?php echo $_SESSION['mensagemSucces']; ?>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                            aria-label="Close"></button>
-                    </div>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <?php echo $_SESSION['mensagemSucces']; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 @endif
                 <?php unset($_SESSION['mensagemSucces']); ?>
 
                 <!-- Alerta Danger -->
                 @if (isset($_SESSION['mensagemDanger']) == true)
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <?php echo $_SESSION['mensagemDanger']; ?>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                            aria-label="Close"></button>
-                    </div>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <?php echo $_SESSION['mensagemDanger']; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 @endif
                 <?php unset($_SESSION['mensagemDanger']); ?>
 
@@ -76,11 +73,9 @@ session_start();
                     </label>
                     <label class="label-input" id="campoConfCadSenha">
                         <i class="fas fa-lock modificar-icon"></i>
-                        <input type="password" name="cadConfSenha" id="cadConfSenha" placeholder="Confirmar Senha"
-                            required>
+                        <input type="password" name="cadConfSenha" id="cadConfSenha" placeholder="Confirmar Senha" required>
                     </label>
-                    <button type="submit" id="btnCadastrar" class="botaoCadastrar btn btn-light mt-2 mb-2"
-                        disabled>Cadastrar</button>
+                    <button type="submit" id="btnCadastrar" class="botaoCadastrar btn btn-light mt-2 mb-2" disabled>Cadastrar</button>
                 </form>
             </div><!-- segunda coluna -->
         </div><!-- primeiro conteudo -->
@@ -96,18 +91,18 @@ session_start();
                 <h2 class="titulo titulo-secundario">Entrar no sistema</h2>
                 <div class="social-media">
                     <ul class="social-media-lista">
-                        <a href="#" class="link-social-midia">
+                        <a href="https://pt-br.facebook.com/" class="link-social-midia">
                             <li class="item-social-midia">
                                 <i class="fab fa-facebook-f">
                                 </i>
                             </li>
                         </a>
-                        <a href="#" class="link-social-midia">
+                        <a href="https://www.youtube.com/" class="link-social-midia">
                             <li class="item-social-midia">
-                                <i class="fab fa-google"></i>
+                                <i class="fab fa-youtube"></i>
                             </li>
                         </a>
-                        <a href="#" class="link-social-midia">
+                        <a href="https://br.linkedin.com/" class="link-social-midia">
                             <li class="item-social-midia">
                                 <i class="fab fa-linkedin-in">
                                 </i>
@@ -118,13 +113,12 @@ session_start();
 
                 <!-- Alerta Danger -->
                 @if (isset($_SESSION['loginAutorizado']))
-                    @if ($_SESSION['loginAutorizado'] == false)
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <p> Usuário ou senha incorreto!</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                aria-label="Close"></button>
-                        </div>
-                    @endif
+                @if ($_SESSION['loginAutorizado'] == false)
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <p> Usuário ou senha incorreto!</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
                 @endif
                 <?php unset($_SESSION['loginAutorizado']); ?>
 
@@ -147,8 +141,7 @@ session_start();
 
     <script src="https://kit.fontawesome.com/9b557ca9f0.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
     <script src="./js/login.js"></script>
 
