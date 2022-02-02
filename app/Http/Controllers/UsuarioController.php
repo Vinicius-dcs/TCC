@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Mail;
 use App\Models\Usuario;
 use App\Models\DAO\UsuarioDAO;
+use App\Mail\RecuperarSenha;
 
 session_start();
 
@@ -16,7 +18,7 @@ class UsuarioController extends Controller
             $usuario = new Usuario();
             $usuario->setNome(trim($_POST['cadNome']));
             $usuario->setEmail(trim($_POST['cadEmail']));
-            $usuario->setSenha(trim(md5($_POST['cadSenha'])));
+            $usuario->setSenha(trim($_POST['cadSenha']));
 
             if (!$this->verificaSeExisteEmail($usuario)) {
                 $usuarioDAO = new UsuarioDAO();
@@ -80,6 +82,41 @@ class UsuarioController extends Controller
             exit;
         } else {
             header('Location: ../sistema/inicio');
+        }
+    }
+
+    public static function enviarEmailRecuperarSenha(Usuario $usuario)
+    {
+        try {
+            $usuarioDAO = new UsuarioDAO();
+            $email = $usuario->getEmail();
+            $senha = $usuarioDAO->recuperaSenha($usuario);
+            
+            $detalhes = [
+                'senha' => $senha[0]['senha'],
+            ];
+
+            Mail::to($email)->send(new RecuperarSenha($detalhes));
+        } catch (\Exception $erro) {
+            echo "(UsuarioController) Erro ao enviar email recuperação de senha: " . $erro;
+        }
+    }
+
+    public function recuperarSenha()
+    {
+        try {
+            $usuario = new Usuario();
+            $usuarioDAO = new UsuarioDAO();
+            $usuario->setEmail($_POST['email']);
+
+            if (!empty($usuarioDAO->verificaSeExisteEmail($usuario))) {
+                $this->enviarEmailRecuperarSenha($usuario);
+            }
+            
+            header('Location: ./login');
+            exit();
+        } catch (\Exception $erro) {
+            echo "(UsuarioController) Erro ao executar método recuperar senha: " . $erro;
         }
     }
 }

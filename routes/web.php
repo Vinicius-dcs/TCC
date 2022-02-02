@@ -20,9 +20,9 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/recuperarSenha', function () {
-    return view('mails.esqueceuASenha');
-});
+Route::post('/recuperarSenha', [UsuarioController::class, 'recuperarSenha']);
+
+Route::get('/enviarEmail', [UsuarioController::class, 'enviarEmailRecuperarSenha']);
 
 Route::post('/usuario/insert', [UsuarioController::class, 'cadastrarUsuario']);
 

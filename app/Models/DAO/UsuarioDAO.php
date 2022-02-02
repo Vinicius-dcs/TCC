@@ -39,4 +39,14 @@ class UsuarioDAO extends BaseDAO
             echo "(UsuarioDAO) Erro ao logar no sistema: " . $erro;
         }
     }
+
+    public function recuperaSenha(Usuario $usuario)
+    {
+        try {
+            $email = $usuario->getEmail();
+            return $this->select("SELECT senha FROM usuarios WHERE email = '$email'");
+        } catch (\Exception $erro) {
+            echo "(UsuarioDAO) Erro ao recuperar senha: " . $erro;
+        }
+    }
 }

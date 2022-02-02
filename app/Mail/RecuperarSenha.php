@@ -6,19 +6,22 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Usuario;
 
 class RecuperarSenha extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $detalhes;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($detalhes)
     {
-        //
+        $this->detalhes = $detalhes;
     }
 
     /**
@@ -28,6 +31,6 @@ class RecuperarSenha extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.recuperarSenha')->subject('Alteração de Senha do Car Imports');
+        return $this->view('mails.recuperarSenha');
     }
 }

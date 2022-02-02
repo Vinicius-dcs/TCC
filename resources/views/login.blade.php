@@ -147,11 +147,12 @@ session_start();
                     <h5 class="modal-title" id="exampleModalLabel">Recuperação de Senha</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="">
+                <form method="POST" action="./recuperarSenha">
+                    @csrf
                     <div class="modal-body">
                         Insira abaixo o e-mail referente a conta que deseja recuperar a senha e caso o e-mail exista, a senha será recebida no e-mail.
                         <div class="mb-3">
-                            <input type="email" class="form-control mt-3" id="email" placeholder="Email" required>
+                            <input type="email" class="form-control mt-3" id="email" name="email" placeholder="Email" required>
                         </div>
                     </div>
                     <div class="modal-footer">
