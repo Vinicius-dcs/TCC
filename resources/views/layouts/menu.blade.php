@@ -61,13 +61,7 @@ UsuarioController::verificaSeExisteSessao();
 
                     <div class="nav__link collapseMenu">
                         <ion-icon name="reader-outline" class="nav__icon"></ion-icon>
-                        <span class="nav__name">Relatórios</span>
-                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
-                        <ul class="collapse__menu">
-                            <a href="#" class="collapse__sublink">Data</a>
-                            <a href="#" class="collapse__sublink">Group</a>
-                            <a href="#" class="collapse__sublink">Members</a>
-                        </ul>
+                        <span class="nav__name"> <a class="collapse__sublink" href="/carimports/public/sistema/relatorios">Relatórios</a></span>
                     </div>
                 </div>
             </div>

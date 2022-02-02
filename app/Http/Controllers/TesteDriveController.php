@@ -102,6 +102,15 @@ class TesteDriveController extends Controller
         }
     }
 
+    public function listarTesteDrivePeA()
+    {
+        try {
+            return $this->testeDrive->where('situacao', '=', 'pendente')->orWhere('situacao', '=', 'atrasado')->Paginate(8);
+        } catch (\Exception $erro) {
+            echo "(TesteDriveController) Erro ao consultar testes drives pendentes e atrasados: " . $erro;
+        }
+    }
+
     public function concluirTesteDrive()
     {
         session_start();

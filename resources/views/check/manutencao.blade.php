@@ -9,7 +9,7 @@ use App\Http\Controllers\FuncionarioController;
 
 <body>
     <div class="position-relative vh-100" id="divPrincipal">
-        <h1 class="display-4 text-center mt">Manutenções Pendetes e Atrasadas</h1>
+        <h1 class="display-4 text-center mt">Manutenções Pendentes e Atrasadas</h1>
 
         <div class="container mt-4">
             @include('layouts.alert')

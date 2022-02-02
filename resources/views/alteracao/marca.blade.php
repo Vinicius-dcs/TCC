@@ -1,14 +1,12 @@
 @include('layouts.menu')
 
-<?php
-use App\Http\Controllers\MarcaController;
-?>
+<?php use App\Http\Controllers\MarcaController; ?>
 
 <body>
     <div class="position-relative vh-100">
         <h1 class="display-4 text-center">Alteração de Marcas</h1>
 
-        <div class="position-absolute top-50 start-50 translate-middle mt-4">
+        <div class="container mt-4">
             @include('layouts.alert')
 
             <table class="table table-hover">
@@ -58,6 +56,9 @@ use App\Http\Controllers\MarcaController;
             <div>
                 {{ $arraySelect->links() }}
             </div>
+
+            <p class="mt-5" style="font-size: 11px; position: relative; top: 95%;">*Nessa tela é possível consultar, alterar e excluir informações.</p>
+
         </div>
 
         <!-- Modal Alterar -->

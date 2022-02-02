@@ -120,6 +120,8 @@
                 {{ $arraySelect->links() }}
             </div>
 
+            <p class="mt-5" style="font-size: 11px; position: relative; top: 95%;">*Nessa tela é possível consultar, alterar e excluir informações.</p>
+
         </div>
     </div>
 

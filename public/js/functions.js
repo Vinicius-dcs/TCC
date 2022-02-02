@@ -144,6 +144,41 @@ jQuery(document).ready(function () {
     });
 })
 
+/* function gerarTabelaRelatorios() {
+
+    var dados = $('#formFiltrosRelatorio').serialize();
+    console.log(dados)
+
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/carimports/app/Models/DAO/RelatoriosDAO.php',
+        async: true,
+        data: dados,
+        success: function (response) {
+           console.log(dados);
+        }
+    });
+
+    let urlAtual = window.location.host;
+    let urlAPI = "http://" + urlAtual + "/carimports/public/sistema/relatorios/api/get";
+
+    fetch(urlAPI).then(function (response) {
+        response.json().then(function (dados) {
+
+            dados.forEach(element => {
+                let tr = document.createElement('tr');
+                for (let index = 0; index < Object.keys(dados[0]).length; index++) {
+                    let td = document.createElement('td');
+                    td.innerHTML = element[Object.keys(element)[index]];
+                    tr.appendChild(td);
+                }
+                document.querySelector('#tbody').appendChild(tr);
+            })
+        })
+    })
+} */
+
 /* ------------------------------------------------------------------- */
 
 function validaAnoVeiculo() {
@@ -228,9 +263,9 @@ function mascaraCPF() {
 
 function mascaraTelefone() {
     let telefone = document.querySelector('#telefone').value
-    telefone = telefone.replace(/\D/g, "");             //Remove tudo o que não é dígito
+    telefone = telefone.replace(/\D/g, ""); //Remove tudo o que não é dígito
     telefone = telefone.replace(/^(\d{2})(\d)/g, "($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
-    telefone = telefone.replace(/(\d)(\d{4})$/, "$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
+    telefone = telefone.replace(/(\d)(\d{4})$/, "$1-$2"); //Coloca hífen entre o quarto e o quinto dígitos
 
     document.querySelector('#telefone').value = telefone
 }
@@ -264,7 +299,7 @@ function desabilitarHorariosOcupados() {
     let urlAtual = window.location.host;
     let url;
 
-    if(valueSelectURLAPI == 1) {
+    if (valueSelectURLAPI == 1) {
         url = "http://" + urlAtual + "/carimports/public/sistema/manutencao/api/get";
     } else if (valueSelectURLAPI == 2) {
         url = "http://" + urlAtual + "/carimports/public/sistema/testedrive/api/get";
@@ -397,4 +432,3 @@ function isValidCPF() {
     }
 
 }
-

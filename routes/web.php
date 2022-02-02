@@ -10,6 +10,7 @@ use App\Http\Controllers\VeiculoController;
 use App\Http\Controllers\TesteDriveController;
 use App\Models\DAO\ManutencaoDAO;
 use App\Models\DAO\TesteDriveDAO;
+use App\Models\DAO\RelatoriosDAO;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,10 +20,13 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/recuperarSenha', function () {
+    return view('mails.esqueceuASenha');
+});
+
 Route::post('/usuario/insert', [UsuarioController::class, 'cadastrarUsuario']);
 
 Route::post('/usuario/logar', [UsuarioController::class, 'logarUsuario']);
-
 
 Route::prefix('sistema')->group(function () {
 
@@ -94,7 +98,43 @@ Route::prefix('sistema')->group(function () {
         Route::get('testedrive', function () {
             return view('check.testeDrive');
         });
+    });
 
+    Route::get('/relatorios', function () {
+        return view('relatorios.inicio');
+    });
+
+    Route::prefix('relatorios')->group(function () {
+        Route::get('/', function () {
+            return view('relatorios.inicio');
+        });
+
+        Route::get('relatorio-1', function () {
+            return view('relatorios.relatorio-1');
+        });
+
+        Route::get('relatorio-2', function () {
+            return view('relatorios.relatorio-2');
+        });
+
+        Route::get('relatorio-3', function () {
+            return view('relatorios.relatorio-3');
+        });
+
+        Route::get('relatorio-4', function () {
+            return view('relatorios.relatorio-4');
+        });
+
+        Route::get('relatorio-5', function () {
+            return view('relatorios.relatorio-5');
+        });
+        
+        Route::get('relatorio-6', function () {
+            return view('relatorios.relatorio-6');
+        });
+        
+        Route::get('/api/get', [RelatoriosDAO::class, 'getRelatorio1']);
+        Route::post('/filtrar', [RelatoriosDAO::class, 'setFiltrosSession']);
     });
 
     Route::post('/marca/cadastrar', [MarcaController::class, 'cadastrarMarca']);

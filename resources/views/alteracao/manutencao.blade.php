@@ -53,7 +53,7 @@ use App\Http\Controllers\VeiculoController;
                                 ?>
                             </td>
                             <td class="col"> <?php echo $retorno['horario']; ?> </td>
-                            <td class="col"> <?php echo $retorno['valor']; ?> </td>
+                            <td class="col"> <?php echo 'R$'. number_format($retorno['valor'], 2, ',', '.'); ?> </td>
                             <td class="col"> <?php echo ucfirst($retorno['tipoManutencao']); ?> </td>
                             <td class="col"> <?php echo ucfirst($retorno['situacao']); ?> </td>
                             <td class="col"> <?php echo $retornoFuncionario[0]['nome']; ?> </td>
@@ -90,6 +90,8 @@ use App\Http\Controllers\VeiculoController;
             <div>
                 {{ $arraySelect->links() }}
             </div>
+
+            <p class="mt-5" style="font-size: 11px; position: relative; top: 95%;">*Nessa tela é possível consultar, alterar e excluir informações.</p>
 
         </div>
     </div>

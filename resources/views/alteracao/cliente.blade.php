@@ -1,6 +1,8 @@
 @include('layouts.menu')
 
-<?php use App\Http\Controllers\ClienteController; ?>
+<?php
+
+use App\Http\Controllers\ClienteController; ?>
 
 <body>
     <div class="position-relative vh-100">
@@ -25,51 +27,49 @@
                 </thead>
                 <tbody>
                     <?php
-                        $clienteController = new ClienteController();
-                        $arraySelect = $clienteController->listarClientes();
+                    $clienteController = new ClienteController();
+                    $arraySelect = $clienteController->listarClientes();
 
-                         foreach ($arraySelect as $retorno) 
-                          {
+                    foreach ($arraySelect as $retorno) {
                     ?>
-                    <tr>
-                        <th scope="row" class="col">
-                            <?php echo $retorno['id']; ?>
-                        </th>
-                        <td class="col"> <?php echo $retorno['nome']; ?> </td>
-                        <td class="col">
-                            <?php
-                            $cpf = $retorno['cpf'];
-                            $parte1 = substr($cpf, 0, 3);
-                            $parte2 = substr($cpf, 3, 3);
-                            $parte3 = substr($cpf, 6, 3);
-                            $parte4 = substr($cpf, 9, 2);
-                            echo "$parte1.$parte2.$parte3-$parte4";
-                            ?>
-                        </td>
-                        <td class="col">
-                            <?php
-                            $data = $retorno['dataNascimento'];
-                            $ano = substr($data, 0, 4);
-                            $mes = substr($data, 5, 2);
-                            $dia = substr($data, 8, 2);
-                            echo "$dia-$mes-$ano";
-                            ?>
-                        </td>
-                        <td class="col"> <?php echo $retorno['endereco']; ?> </td>
-                        <td class="col">
-                            <?php
-                            $cep = $retorno['cep'];
-                            $parte1 = substr($cep, 0, 5);
-                            $parte2 = substr($cep, 5, 3);
-                            echo "$parte1-$parte2";
-                            ?>
-                        </td>
-                        <td class="col"> <?php echo $retorno['cidade']; ?> </td>
-                        <td class="col"> <?php echo $retorno['estado']; ?> </td>
+                        <tr>
+                            <th scope="row" class="col">
+                                <?php echo $retorno['id']; ?>
+                            </th>
+                            <td class="col"> <?php echo $retorno['nome']; ?> </td>
+                            <td class="col">
+                                <?php
+                                $cpf = $retorno['cpf'];
+                                $parte1 = substr($cpf, 0, 3);
+                                $parte2 = substr($cpf, 3, 3);
+                                $parte3 = substr($cpf, 6, 3);
+                                $parte4 = substr($cpf, 9, 2);
+                                echo "$parte1.$parte2.$parte3-$parte4";
+                                ?>
+                            </td>
+                            <td class="col">
+                                <?php
+                                $data = $retorno['dataNascimento'];
+                                $ano = substr($data, 0, 4);
+                                $mes = substr($data, 5, 2);
+                                $dia = substr($data, 8, 2);
+                                echo "$dia-$mes-$ano";
+                                ?>
+                            </td>
+                            <td class="col"> <?php echo $retorno['endereco']; ?> </td>
+                            <td class="col">
+                                <?php
+                                $cep = $retorno['cep'];
+                                $parte1 = substr($cep, 0, 5);
+                                $parte2 = substr($cep, 5, 3);
+                                echo "$parte1-$parte2";
+                                ?>
+                            </td>
+                            <td class="col"> <?php echo $retorno['cidade']; ?> </td>
+                            <td class="col"> <?php echo $retorno['estado']; ?> </td>
 
-                        <td class="col">
-                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#modalAlterar" onclick="setInformations
+                            <td class="col">
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalAlterar" onclick="setInformations
                                 (
                                     ['id', 'nome', 'dataNascimento', 'endereco', 'cpf', 'cep', 'cidade', 'estado'],
                                     [<?php echo $retorno['id']; ?>, 
@@ -77,35 +77,34 @@
                                     '<?php echo $retorno['dataNascimento']; ?>',
                                     '<?php echo $retorno['endereco']; ?>',
                                     '<?php
-                                    $cpf = $retorno['cpf'];
-                                    $parte1 = substr($cpf, 0, 3);
-                                    $parte2 = substr($cpf, 3, 3);
-                                    $parte3 = substr($cpf, 6, 3);
-                                    $parte4 = substr($cpf, 9, 2);
-                                    echo "$parte1.$parte2.$parte3-$parte4";
-                                    ?>',
+                                        $cpf = $retorno['cpf'];
+                                        $parte1 = substr($cpf, 0, 3);
+                                        $parte2 = substr($cpf, 3, 3);
+                                        $parte3 = substr($cpf, 6, 3);
+                                        $parte4 = substr($cpf, 9, 2);
+                                        echo "$parte1.$parte2.$parte3-$parte4";
+                                        ?>',
                                     '<?php
-                                    $cep = $retorno['cep'];
-                                    $parte1 = substr($cep, 0, 5);
-                                    $parte2 = substr($cep, 5, 3);
-                                    echo "$parte1-$parte2";
-                                    ?>',
+                                        $cep = $retorno['cep'];
+                                        $parte1 = substr($cep, 0, 5);
+                                        $parte2 = substr($cep, 5, 3);
+                                        echo "$parte1-$parte2";
+                                        ?>',
                                     '<?php echo $retorno['cidade']; ?>',
                                     '<?php echo $retorno['estado']; ?>'
                                 ]
                                 )">
-                                <ion-icon name="build">
-                            </button>
-                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#modalExcluir" onclick="setInformations
+                                    <ion-icon name="build">
+                                </button>
+                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalExcluir" onclick="setInformations
                                 (
                                     ['idExcluir'],
                                     [<?php echo $retorno['id']; ?>]
                                 )">
-                                <ion-icon name="trash">
-                            </button>
-                        </td>
-                    </tr>
+                                    <ion-icon name="trash">
+                                </button>
+                            </td>
+                        </tr>
                     <?php } ?>
                 </tbody>
             </table>
@@ -114,7 +113,8 @@
                 {{ $arraySelect->links() }}
             </div>
 
-            <br>
+            <p class="mt-5" style="font-size: 11px; position: relative; top: 95%;">*Nessa tela é possível consultar, alterar e excluir informações.</p>
+
         </div>
     </div>
 
@@ -140,8 +140,7 @@
                                 </div>
                                 <div class="col-5">
                                     <label>Data Nascimento</label>
-                                    <input type="date" class="form-control" name="dataNascimento" id="dataNascimento"
-                                        required>
+                                    <input type="date" class="form-control" name="dataNascimento" id="dataNascimento" required>
                                 </div>
                             </div>
                             <!-- -->
@@ -166,13 +165,11 @@
                                 </div>
                                 <div class="col-4">
                                     <label>Cidade</label>
-                                    <input type="text" class="form-control" name="cidade" id="cidade" value=""
-                                        readonly required>
+                                    <input type="text" class="form-control" name="cidade" id="cidade" value="" readonly required>
                                 </div>
                                 <div class="col-4 mb-2">
                                     <label>Estado</label>
-                                    <input type="text" class="form-control" name="estado" id="estado" value=""
-                                        readonly required>
+                                    <input type="text" class="form-control" name="estado" id="estado" value="" readonly required>
                                 </div>
                             </div>
                             <!-- -->

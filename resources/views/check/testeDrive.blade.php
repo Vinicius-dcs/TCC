@@ -10,7 +10,7 @@ use App\Http\Controllers\ClienteController;
 
 <body>
     <div class="position-relative vh-100">
-        <h1 class="display-4 text-center">Alteração de Teste Drive</h1>
+        <h1 class="display-4 text-center">Teste Drives Pendentes e Atrasados</h1>
 
         <div class="container mt-4">
             @include('layouts.alert')
@@ -34,7 +34,7 @@ use App\Http\Controllers\ClienteController;
                     $funcionarioController = new FuncionarioController();
                     $veiculoController = new VeiculoController();
                     $clienteController = new ClienteController();
-                    $arraySelect = $testeDriveController->listarTesteDrive();
+                    $arraySelect = $testeDriveController->listarTesteDrivePeA();
 
                     foreach ($arraySelect as $retorno) {
                         $retornoVeiculo = $veiculoController->listarVeiculo($retorno['idVeiculo']);

@@ -132,11 +132,35 @@ session_start();
                         <i class="fas fa-lock modificar-icon"></i>
                         <input type="password" name="loginSenha" placeholder="Senha" required>
                     </label>
-                    <a class="senha" href="#">Esqueceu sua senha?</a>
                     <button class="botao botao-secundario">Entrar</button>
+                    <a class="senha" data-bs-toggle="modal" data-bs-target="#exampleModal">Esqueceu sua senha?</a>
                 </form>
             </div><!-- segunda coluna -->
         </div><!-- segundo conteudo -->
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Recuperação de Senha</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="">
+                    <div class="modal-body">
+                        Insira abaixo o e-mail referente a conta que deseja recuperar a senha e caso o e-mail exista, a senha será recebida no e-mail.
+                        <div class="mb-3">
+                            <input type="email" class="form-control mt-3" id="email" placeholder="Email" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Enviar E-mail</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     <script src="https://kit.fontawesome.com/9b557ca9f0.js" crossorigin="anonymous"></script>

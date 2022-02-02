@@ -246,6 +246,7 @@ body {
     font-size: 14px;
     margin: 15px 0;
     text-align: center;
+    cursor: pointer;
 }
 
 .entrar-js .primeiro-conteudo .primeira-coluna,
