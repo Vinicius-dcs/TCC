@@ -89,13 +89,17 @@ jQuery(document).ready(function () {
 
 /* Habilitar botão alterar funcionário */
 jQuery(document).ready(function () {
-    jQuery('#nome, #dataNascimento, #dataAdmissao, #email, #sexo, #cpf, #telefone').on('keyup change', function () {
-        if (isValidCPF()) {
-            document.querySelector('#btnAlterarFuncionario').disabled = false;
-        } else {
-            document.querySelector('#btnAlterarFuncionario').disabled = true;
+    if (document.querySelector('#validaTela') != null) {
+        if (document.querySelector('#validaTela').value == "alterarFuncionario") {
+            jQuery('#nome, #dataNascimento, #dataAdmissao, #email, #sexo, #cpf, #telefone').on('keyup change', function () {
+                if (isValidCPF()) {
+                    document.querySelector('#btnAlterarFuncionario').disabled = false;
+                } else {
+                    document.querySelector('#btnAlterarFuncionario').disabled = true;
+                }
+            })
         }
-    })
+    }
 })
 
 /* Desabilitar botão confirmar alteração funcionário ao sair do modal*/
@@ -143,41 +147,6 @@ jQuery(document).ready(function () {
         document.querySelector('#divBotoesCancelar').hidden = true;
     });
 })
-
-/* function gerarTabelaRelatorios() {
-
-    var dados = $('#formFiltrosRelatorio').serialize();
-    console.log(dados)
-
-    $.ajax({
-        type: 'POST',
-        dataType: 'json',
-        url: '/carimports/app/Models/DAO/RelatoriosDAO.php',
-        async: true,
-        data: dados,
-        success: function (response) {
-           console.log(dados);
-        }
-    });
-
-    let urlAtual = window.location.host;
-    let urlAPI = "http://" + urlAtual + "/carimports/public/sistema/relatorios/api/get";
-
-    fetch(urlAPI).then(function (response) {
-        response.json().then(function (dados) {
-
-            dados.forEach(element => {
-                let tr = document.createElement('tr');
-                for (let index = 0; index < Object.keys(dados[0]).length; index++) {
-                    let td = document.createElement('td');
-                    td.innerHTML = element[Object.keys(element)[index]];
-                    tr.appendChild(td);
-                }
-                document.querySelector('#tbody').appendChild(tr);
-            })
-        })
-    })
-} */
 
 /* ------------------------------------------------------------------- */
 
@@ -372,15 +341,19 @@ function habilitarBtnCadastroFuncionario() {
     }, 10);
 }
 
-/* Habilita botão confirmar alteração */
+/* Habilita botão confirmar alteração Cliente */
 jQuery(document).ready(function () {
-    jQuery('#nome, #dataNascimento, #endereco, #cpf, #cep').on('change keyup', function () {
-        if (document.querySelector('#validaCadastroOuAlterar') != null) {
-            if (document.querySelector('#validaCadastroOuAlterar').value == 1) {
-                habilitarBtnConfirmarAlteracao();
-            }
+    if (document.querySelector('#validaTela') != null) {
+        if (document.querySelector('#validaTela').value == "alterarCliente") {
+            jQuery('#nome, #dataNascimento, #endereco, #cpf, #cep').on('change keyup', function () {
+                if (document.querySelector('#validaCadastroOuAlterar') != null) {
+                    if (document.querySelector('#validaCadastroOuAlterar').value == 1) {
+                        habilitarBtnConfirmarAlteracao();
+                    }
+                }
+            })
         }
-    });
+    }
 })
 
 function habilitarBtnConfirmarAlteracao() {

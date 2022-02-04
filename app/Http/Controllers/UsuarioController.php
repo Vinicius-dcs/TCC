@@ -56,7 +56,7 @@ class UsuarioController extends Controller
         try {
             $usuario = new Usuario();
             $usuario->setEmail(trim($_POST['loginEmail']));
-            $usuario->setSenha(trim(md5($_POST['loginSenha'])));
+            $usuario->setSenha(trim($_POST['loginSenha']));
 
             $usuarioDAO = new UsuarioDAO();
             $result = $usuarioDAO->verificaLoginUsuario($usuario);

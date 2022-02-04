@@ -50,6 +50,7 @@ class VeiculoDAO extends BaseDAO
                 anoModelo = '$anoModelo',
                 placa = '$placa',
                 origem = '$origem',
+                idCliente = null,
                 idMarca = '$marca'
                 WHERE id = '$id'";
             } else {

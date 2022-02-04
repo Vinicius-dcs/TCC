@@ -141,6 +141,7 @@
                             <div class="row">
                                 <div class="col">
                                     <label>Nome</label>
+                                    <input type="hidden" class="form-control" name="validaTela" id="validaTela" value="alterarFuncionario">
                                     <input type="hidden" class="form-control" name="id" id="id" required>
                                     <input type="text" class="form-control" name="nome" id="nome" required>
                                 </div>

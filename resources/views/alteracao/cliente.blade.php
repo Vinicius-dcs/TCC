@@ -112,9 +112,7 @@ use App\Http\Controllers\ClienteController; ?>
             <div>
                 {{ $arraySelect->links() }}
             </div>
-
             <p class="mt-5" style="font-size: 11px; position: relative; top: 95%;">*Nessa tela é possível consultar, alterar e excluir informações.</p>
-
         </div>
     </div>
 
@@ -133,6 +131,7 @@ use App\Http\Controllers\ClienteController; ?>
                             <!-- -->
                             <div class="row">
                                 <div class="col-7">
+                                    <input type="hidden" class="form-control" name="validaTela" id="validaTela" value="alterarCliente">
                                     <input type="hidden" class="form-control" name="id" id="id" value="">
                                     <input type="hidden" class="form-control" name="validaCadastroOuAlterar" id="validaCadastroOuAlterar" value="1">
                                     <label>Nome</label>

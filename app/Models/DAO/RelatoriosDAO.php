@@ -38,9 +38,9 @@ class RelatoriosDAO extends BaseDAO
     public function getRelatorio1()
     {
         try {
-            $dataInicio = $_SESSION['dataInicio'];
-            $dataFim = $_SESSION['dataFim'];
-
+            $dataInicio = !empty($_SESSION['dataInicio']) ? $_SESSION['dataInicio'] : '1999-01-01';
+            $dataFim = !empty($_SESSION['dataFim']) ? $_SESSION['dataFim'] : '2099-01-01';
+            
             $sql = "select td.idVeiculo as 'ID Veículo', v.descricao as 'Veículo', m.nome as 'Marca',count(td.idVeiculo) as 'Quantidade de Testes Drives' from testedrives td
             inner join veiculos v on v.id = td.idVeiculo
             left join marcas m on m.id = v.idMarca

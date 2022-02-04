@@ -23,7 +23,7 @@
                     <td> <a href="./relatorios/relatorio-4">4 - Relatório de Manutenções</a> </td>
                 </tr>
                 <tr>
-                    <td> <a href="./relatorios/relatorio-5">5 - Relatório de Testes Drives - Serviços Concluídos</a> </td>
+                    <td> <a href="./relatorios/relatorio-5">5 - Relatório de Testes Drives</a> </td>
                 </tr>
                 <tr>
                     <td> <a href="./relatorios/relatorio-6">6 - Relatório de Serviços - Hoje</a> </td>

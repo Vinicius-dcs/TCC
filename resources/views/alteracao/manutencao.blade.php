@@ -112,6 +112,7 @@ use App\Http\Controllers\VeiculoController;
 
                                 <div class="col">
                                     <label>Veículo</label>
+                                    <input type="hidden" class="form-control" name="selecionaURLAPI" id="selecionaURLAPI" value="1" required>
                                     <input type="hidden" class="form-control" name="id" id="id" required>
                                     <select class="form-control" name="veiculo" id="veiculo" required>
                                         <option value="" selected disabled>Selecionar...</option>
